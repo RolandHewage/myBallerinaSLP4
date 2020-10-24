@@ -6,3 +6,10 @@ version= "0.1.0"
 observability-included=true
 
 [dependencies]
+
+[platform]
+target = "java8"
+
+   [[platform.libraries]]
+   path = "./javalibs/snakeyaml-1.25.jar"
+   modules = ["yamlparser"]

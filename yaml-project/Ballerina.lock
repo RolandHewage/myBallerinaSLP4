@@ -5,5 +5,10 @@ ballerina_version = "slp4"
 
 [[imports."roland/yamlparser:0.1.0"]]
 org_name = "ballerina"
+name = "java.arrays"
+version = "0.9.0"
+
+[[imports."roland/yamlparser:0.1.0"]]
+org_name = "ballerina"
 name = "io"
 version = "0.5.0"
