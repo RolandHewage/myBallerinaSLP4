@@ -4,7 +4,8 @@ import ballerina/log;
 import ballerina/oauth2;
 
 oauth2:InboundOAuth2Provider oauth2Provider = new ({
-    url: "https://localhost:9095/oauth2/token/introspect"
+    // url: "https://localhost:9095/oauth2/token/introspect"
+    url: "https://dev-8558822.okta.com/oauth2/default/v1/introspect"
 });
 
 http:BearerAuthHandler oauth2Handler = new (oauth2Provider);
