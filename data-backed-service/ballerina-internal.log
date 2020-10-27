@@ -1,0 +1,118 @@
+[2020-10-28 00:23:06,226] SEVERE {b7a.log.crash} - error("Error in SQL connector configuration: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.MysqlDataSource Caused by :com.mysql.cj.jdbc.MysqlDataSource") 
+org.ballerinalang.jvm.util.exceptions.BallerinaException: error("Error in SQL connector configuration: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.MysqlDataSource Caused by :com.mysql.cj.jdbc.MysqlDataSource")
+	at org.ballerinalang.test.runtime.entity.TesterinaFunction.runOnSchedule(TesterinaFunction.java:122)
+	at org.ballerinalang.test.runtime.entity.TesterinaFunction.invoke(TesterinaFunction.java:56)
+	at org.ballerinalang.test.runtime.BTestRunner.startSuite(BTestRunner.java:559)
+	at org.ballerinalang.test.runtime.BTestRunner.execute(BTestRunner.java:287)
+	at org.ballerinalang.test.runtime.BTestRunner.runTest(BTestRunner.java:106)
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:74)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+Caused by: error("Error in SQL connector configuration: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.MysqlDataSource Caused by :com.mysql.cj.jdbc.MysqlDataSource")
+	at org.ballerinalang.jvm.api.BErrorCreator.createDistinctError(BErrorCreator.java:156)
+	at org.ballerinalang.jvm.api.BErrorCreator.createDistinctError(BErrorCreator.java:141)
+	at org.ballerinalang.sql.utils.ErrorGenerator.getSQLApplicationError(ErrorGenerator.java:65)
+	at org.ballerinalang.sql.datasource.SQLDatasource.buildDataSource(SQLDatasource.java:242)
+	at org.ballerinalang.sql.datasource.SQLDatasource.<init>(SQLDatasource.java:55)
+	at org.ballerinalang.sql.datasource.SQLDatasource.createAndInitDatasource(SQLDatasource.java:119)
+	at org.ballerinalang.sql.datasource.SQLDatasource.lambda$retrieveDatasource$1(SQLDatasource.java:112)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
+	at org.ballerinalang.sql.datasource.SQLDatasource.retrieveDatasource(SQLDatasource.java:111)
+	at org.ballerinalang.sql.utils.ClientUtils.createClient(ClientUtils.java:43)
+	at org.ballerinalang.mysql.NativeImpl.createClient(NativeImpl.java:78)
+	at ballerinax.mysql.0_6_0.client.createClient(client.bal:181)
+	at ballerinax.mysql.0_6_0.$value$Client.init(client.bal:48)
+	at ballerinax.mysql.0_6_0.$value$Client.call(client.bal)
+	at ballerinax.mysql.0_6_0.$value$Client.$init$(client.bal:22)
+	at ballerinax.mysql.0_6_0.$value$Client.call(client.bal)
+	at roland.employee_db_service.0_1_0.employee_db_service.$roland_employee_db_service_0_1_0__init_0(employee_db_service.bal:20)
+	at roland.employee_db_service.0_1_0.$_init.$roland_employee_db_service_0_1_0__init_(employee_db_service:65535)
+	at roland.employee_db_service.0_1_0.$_init.$moduleInit(employee_db_service)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.ballerinalang.test.runtime.entity.TesterinaFunction.lambda$runOnSchedule$0(TesterinaFunction.java:109)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-10-28 00:59:34,820] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:01:28,706] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:02:50,426] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:05:03,368] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:05:29,510] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:14:43,778] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:15:02,704] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:16:09,560] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:18:57,163] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:20:09,988] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:20:56,855] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:22:07,012] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-10-28 01:23:00,591] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 

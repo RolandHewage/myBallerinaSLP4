@@ -6,3 +6,13 @@ version= "0.1.0"
 observability-included=true
 
 [dependencies]
+
+[platform]
+target = "java8"
+
+    [[platform.libraries]]
+    artafactId = "mysql-connector-java"
+    version = "8.0.22"
+    path = "./javalibs/mysql-connector-java-8.0.22.jar"
+    groupId = "mysql"
+    modules = ["employee_db_service"]

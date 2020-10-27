@@ -22,10 +22,10 @@ function testRetrieveByIdResource() {
             "Retreive employee resource did not reespond with 200 OK signal");
         json|error receivedPayload = resp.getJsonPayload();
         if (receivedPayload is json) {
-            expectedJson = [{ "EmployeeID": 879796979, "Name": "Alice", "Age": 30, "SSN":
-            123456789 }];
-            json[] jsonArray = <json[]> receivedPayload;
-            test:assertEquals(jsonArray[0], jsonArray[0], msg =
+            expectedJson = { "employeeId": 879796979, "name": "Alice_Updated", "age": 35, "ssn":
+            123456789 };
+            // json[] jsonArray = <json[]> receivedPayload;
+            test:assertEquals(receivedPayload, expectedJson, msg =
                 "Name did not store in the database");
         } else {
             test:assertFail(msg = "Payload retrieval failed: " + <string>receivedPayload.detail()["message"]);
@@ -77,7 +77,7 @@ function testUpdateEmployeeResource() {
 
     // Testing update employee resource
     // Prepare sample employee and set the json payload
-    json requestJson = { "name": "'Alice_Updated'", "age": 35, "ssn": 123456789,
+    json requestJson = { "name": "Alice_Updated", "age": 35, "ssn": 123456789,
         "employeeId": TEST_EMPLOYEE_ID };
     req.setJsonPayload(requestJson);
     // Send the request to service and get the response

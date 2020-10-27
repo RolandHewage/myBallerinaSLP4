@@ -61,7 +61,7 @@ service EmployeeData on httpListener {
                     response.setPayload(ret);
                     // io:println("Add Employee successfully!");
 
-                    sql:Error? e = employeeDB.close();
+                    // sql:Error? e = employeeDB.close();
                 }
             } else {
                 // Send an error response in case of a conversion failure
@@ -96,7 +96,7 @@ service EmployeeData on httpListener {
             var employeeData = retrieveById(<@untainted> empID);
             // Send the response back to the client with the employee data
             response.setPayload(employeeData);
-            sql:Error? e = employeeDB.close();
+            // sql:Error? e = employeeDB.close();
         } else {
             response.statusCode = 400;
             response.setPayload("Error: employeeId parameter should be a valid integer");
@@ -134,7 +134,7 @@ service EmployeeData on httpListener {
                         <@untainted> employeeData.employeeId);
                     // Send the response back to the client with the employee data
                     response.setPayload(ret);
-                    sql:Error? e = employeeDB.close();
+                    // sql:Error? e = employeeDB.close();
                 }
             } else {
                 // Send an error response in case of a conversion failure
@@ -167,7 +167,7 @@ service EmployeeData on httpListener {
             var deleteStatus = deleteData(<@untainted> empID);
             // Send the response back to the client with the employee data
             response.setPayload(deleteStatus);
-            sql:Error? e = employeeDB.close();
+            // sql:Error? e = employeeDB.close();
         } else {
             response.statusCode = 400;
             response.setPayload("Error: employeeId parameter should be a valid integer");
