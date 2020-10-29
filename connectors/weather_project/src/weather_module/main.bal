@@ -45,7 +45,9 @@ public class WeatherClient{
             if (result.statusCode == http:STATUS_OK) {
 
             json payload = <json>result.getJsonPayload();
-            json lat = <json>payload.coord.lat;
+            // io:println(payload);
+            json|error lat = payload.weather.description;
+            // io:println(lat);
             
             return lat;
 
