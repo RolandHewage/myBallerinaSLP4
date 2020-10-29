@@ -58,7 +58,7 @@ public class WeatherClient{
             }
         }else{
 
-            error err = error("no parameters are provided");
+            error err = error("couldn't fetch data");
             return err;
         }
          

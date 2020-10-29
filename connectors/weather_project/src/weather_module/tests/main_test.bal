@@ -13,7 +13,7 @@ function testGetByCityName(){
 
     io:println("\n ---------------------------------------------------------------------------");
 
-    json|error result = weatherClient.getByCityName("London",(),"uk");
+    json|error result = weatherClient.getByCityName("London",(),("uk"));
 
     if result is json{
             io:println(result);
