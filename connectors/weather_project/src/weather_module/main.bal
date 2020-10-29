@@ -3,11 +3,11 @@ import ballerina/io;
 
 public class WeatherClient{
 
-    public string apiKey;
-    public string baseUrl;
-    public http:Client basicClient;
+    private string apiKey;
+    private string baseUrl;
+    private http:Client basicClient;
 
-    function init(OpenMapApiConfiguration opConf){
+    function init(OpenMapApiConfiguration opConf) {
         self.apiKey  = opConf.apiKey;
         self.baseUrl = opConf.baseUrl;
 
@@ -18,27 +18,24 @@ public class WeatherClient{
                     password: "ballerina"
                 }
             }
-            });
+        });
     }
 
-    public function getByCityName(string? cityName,string? stateCode,string? countryCode) returns  @tainted json|error{
+    public function getByCityName(string cityName, string? stateCode, string? countryCode) returns @tainted json|error {
 
         http:Response? result = new;
 
-        if cityName is string && stateCode is string && countryCode is string{
+        if stateCode is string && countryCode is string {
 
             result = <http:Response>self.basicClient->get(string `?q=${cityName},${stateCode},${countryCode}&appid=${self.apiKey}`);
 
-        }else if cityName is string && stateCode is string{
+        }else if stateCode is string {
 
             result = <http:Response>self.basicClient->get(string `?q=${cityName},${stateCode}&appid=${self.apiKey}`);
 
-        }else if cityName is string{
+        }else {
         
             result = <http:Response>self.basicClient->get(string `?q=${cityName}&appid=${self.apiKey}`);
-        }else{
-            
-            result = ();
         }
         
         if result is http:Response{
