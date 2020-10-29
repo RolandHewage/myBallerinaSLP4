@@ -21,21 +21,21 @@ public class WeatherClient{
             });
     }
 
-    public function getByCityName(string? cityname,string? stateCode,string? countryCode) returns  @tainted json|error{
+    public function getByCityName(string? cityName,string? stateCode,string? countryCode) returns  @tainted json|error{
 
         http:Response? result = new;
 
-        if cityname is string && stateCode is string && countryCode is string{
+        if cityName is string && stateCode is string && countryCode is string{
 
-            result = <http:Response>self.basicClient->get(string `?q=${cityname},${stateCode},${countryCode}&appid=${self.apiKey}`);
+            result = <http:Response>self.basicClient->get(string `?q=${cityName},${stateCode},${countryCode}&appid=${self.apiKey}`);
 
-        }else if cityname is string && stateCode is string{
+        }else if cityName is string && stateCode is string{
 
-            result = <http:Response>self.basicClient->get(string `?q=${cityname},${stateCode}&appid=${self.apiKey}`);
+            result = <http:Response>self.basicClient->get(string `?q=${cityName},${stateCode}&appid=${self.apiKey}`);
 
-        }else if cityname is string{
+        }else if cityName is string{
         
-            result = <http:Response>self.basicClient->get(string `?q=${cityname}&appid=${self.apiKey}`);
+            result = <http:Response>self.basicClient->get(string `?q=${cityName}&appid=${self.apiKey}`);
         }else{
             
             result = ();
@@ -44,20 +44,20 @@ public class WeatherClient{
         if result is http:Response{
             if (result.statusCode == http:STATUS_OK) {
 
-            json payload = <json>result.getJsonPayload();
-            json[] j = <json[]>payload.weather;
-            // io:println(payload);
-            json|error lat = j[0].description;
-            // io:println(lat);
+                json payload = <json>result.getJsonPayload();
+                json[] j = <json[]>payload.weather;
+                // io:println(payload);
+                json|error weatherData = j[0].description;
+                // io:println(lat);
             
-            return lat;
+                return weatherData;
 
             } else {
-            error err = error("error occurred while sending GET request");
-            io:println(err.message(),
-             ", status code: ", result.statusCode,
-             ", reason: ", result);
-            return err;
+                error err = error("error occurred while sending GET request");
+                io:println(err.message(),
+                ", status code: ", result.statusCode,
+                ", reason: ", result);
+                return err;
             }
         }else{
 
@@ -68,17 +68,18 @@ public class WeatherClient{
         
     }
 
-    public function getByCityId(string cityid) returns @tainted json|error{
+    public function getByCityId(string cityId) returns @tainted json|error{
 
-    var result = self.basicClient->get(string `?q=${cityid}&appid=${self.apiKey}`);
+    var result = self.basicClient->get(string `?q=${cityId}&appid=${self.apiKey}`);
 
         http:Response response = <http:Response>result;
             if (response.statusCode == http:STATUS_OK) {
 
                 json payload = <json>response.getJsonPayload();
-                json lat = <json>payload.coord.lat;
+                json[] j = <json[]>payload.weather;
+                json|error weatherData = j[0].description;
                 
-                return lat;
+                return weatherData;
 
             } else {
                 error err = error("error occurred while sending GET request");
@@ -98,9 +99,10 @@ public class WeatherClient{
             if (coordresponse.statusCode == http:STATUS_OK) {
 
                 json payload = <json>coordresponse.getJsonPayload();
-                json lati = <json>payload.coord.lat;
+                json[] j = <json[]>payload.weather;
+                json|error weatherData = j[0].description;
                 
-                return lati;
+                return weatherData;
 
             } else {
                 error err = error("error occurred while sending GET request");
@@ -119,9 +121,10 @@ public class WeatherClient{
             if (zipresponse.statusCode == http:STATUS_OK) {
 
                 json payload = <json>zipresponse.getJsonPayload();
-                json lati = <json>payload.coord.lat;
+                json[] j = <json[]>payload.weather;
+                json|error weatherData = j[0].description;
                 
-                return lati;
+                return weatherData;
 
             } else {
                 error err = error("error occurred while sending GET request");
