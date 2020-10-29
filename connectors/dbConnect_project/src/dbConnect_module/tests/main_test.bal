@@ -117,7 +117,7 @@ function testDeleteEmployee(){
     json|error result = dbClient.deleteEmployee(8);
 
     if result is json{
-            io:println(result);;
+            io:println(result);
 
     }else{
         test:assertFail(result.message());
