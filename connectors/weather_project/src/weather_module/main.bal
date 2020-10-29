@@ -65,7 +65,6 @@ public class WeatherClient{
         
     }
 
-    //By city ID 
     public function getByCityId(string cityid) returns @tainted json|error{
 
     var result = self.basicClient->get(string `?q=${cityid}&appid=${self.apiKey}`);
@@ -87,9 +86,8 @@ public class WeatherClient{
             }
                     
     }
-
-    //By geographic coordinates 
-    public function whedataOLCOOD(string lat,string lon) returns @tainted json|error{
+ 
+    public function getByCoord(string lat,string lon) returns @tainted json|error{
 
         var response = self.basicClient->get(string `?lat=${lat}&lon=${lon}&appid=${self.apiKey}`);
 
@@ -110,9 +108,7 @@ public class WeatherClient{
             }
     }
 
-    //By ZIP code 
-
-    public function whedataOLZIP(string lat,string lon) returns @tainted json|error{
+    public function getByZipCode(string lat,string lon) returns @tainted json|error{
 
         var response = self.basicClient->get(string `?lat=${lat}&lon=${lon}&appid=${self.apiKey}`);
 
