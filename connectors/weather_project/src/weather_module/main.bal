@@ -21,7 +21,7 @@ public class WeatherClient{
             });
     }
 
-    public function whedataOLCN(string? cityname,string? stateCode,string? countryCode) returns  @tainted json|error{
+    public function getByCityName(string? cityname,string? stateCode,string? countryCode) returns  @tainted json|error{
 
         http:Response? result = new;
 
