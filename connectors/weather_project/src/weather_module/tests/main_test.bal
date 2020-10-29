@@ -5,7 +5,7 @@ import ballerina/test;
 function testGetByCityName(){
     OpenMapApiConfiguration config = {
         baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-        apiKey:"2d88e6c364d13c39ad27627e65b93402",
+        apiKey:"<api key>",
         secureSocket: true
     };
 
@@ -27,7 +27,7 @@ function testGetByCityName(){
 function testGetByCityId(){
     OpenMapApiConfiguration config = {
         baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-        apiKey:"2d88e6c364d13c39ad27627e65b93402",
+        apiKey:"<api key>",
         secureSocket: true
     };
 
@@ -49,7 +49,7 @@ function testGetByCityId(){
 function testGetByCoord(){
     OpenMapApiConfiguration config = {
         baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-        apiKey:"2d88e6c364d13c39ad27627e65b93402",
+        apiKey:"<api key>",
         secureSocket: true
     };
 
@@ -71,7 +71,7 @@ function testGetByCoord(){
 function testGetByZipCode(){
     OpenMapApiConfiguration config = {
         baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-        apiKey:"2d88e6c364d13c39ad27627e65b93402",
+        apiKey:"<api key>",
         secureSocket: true
     };
 
