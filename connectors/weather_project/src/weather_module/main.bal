@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/io;
 
-public class OMClient{
+public class WeatherClient{
 
     public string apiKey;
     public string baseUrl;
