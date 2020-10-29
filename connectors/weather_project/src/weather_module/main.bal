@@ -66,7 +66,7 @@ public class WeatherClient{
     }
 
     //By city ID 
-    public function whedataOLCID(string cityid) returns @tainted json|error{
+    public function getByCityId(string cityid) returns @tainted json|error{
 
     var result = self.basicClient->get(string `?q=${cityid}&appid=${self.apiKey}`);
 
