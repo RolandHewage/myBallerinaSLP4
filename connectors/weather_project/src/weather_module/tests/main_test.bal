@@ -16,7 +16,7 @@ function testGetByCityName(){
     json|error result = weatherClient.getByCityName("London",(),("uk"));
 
     if result is json{
-            io:println(result);
+        io:println(result);
 
     }else{
         test:assertFail(result.message());
@@ -38,7 +38,7 @@ function testGetByCityId(){
     json|error result = weatherClient.getByCityId("80000");
 
     if result is json{
-            io:println(result);
+        io:println(result);
 
     }else{
         test:assertFail(result.message());
@@ -60,7 +60,7 @@ function testGetByCoord(){
     json|error result = weatherClient.getByCoord("51","51");
 
     if result is json{
-            io:println(result);
+        io:println(result);
 
     }else{
         test:assertFail(result.message());
@@ -82,7 +82,7 @@ function testGetByZipCode(){
     json|error result = weatherClient.getByZipCode("99501");
 
     if result is json{
-            io:println(result);
+        io:println(result);
 
     }else{
         test:assertFail(result.message());
