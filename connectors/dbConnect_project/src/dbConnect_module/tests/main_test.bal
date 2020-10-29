@@ -4,9 +4,9 @@ import ballerina/test;
 //import ballerina/log;
 
 MySqlConfiguration config = {
-        dbHost: "localhost",
-        dbName: "roly",
-        dbPassword: "alianza2",
+        dbHost: "<host>",
+        dbName: "<name>",
+        dbPassword: "<password>",
         dbUrl: "http://localhost:8080"
     };
 
@@ -27,7 +27,6 @@ function testGetEmployees(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());
@@ -45,7 +44,6 @@ function testGetEmployeeById(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());
@@ -65,7 +63,6 @@ function testAddEmployee(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());
@@ -85,7 +82,6 @@ function testAddEmployeeBatch(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());
@@ -105,7 +101,6 @@ function testUpdateEmployee(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());
@@ -122,8 +117,7 @@ function testDeleteEmployee(){
     json|error result = dbClient.deleteEmployee(8);
 
     if result is json{
-            io:println(result);
-            //test:assertEquals(result,51.51);
+            io:println(result);;
 
     }else{
         test:assertFail(result.message());
@@ -141,7 +135,6 @@ function testSwapEmployeeTeams(){
 
     if result is json{
             io:println(result);
-            //test:assertEquals(result,51.51);
 
     }else{
         test:assertFail(result.message());

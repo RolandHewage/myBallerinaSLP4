@@ -2,7 +2,7 @@ import ballerina/http;
 import ballerina/java.jdbc;
 import ballerina/sql;
 
-jdbc:Client empDB = check new ("jdbc:mysql://localhost:3306/EmpDB?serverTimezone=UTC", "roly", "alianza2");
+jdbc:Client empDB = check new ("jdbc:mysql://localhost:3306/EmpDB?serverTimezone=UTC", "<dbName>", "<dbPassword>");
 
 type Employee record {|
     int id;

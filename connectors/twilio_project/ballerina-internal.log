@@ -1,28 +1,28 @@
-[2020-10-28 11:42:22,129] SEVERE {b7a.log.crash} - there are test failures 
+[2020-10-29 10:48:52,960] SEVERE {b7a.log.crash} - there are test failures 
 java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
-[2020-10-28 11:51:25,349] SEVERE {b7a.log.crash} - there are test failures 
+[2020-10-29 10:54:28,528] SEVERE {b7a.log.crash} - there are test failures 
 java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
-[2020-10-28 12:24:10,871] SEVERE {b7a.log.crash} - there are test failures 
+[2020-10-29 10:55:55,660] SEVERE {b7a.log.crash} - there are test failures 
 java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
-[2020-10-28 12:26:28,603] SEVERE {b7a.log.crash} - there are test failures 
+[2020-10-29 10:56:57,904] SEVERE {b7a.log.crash} - there are test failures 
 java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
-[2020-10-28 12:36:24,623] SEVERE {b7a.log.crash} - there are test failures 
+[2020-10-29 11:16:22,780] SEVERE {b7a.log.crash} - there are test failures 
 java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
