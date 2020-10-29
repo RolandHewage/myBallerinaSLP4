@@ -137,3 +137,65 @@ public type OpenMapApiConfiguration record {
     string apiKey;
     boolean secureSocket?;
 };
+
+// Tested json response to record type 'WeatherR' conversion failed with 'cloneWithType' function
+// error("{ballerina/lang.typedesc}ConversionError",message="'map<json>' value cannot be converted to 'weather_module:WeatherR'")
+//
+// public type WeatherR record{
+//     Coord coord;
+//     Weather[] weather;
+//     string base;
+//     Main main;
+//     float visibility;
+//     Wind wind;
+//     Rain rain;
+//     Clouds clouds;
+//     int dt;
+//     Sys sys;
+//     float timezone;
+//     int id;
+//     string name;
+//     int cod;
+// };
+
+// public type Coord record {
+//     float lon;
+//     float lat;
+// };
+
+// public type Weather record {
+//     int id;
+//     string main;
+//     string description;
+//     string icon;
+// };
+
+// public type Main record {
+//     float temp;
+//     float feels_like;
+//     float temp_min;
+//     float temp_max;
+//     float pressure;
+//     float humidity;
+// };
+
+// public type Wind record {
+//     float speed;
+//     float deg;
+// };
+
+// public type Rain record {
+//     float lh;
+// };
+
+// public type Clouds record {
+//     float all;
+// };
+
+// public type Sys record {
+//     float typeS;
+//     int id;
+//     string country;
+//     int sunrise;
+//     int sunset;
+// };
