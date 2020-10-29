@@ -4,8 +4,8 @@ import ballerina/test;
 //import ballerina/log;
 
 TwilioConfiguration config = {
-        accountSId: "AC5f672b232182db9cf3bc08db78866fe5",
-        authToken: "0c5c9a4b29bd1ccc63e875199a9da3e6"
+        accountSId: "<account SID>",
+        authToken: "<auth Token>"
         // accountSId: config:getAsString("app.auth.ACCOUNT_SID"),
         // authToken: config:getAsString("app.authAUTH_TOKEN")
 };
