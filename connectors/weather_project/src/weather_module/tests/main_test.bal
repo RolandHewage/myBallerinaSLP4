@@ -79,7 +79,7 @@ function testGetByZipCode(){
 
     io:println("\n ---------------------------------------------------------------------------");
 
-    json|error result = weatherClient.getByZipCode("51","51");
+    json|error result = weatherClient.getByZipCode("99501");
 
     if result is json{
             io:println(result);

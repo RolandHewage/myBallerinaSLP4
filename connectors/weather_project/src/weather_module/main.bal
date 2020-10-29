@@ -60,76 +60,73 @@ public class WeatherClient{
 
             error err = error("couldn't fetch data");
             return err;
-        }
-         
-        
+        }        
     }
 
     public function getByCityId(string cityId) returns @tainted json|error{
 
-    var result = self.basicClient->get(string `?q=${cityId}&appid=${self.apiKey}`);
+        var result = self.basicClient->get(string `?q=${cityId}&appid=${self.apiKey}`);
 
         http:Response response = <http:Response>result;
-            if (response.statusCode == http:STATUS_OK) {
+        if (response.statusCode == http:STATUS_OK) {
 
-                json payload = <json>response.getJsonPayload();
-                json[] j = <json[]>payload.weather;
-                json|error weatherData = j[0].description;
-                
-                return weatherData;
+            json payload = <json>response.getJsonPayload();
+            json[] j = <json[]>payload.weather;
+            json|error weatherData = j[0].description;
+            
+            return weatherData;
 
-            } else {
-                error err = error("error occurred while sending GET request");
-                io:println(err.message(),
-                ", status code: ", response.statusCode,
-                ", reason: ", response);
-                return err;
-            }
-                    
+        } else {
+            error err = error("error occurred while sending GET request");
+            io:println(err.message(),
+            ", status code: ", response.statusCode,
+            ", reason: ", response);
+            return err;
+        }                
     }
  
-    public function getByCoord(string lat,string lon) returns @tainted json|error{
+    public function getByCoord(string lat, string lon) returns @tainted json|error{
 
         var response = self.basicClient->get(string `?lat=${lat}&lon=${lon}&appid=${self.apiKey}`);
 
         http:Response coordresponse = <http:Response>response;
-            if (coordresponse.statusCode == http:STATUS_OK) {
+        if (coordresponse.statusCode == http:STATUS_OK) {
 
-                json payload = <json>coordresponse.getJsonPayload();
-                json[] j = <json[]>payload.weather;
-                json|error weatherData = j[0].description;
-                
-                return weatherData;
+            json payload = <json>coordresponse.getJsonPayload();
+            json[] j = <json[]>payload.weather;
+            json|error weatherData = j[0].description;
+            
+            return weatherData;
 
-            } else {
-                error err = error("error occurred while sending GET request");
-                io:println(err.message(),
-                ", status code: ", coordresponse.statusCode,
-                ", reason: ", coordresponse);
-                return err;
-            }
+        } else {
+            error err = error("error occurred while sending GET request");
+            io:println(err.message(),
+            ", status code: ", coordresponse.statusCode,
+            ", reason: ", coordresponse);
+            return err;
+        }
     }
 
-    public function getByZipCode(string lat,string lon) returns @tainted json|error{
+    public function getByZipCode(string zipCode, string countryCode="us") returns @tainted json|error{
 
-        var response = self.basicClient->get(string `?lat=${lat}&lon=${lon}&appid=${self.apiKey}`);
+        var response = self.basicClient->get(string `?zip=${zipCode},${countryCode}&appid=${self.apiKey}`);
 
         http:Response zipresponse = <http:Response>response;
-            if (zipresponse.statusCode == http:STATUS_OK) {
+        if (zipresponse.statusCode == http:STATUS_OK) {
 
-                json payload = <json>zipresponse.getJsonPayload();
-                json[] j = <json[]>payload.weather;
-                json|error weatherData = j[0].description;
-                
-                return weatherData;
+            json payload = <json>zipresponse.getJsonPayload();
+            json[] j = <json[]>payload.weather;
+            json|error weatherData = j[0].description;
+            
+            return weatherData;
 
-            } else {
-                error err = error("error occurred while sending GET request");
-                io:println(err.message(),
-                ", status code: ", zipresponse.statusCode,
-                ", reason: ", zipresponse);
-                return err;
-            }
+        } else {
+            error err = error("error occurred while sending GET request");
+            io:println(err.message(),
+            ", status code: ", zipresponse.statusCode,
+            ", reason: ", zipresponse);
+            return err;
+        }
     }
 
     
