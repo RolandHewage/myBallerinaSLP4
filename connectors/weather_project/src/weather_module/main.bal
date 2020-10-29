@@ -46,7 +46,7 @@ public class WeatherClient{
 
             json payload = <json>result.getJsonPayload();
             // io:println(payload);
-            json|error lat = payload.weather.description;
+            json|error lat = payload.weather;
             // io:println(lat);
             
             return lat;
