@@ -8,7 +8,7 @@ public function main() {
 
         match counter {
             0 => {
-                io:println("value is: 0");
+    io:println("value is: 0");
             }
             1 => {
                 io:println("value is: 1");
