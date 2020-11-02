@@ -1,1 +1,1 @@
-{"roland/azure_module:0.1.0:AzureServiceBusClient" : [{"function":{"name":"sendToQueue","requiredParams":[],"returnType":"json"}}]}
+{"roland/azure_module:0.1.0:AzureServiceBusClient" : [{"function":{"name":"sendToQueue","requiredParams":[],"returnType":"json"}},{"function":{"name":"receiveAndDeleteFromQueue","requiredParams":[],"returnType":"json"}}]}
