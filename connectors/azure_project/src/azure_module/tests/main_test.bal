@@ -19,6 +19,24 @@ import ballerina/test;
 //     }
 // }
 
+// @test:Config{}
+// function testSendBatchToQueue(){
+
+//     AzureServiceBusClient azureServiceBusClient = new();
+
+//     io:println("\n ---------------------------------------------------------------------------");
+
+//     json|error result = azureServiceBusClient->sendBatchToQueue();
+
+//     if result is json{
+//             io:println(result);
+//             //test:assertEquals(result,51.51);
+
+//     }else{
+//         test:assertFail(result.message());
+//     }
+// }
+
 @test:Config{}
 function testReceiveAndDeleteFromQueue(){
 
