@@ -1,28 +1,34 @@
 import ballerina/io;
 import ballerina/test;
 
-// @test:Config{}
-// function testSendToQueue(){
+AzureServiceBusConfiguration config = {
+    serviceNamespace: "roland1",
+    queueOrTopicPath: "roland1queue"
+};
 
-//     AzureServiceBusClient azureServiceBusClient = new();
+@test:Config{}
+function testSendToQueue(){
 
-//     io:println("\n ---------------------------------------------------------------------------");
+    AzureServiceBusClient azureServiceBusClient = new(config);
 
-//     json|error result = azureServiceBusClient->sendToQueue();
+    io:println("\n ---------------------------------------------------------------------------");
 
-//     if result is json{
-//             io:println(result);
-//             //test:assertEquals(result,51.51);
+    string msg = "This is a message one.";
+    json|error result = azureServiceBusClient->sendToQueue(msg);
 
-//     }else{
-//         test:assertFail(result.message());
-//     }
-// }
+    if result is json{
+            io:println(result);
+            //test:assertEquals(result,51.51);
+
+    }else{
+        test:assertFail(result.message());
+    }
+}
 
 // @test:Config{}
 // function testSendBatchToQueue(){
 
-//     AzureServiceBusClient azureServiceBusClient = new();
+//     AzureServiceBusClient azureServiceBusClient = new(config);
 
 //     io:println("\n ---------------------------------------------------------------------------");
 
@@ -37,20 +43,20 @@ import ballerina/test;
 //     }
 // }
 
-@test:Config{}
-function testReceiveAndDeleteFromQueue(){
+// @test:Config{}
+// function testReceiveAndDeleteFromQueue(){
 
-    AzureServiceBusClient azureServiceBusClient = new();
+//     AzureServiceBusClient azureServiceBusClient = new(config);
 
-    io:println("\n ---------------------------------------------------------------------------");
+//     io:println("\n ---------------------------------------------------------------------------");
 
-    json|error result = azureServiceBusClient->receiveAndDeleteFromQueue();
+//     json|error result = azureServiceBusClient->receiveAndDeleteFromQueue();
 
-    if result is json{
-            io:println(result);
-            //test:assertEquals(result,51.51);
+//     if result is json{
+//             io:println(result);
+//             //test:assertEquals(result,51.51);
 
-    }else{
-        test:assertFail(result.message());
-    }
-}
+//     }else{
+//         test:assertFail(result.message());
+//     }
+// }

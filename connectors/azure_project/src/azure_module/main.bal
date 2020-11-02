@@ -5,12 +5,18 @@ import ballerina/log;
 
 public client class AzureServiceBusClient{
 
+    private string serviceNamespace;
+    private string queueOrTopicPath;
     private http:Client httpClient;
     private http:Request httpRequest;   
 
-    function init(){
+    function init(AzureServiceBusConfiguration asbConf){
 
-        self.httpClient = new("https://roland1.servicebus.windows.net/roland1queue", {
+        self.serviceNamespace = asbConf.serviceNamespace;
+        self.queueOrTopicPath = asbConf.queueOrTopicPath;
+
+
+        self.httpClient = new(string `https://${self.serviceNamespace}.servicebus.windows.net/${self.queueOrTopicPath}`, {
             secureSocket: {
                 trustStore: {
                     path: "/usr/lib/ballerina/distributions/ballerina-slp4/bre/security/ballerinaTruststore.p12",
@@ -24,13 +30,13 @@ public client class AzureServiceBusClient{
 
     } 
 
-    public remote function sendToQueue() returns @tainted json|error{
+    public remote function sendToQueue(string? message) returns @tainted json|error{
 
         self.httpRequest.setHeader("Content-Type","application/atom+xmapplication/atom+xml;type=entry;char");
         self.httpRequest.setHeader("BrokerProperties",string `{"Label":"M1","State":"Active","TimeToLive":10}`);
         self.httpRequest.setHeader("Priority","High");
         self.httpRequest.setHeader("Customer","12345,ABC");
-        self.httpRequest.setPayload("This is a message one.");
+        self.httpRequest.setPayload(message);
 
         var result = self.httpClient->post(string `/messages`,self.httpRequest);
 
@@ -125,6 +131,11 @@ public client class AzureServiceBusClient{
         }
     }            
 }
+
+public type AzureServiceBusConfiguration record {
+    string serviceNamespace;
+    string queueOrTopicPath;
+};
 
 public function handleResponse(http:Response|error response) {
     if (response is http:Response) {
