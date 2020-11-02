@@ -1,34 +1,20 @@
 import ballerina/io;
 import ballerina/test;
 
-# Before Suite Function
-@test:BeforeSuite
-function beforeSuiteFunc() {
-    io:println("I'm the before suite function!");
-}
+@test:Config{}
+function testSendToQueue(){
 
-# Before test function
-function beforeFunc() {
-    io:println("I'm the before function!");
-}
+    AzureServiceBusClient azureServiceBusClient = new();
 
-# Test function
-@test:Config {
-    before: "beforeFunc",
-    after: "afterFunc"
-}
-function testFunction() {
-    io:println("I'm in test function!");
-    test:assertTrue(true, msg = "Failed!");
-}
+    io:println("\n ---------------------------------------------------------------------------");
 
-# After test function
-function afterFunc() {
-    io:println("I'm the after function!");
-}
+    json|error result = azureServiceBusClient->sendToQueue();
 
-# After Suite Function
-@test:AfterSuite {}
-function afterSuiteFunc() {
-    io:println("I'm the after suite function!");
+    if result is json{
+            io:println(result);
+            //test:assertEquals(result,51.51);
+
+    }else{
+        test:assertFail(result.message());
+    }
 }
