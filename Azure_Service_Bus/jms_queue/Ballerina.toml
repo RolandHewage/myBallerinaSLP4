@@ -6,3 +6,34 @@ version= "0.1.0"
 observability-included=true
 
 [dependencies]
+
+[platform]
+target = "java8"
+
+   [[platform.libraries]]
+   path = "./javalibs/azure-servicebus-1.2.8.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/qpid-jms-client-0.27.0.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/proton-j-0.23.0.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/log4j-1.2.8.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/slf4j-log4j12-1.7.25.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/commons-cli-1.4.jar"
+   modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/junit-4.12.jar"
+   modules = ["jms_queue_module"]
