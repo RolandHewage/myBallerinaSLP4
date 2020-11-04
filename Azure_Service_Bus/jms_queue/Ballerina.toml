@@ -38,3 +38,18 @@ target = "java8"
    [[platform.libraries]]
    path = "./javalibs/junit-4.12.jar"
    modules = ["jms_queue_module"]
+
+   [[platform.libraries]]
+   module = "jms_queue_module"
+   path = "./javalibs/geronimo-j2ee-management_1.1_spec-1.0.1.jar"
+   artifactId = "geronimo-j2ee-management_1.1_spec"
+   version = "1.0.1"
+   groupId = "org.apache.geronimo.specs"
+
+   [[platform.libraries]]
+   module = "jms_queue_module"
+   path = "./javalibs/libs/hawtbuf-1.11.jar"
+   artifactId = "hawtbuf"
+   version = "1.11"
+   groupId = "org.fusesource.hawtbuf"
+
