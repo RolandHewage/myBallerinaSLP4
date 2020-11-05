@@ -4,7 +4,7 @@ import ballerina/observe;
 observe:Gauge temporaryTopicGauge = new(ACTIVE_JMS_TEMPORARY_TOPICS);
 
 # Represent the JMS temporary topic
-public type TemporaryTopic object {
+public class TemporaryTopic {
 
     // Add a reference to the `Destination` object type.
     *Destination;
@@ -44,9 +44,9 @@ public type TemporaryTopic object {
         return deleteTemporaryTopic(self.jmsDestination);
     }
 
-};
+}
 
 function deleteTemporaryTopic(handle destination) returns error? = @java:Method {
     name: "delete",
-    class: "javax.jms.TemporaryTopic"
+    'class: "javax.jms.TemporaryTopic"
 } external;

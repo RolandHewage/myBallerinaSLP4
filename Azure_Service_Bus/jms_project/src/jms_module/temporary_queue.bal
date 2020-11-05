@@ -4,7 +4,7 @@ import ballerina/observe;
 observe:Gauge temporaryQueueGauge = new(ACTIVE_JMS_TEMPORARY_QUEUES);
 
 # Represent the JMS temporary queue
-public type TemporaryQueue object {
+public class TemporaryQueue {
 
     // Add a reference to the `Destination` object type.
     *Destination;
@@ -44,9 +44,9 @@ public type TemporaryQueue object {
         return deleteTemporaryQueue(self.jmsDestination);
     }
 
-};
+}
 
 function deleteTemporaryQueue(handle destination) returns error? = @java:Method {
     name: "delete",
-    class: "javax.jms.TemporaryQueue"
+    'class: "javax.jms.TemporaryQueue"
 } external;

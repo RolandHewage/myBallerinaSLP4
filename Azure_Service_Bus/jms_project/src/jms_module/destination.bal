@@ -1,7 +1,7 @@
 import ballerina/java;
 
 # Represent the JMS destination
-public type Destination abstract object {
+public type Destination object {
 
     handle jmsDestination;
 
@@ -31,5 +31,5 @@ function getDestination(handle jmsDestination) returns Destination | error {
 }
 
 function getDestinationType(handle destination) returns handle = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsDestinationUtils"
+    'class: "org.ballerinalang.java.jms.JmsDestinationUtils"
 } external;

@@ -1,7 +1,7 @@
 import ballerina/java;
 
 # Represent the JMS topic
-public type Topic object {
+public class Topic {
 
     // Add a reference to the `Destination` object type.
     *Destination;
@@ -32,8 +32,8 @@ public type Topic object {
         }
     }
 
-};
+}
 
 function getTopicName(handle destination) returns handle | error = @java:Method {
-    class: "javax.jms.Topic"
+    'class: "javax.jms.Topic"
 } external;

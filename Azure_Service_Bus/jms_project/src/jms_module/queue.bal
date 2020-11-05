@@ -1,7 +1,7 @@
 import ballerina/java;
 
 # Represent the JMS queue
-public type Queue object {
+public class Queue {
 
     // Add a reference to the `Destination` object type.
     *Destination;
@@ -32,8 +32,8 @@ public type Queue object {
         }
     }
 
-};
+}
 
 function getQueueName(handle destination) returns handle | error = @java:Method {
-    class: "javax.jms.Queue"
+    'class: "javax.jms.Queue"
 } external;

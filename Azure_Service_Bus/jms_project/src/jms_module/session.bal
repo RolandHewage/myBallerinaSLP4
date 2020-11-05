@@ -5,7 +5,7 @@ import ballerina/observe;
 # Represents the JMS session.
 #
 # + config - Stores the configurations related to a JMS session.
-public type Session client object {
+public client class Session {
 
     private SessionConfiguration config;
     private handle jmsSession = JAVA_NULL;
@@ -295,92 +295,92 @@ public type SessionConfiguration record {|
 
 function createJmsMessage(handle session) returns handle | error = @java:Method {
     name: "createMessage",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsTextMessage(handle session) returns handle | error = @java:Method {
     name: "createTextMessage",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsTextMessageWithText(handle session, handle text) returns handle | error = @java:Method {
     name: "createTextMessage",
     paramTypes: ["java.lang.String"],
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsMapMessage(handle session) returns handle | error = @java:Method {
     name: "createMapMessage",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsStreamMessage(handle session) returns handle | error = @java:Method {
     name: "createStreamMessage",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsBytesMessage(handle session) returns handle | error = @java:Method {
     name: "createBytesMessage",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsConsumer(handle jmsSession, handle jmsDestination,
                                   handle selectorString, boolean noLocal) returns handle|error = @java:Method {
     name: "createConsumer",
     paramTypes: ["javax.jms.Destination", "java.lang.String", "boolean"],
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsSession(handle connection, handle acknowledgmentMode) returns handle | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsSessionUtils"
+    'class: "org.ballerinalang.java.jms.JmsSessionUtils"
 } external;
 
 function unsubscribeJmsSubscription(handle session, handle subscriptionId) returns error? = @java:Method {
     name: "unsubscribe",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsProducer(handle session, handle jmsDestination) returns handle|error = @java:Method {
     name: "createProducer",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsDurableSubscriber(handle jmsSession, handle subscriberName, handle jmsDestination,
                                     handle selectorString, boolean noLocal) returns handle|error = @java:Method {
     name: "createDurableSubscriber",
     paramTypes: ["javax.jms.Topic", "java.lang.String", "java.lang.String", "boolean"],
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsSharedConsumer(handle jmsSession, handle subscriberName, handle jmsDestination,
                                     handle selectorString) returns handle|error = @java:Method {
     name: "createSharedConsumer",
     paramTypes: ["javax.jms.Topic", "java.lang.String", "java.lang.String"],
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsSharedDurableConsumer(handle jmsSession, handle subscriberName, handle jmsDestination,
                                     handle selectorString) returns handle|error = @java:Method {
     name: "createSharedDurableConsumer",
     paramTypes: ["javax.jms.Topic", "java.lang.String", "java.lang.String"],
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsQueue(handle session, handle queueName) returns handle | error = @java:Method {
     name: "createQueue",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createJmsTopic(handle session, handle topicName) returns handle | error = @java:Method {
     name: "createTopic",
-    class: "javax.jms.Session"
+    'class: "javax.jms.Session"
 } external;
 
 function createTemporaryJmsQueue(handle session) returns handle | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsSessionUtils"
+    'class: "org.ballerinalang.java.jms.JmsSessionUtils"
 } external;
 
 function createTemporaryJmsTopic(handle session) returns handle | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsSessionUtils"
+    'class: "org.ballerinalang.java.jms.JmsSessionUtils"
 
 } external;

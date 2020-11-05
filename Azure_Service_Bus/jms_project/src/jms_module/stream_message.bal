@@ -5,7 +5,7 @@ import ballerina/java;
 # Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header
 # and a body. The header contains fields used for message routing and identification; the body contains the
 # application data being sent.
-public type StreamMessage client object {
+public client class StreamMessage {
 
     // Add a reference to the `AbstractMessage` object type.
     *AbstractMessage;
@@ -261,9 +261,9 @@ public type StreamMessage client object {
     # Get the message correlation ID as an array of bytes.
     #
     # + return - Returns the message correlation ID as an byte array or an error if it fails.
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error {
-        return getJMSCorrelationIDAsBytes(self.jmsMessage);
-    }
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error {
+    //     return getJMSCorrelationIDAsBytes(self.jmsMessage);
+    // }
 
     # Get the message delivery mode.
     #
@@ -366,9 +366,9 @@ public type StreamMessage client object {
     # Get string array of property names.
     #
     # + return - Returns the string array of property names or an error if it fails.
-    public function getPropertyNames() returns string[] | error {
-        return getPropertyNames(self.jmsMessage);
-    }
+    // public function getPropertyNames() returns string[] | error {
+    //     return getPropertyNames(self.jmsMessage);
+    // }
 
     # Get the given short property.
     #
@@ -456,9 +456,9 @@ public type StreamMessage client object {
     # 
     # + correlationId - correlation id value as an array of bytes
     # + return - Returns an error if it fails.
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
-        return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
-    }
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
+    //     return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
+    // }
 
     # Set the reply destination to the message which a reply should send.
     #
@@ -510,13 +510,13 @@ public type StreamMessage client object {
         return self.jmsMessage;
     }
 
-};
+}
 
 function readString(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.StreamMessage"
+    'class: "javax.jms.StreamMessage"
 } external;
 
 function writeString(handle message, handle value) returns error? = @java:Method {
-    class: "javax.jms.StreamMessage"
+    'class: "javax.jms.StreamMessage"
 } external;
 

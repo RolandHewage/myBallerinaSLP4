@@ -5,7 +5,7 @@ import ballerina/java;
 # Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header
 # and a body. The header contains fields used for message routing and identification; the body contains the
 # application data being sent.
-public type TextMessage client object {
+public client class TextMessage {
 
     // Add a reference to the `AbstractMessage` object type.
     *AbstractMessage;
@@ -114,9 +114,9 @@ public type TextMessage client object {
     # Get the message correlation ID as an array of bytes.
     #
     # + return - Returns the message correlation ID as an byte array or an error if it fails.
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error {
-        return getJMSCorrelationIDAsBytes(self.jmsMessage);
-    }
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error {
+    //     return getJMSCorrelationIDAsBytes(self.jmsMessage);
+    // }
 
     # Get the message delivery mode.
     #
@@ -219,9 +219,9 @@ public type TextMessage client object {
     # Get string array of property names.
     #
     # + return - Returns the string array of property names or an error if it fails.
-    public function getPropertyNames() returns string[] | error {
-        return getPropertyNames(self.jmsMessage);
-    }
+    // public function getPropertyNames() returns string[] | error {
+    //     return getPropertyNames(self.jmsMessage);
+    // }
 
     # Get the given short property.
     #
@@ -305,13 +305,13 @@ public type TextMessage client object {
         return setJMSCorrelationID(self.jmsMessage, java:fromString(correlationId));
     }
 
-    # Sets the correlation id an array of bytes for the message.
-    # 
-    # + correlationId - correlation id value as an array of bytes
-    # + return - Returns an error if it fails.
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
-        return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
-    }
+    // # Sets the correlation id an array of bytes for the message.
+    // # 
+    // # + correlationId - correlation id value as an array of bytes
+    // # + return - Returns an error if it fails.
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
+    //     return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
+    // }
 
     # Set the reply destination to the message which a reply should send.
     #
@@ -363,12 +363,12 @@ public type TextMessage client object {
         return self.jmsMessage;
     }
 
-};
+}
 
 function setText(handle textMessage, handle data) returns error? = @java:Method {
-    class: "javax.jms.TextMessage"
+    'class: "javax.jms.TextMessage"
 } external;
 
 function getText(handle textMessage) returns handle | error = @java:Method {
-    class: "javax.jms.TextMessage"
+    'class: "javax.jms.TextMessage"
 } external;

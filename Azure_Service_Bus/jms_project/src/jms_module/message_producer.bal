@@ -3,7 +3,7 @@ import ballerina/observe;
 
 # JMS Message Producer client object to send messages to both queues and topics.
 #
-public type MessageProducer client object {
+public client class MessageProducer {
 
     private handle jmsProducer = JAVA_NULL;
 
@@ -31,16 +31,16 @@ public type MessageProducer client object {
     public remote function sendTo(Destination destination, Message message) returns error? {
         return sendToDestination(self.jmsProducer, destination.getJmsDestination(), message.getJmsMessage());
     }
-};
+}
 
 function send(handle messageProducer, handle message) returns error? = @java:Method {
     name: "send",
     paramTypes: ["javax.jms.Message"],
-    class: "javax.jms.MessageProducer"
+    'class: "javax.jms.MessageProducer"
 } external;
 
 function sendToDestination(handle messageProducer, handle destination, handle message) returns error? = @java:Method {
     name: "send",
     paramTypes: ["javax.jms.Destination", "javax.jms.Message"],
-    class: "javax.jms.MessageProducer"
+    'class: "javax.jms.MessageProducer"
 } external;

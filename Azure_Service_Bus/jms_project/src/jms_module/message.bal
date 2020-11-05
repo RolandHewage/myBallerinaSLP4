@@ -5,7 +5,7 @@ import ballerina/java;
 # Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header
 # and a body. The header contains fields used for message routing and identification; the body contains the
 # application data being sent.
-public type Message client object {
+public client class Message {
 
     // Add a reference to the `AbstractMessage` object type.
     *AbstractMessage;
@@ -94,9 +94,9 @@ public type Message client object {
     # Get the message correlation ID as an array of bytes.
     #
     # + return - Returns the message correlation ID as an byte array or an error if it fails.
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error {
-        return getJMSCorrelationIDAsBytes(self.jmsMessage);
-    }
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error {
+    //     return getJMSCorrelationIDAsBytes(self.jmsMessage);
+    // }
 
     # Get the message delivery mode.
     #
@@ -199,9 +199,9 @@ public type Message client object {
     # Get string array of property names.
     #
     # + return - Returns the string array of property names or an error if it fails.
-    public function getPropertyNames() returns string[] | error {
-        return getPropertyNames(self.jmsMessage);
-    }
+    // public function getPropertyNames() returns string[] | error {
+    //     return getPropertyNames(self.jmsMessage);
+    // }
 
     # Get the given short property.
     #
@@ -289,9 +289,9 @@ public type Message client object {
     # 
     # + correlationId - correlation id value as an array of bytes
     # + return - Returns an error if it fails.
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
-        return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
-    }
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
+    //     return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
+    // }
 
     # Set the reply destination to the message which a reply should send.
     #
@@ -342,156 +342,156 @@ public type Message client object {
     function getJmsMessage() returns handle {
         return self.jmsMessage;
     }
-};
+}
 
 function acknowledge(handle message) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function clearBody(handle message) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function clearProperties(handle message) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getBooleanProperty(handle message, handle name) returns boolean | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getByteProperty(handle message, handle name) returns byte | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getDoubleProperty(handle message, handle name) returns float | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getFloatProperty(handle message, handle name) returns float | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getIntProperty(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSCorrelationID(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
-function getJMSCorrelationIDAsBytes(handle message) returns byte[] | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function getJMSCorrelationIDAsBytes(handle message) returns byte[] | error = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
 function getJMSDeliveryMode(handle message) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSDeliveryTime(handle message) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSDestination(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSExpiration(handle message) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSMessageID(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSPriority(handle message) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSRedelivered(handle message) returns boolean | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSReplyTo(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSTimestamp(handle message) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getJMSType(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getLongProperty(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
-function getPropertyNames(handle message) returns string[] | error {
-    return trap getJmsPropertyNames(message);
-}
+// function getPropertyNames(handle message) returns string[] | error {
+//     return trap getJmsPropertyNames(message);
+// }
 
-function getJmsPropertyNames(handle message) returns string[] = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function getJmsPropertyNames(handle message) returns string[] = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
 function getShortProperty(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function getStringProperty(handle message, handle name) returns handle | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function propertyExists(handle message, handle name) returns boolean | error = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setBooleanProperty(handle message, handle name, boolean value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setByteProperty(handle message, handle name, byte value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setDoubleProperty(handle message, handle name, float value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setFloatProperty(handle message, handle name, float value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setIntProperty(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setJMSCorrelationID(handle message, handle correlationId) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
-function setJMSCorrelationIDAsBytes(handle message, byte[] correlationId) returns error? = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function setJMSCorrelationIDAsBytes(handle message, byte[] correlationId) returns error? = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
 function setJMSReplyTo(handle message, handle destination) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setJMSType(handle message, handle jmsType) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setLongProperty(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setShortProperty(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;
 
 function setStringProperty(handle message, handle name, handle value) returns error? = @java:Method {
-    class: "javax.jms.Message"
+    'class: "javax.jms.Message"
 } external;

@@ -1,0 +1,1 @@
+{"roland/jms_module:0.1.0:Connection" : [{"function":{"name":"createSession","requiredParams":[{"sessionConfig":"roland/jms_module:0.1.0:SessionConfiguration"}],"returnType":"roland/jms_module:0.1.0:Session"}},{"function":{"name":"start","requiredParams":[],"returnType":"null"}},{"function":{"name":"stop","requiredParams":[],"returnType":"null"}}]}

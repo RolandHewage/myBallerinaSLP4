@@ -5,7 +5,7 @@ import ballerina/java;
 # Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header
 # and a body. The header contains fields used for message routing and identification; the body contains the
 # application data being sent.
-public type BytesMessage client object {
+public client class BytesMessage {
 
     // Add a reference to the `AbstractMessage` object type.
     *AbstractMessage;
@@ -42,13 +42,13 @@ public type BytesMessage client object {
     #
     # + length - The number of bytes to read
     # + return - Returns a byte array or an error if it fails.
-    public function readBytes(int? length = ()) returns byte[] | error {
-        if(length is int) {
-            return readPortionOfBytes(self.jmsMessage, length);
-        } else {
-            return readBytes(self.jmsMessage);
-        }
-    }
+    // public function readBytes(int? length = ()) returns byte[] | error {
+    //     if(length is int) {
+    //         return readPortionOfBytes(self.jmsMessage, length);
+    //     } else {
+    //         return readBytes(self.jmsMessage);
+    //     }
+    // }
 
 //    # Read a unicode character value from the message.
 //    #
@@ -147,13 +147,13 @@ public type BytesMessage client object {
     # + offset - The initial offset within the byte array
     # + length - The number of bytes to use
     # + return - Returns an error if it fails.
-    public function writeBytes(byte[] value, int? offset = (), int? length = ()) returns error? {
-        if(offset is int && length is int) {
-            return writePortionOfBytes(self.jmsMessage, value, offset, length);
-        } else {
-            return writeBytes(self.jmsMessage, value);
-        }
-    }
+    // public function writeBytes(byte[] value, int? offset = (), int? length = ()) returns error? {
+    //     if(offset is int && length is int) {
+    //         return writePortionOfBytes(self.jmsMessage, value, offset, length);
+    //     } else {
+    //         return writeBytes(self.jmsMessage, value);
+    //     }
+    // }
 
 //    # Write a char to the message.
 //    #
@@ -287,9 +287,9 @@ public type BytesMessage client object {
     # Get the message correlation ID as an array of bytes.
     #
     # + return - Returns the message correlation ID as an byte array or an error if it fails.
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error {
-        return getJMSCorrelationIDAsBytes(self.jmsMessage);
-    }
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error {
+    //     return getJMSCorrelationIDAsBytes(self.jmsMessage);
+    // }
 
     # Get the message delivery mode.
     #
@@ -392,9 +392,9 @@ public type BytesMessage client object {
     # Get string array of property names.
     #
     # + return - Returns the string array of property names or an error if it fails.
-    public function getPropertyNames() returns string[] | error {
-        return getPropertyNames(self.jmsMessage);
-    }
+    // public function getPropertyNames() returns string[] | error {
+    //     return getPropertyNames(self.jmsMessage);
+    // }
 
     # Get the given short property.
     #
@@ -482,9 +482,9 @@ public type BytesMessage client object {
     # 
     # + correlationId - correlation id value as an array of bytes
     # + return - Returns an error if it fails.
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
-        return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
-    }
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
+    //     return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
+    // }
 
     # Set the reply destination to the message which a reply should send.
     #
@@ -536,116 +536,116 @@ public type BytesMessage client object {
         return self.jmsMessage;
     }
 
-};
+}
 
 function getBodyLength(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readBoolean(handle message) returns boolean | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readByte(handle message) returns byte | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
-function readBytes(handle message) returns byte[] | error {
-    return trap readJavaBytes(message);
-}
+// function readBytes(handle message) returns byte[] | error {
+//     return trap readJavaBytes(message);
+// }
 
-function readJavaBytes(handle message) returns byte[] = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
-} external;
+// function readJavaBytes(handle message) returns byte[] = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
+// } external;
 
-function readPortionOfBytes(handle message, int length) returns byte[] | error {
-    return trap readPortionOfJavaBytes(message, length);
-}
+// function readPortionOfBytes(handle message, int length) returns byte[] | error {
+//     return trap readPortionOfJavaBytes(message, length);
+// }
 
-function readPortionOfJavaBytes(handle message, int length) returns byte[] = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
-} external;
+// function readPortionOfJavaBytes(handle message, int length) returns byte[] = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
+// } external;
 
 //function readChar(handle message) returns int | error = @java:Method {
-//    class: "javax.jms.BytesMessage"
+//    'class: "javax.jms.BytesMessage"
 //} external;
 
 function readDouble(handle message) returns float | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readFloat(handle message) returns float | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readInt(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readLong(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readShort(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readUnsignedByte(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readUnsignedShort(handle message) returns int | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function readUTF(handle message) returns handle | error = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function reset(handle message) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeBoolean(handle message, boolean value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeByte(handle message, byte value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
-function writeBytes(handle message, byte[] value) returns error? = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
-} external;
+// function writeBytes(handle message, byte[] value) returns error? = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
+// } external;
 
-function writePortionOfBytes(handle message, byte[] value, int offset, int length) returns error? = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
-} external;
+// function writePortionOfBytes(handle message, byte[] value, int offset, int length) returns error? = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsBytesMessageUtils"
+// } external;
 
 //function writeChar(handle message, handle value) returns error? = @java:Method {
-//    class: "javax.jms.BytesMessage"
+//    'class: "javax.jms.BytesMessage"
 //} external;
 
 function writeDouble(handle message, float value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeFloat(handle message, float value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeInt(handle message, int value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeLong(handle message, int value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeShort(handle message, int value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;
 
 function writeUTF(handle message, handle value) returns error? = @java:Method {
-    class: "javax.jms.BytesMessage"
+    'class: "javax.jms.BytesMessage"
 } external;

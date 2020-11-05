@@ -5,7 +5,7 @@ import ballerina/observe;
 # Represents JMS Connection
 #
 # + config - Used to store configurations related to a JMS Connection
-public type Connection client object {
+public client class Connection {
 
     public ConnectionConfiguration config = {};
     private handle jmsConnection = JAVA_NULL;
@@ -91,16 +91,16 @@ public function createConnection(ConnectionConfiguration c) returns Connection|e
 
 function createJmsConnection(string initialContextFactory, string providerUrl, string connectionFactoryName,
                              map<string> otherPropeties) returns handle | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsConnectionUtils"
+    'class: "org.ballerinalang.java.jms.JmsConnectionUtils"
 } external;
 
 function startJmsConnection(handle jmsConnection) returns error? = @java:Method {
     name: "start",
-    class: "javax.jms.Connection"
+    'class: "javax.jms.Connection"
 } external;
 
 
 function stopJmsConnection(handle jmsConnection) returns error? = @java:Method {
     name: "stop",
-    class: "javax.jms.Connection"
+    'class: "javax.jms.Connection"
 } external;

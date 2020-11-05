@@ -5,7 +5,7 @@ import ballerina/java;
 # Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header
 # and a body. The header contains fields used for message routing and identification; the body contains the
 # application data being sent.
-public type MapMessage client object {
+public client class MapMessage {
 
     // Add a reference to the `AbstractMessage` object type.
     *AbstractMessage;
@@ -33,13 +33,13 @@ public type MapMessage client object {
         return getByte(self.jmsMessage, java:fromString(name));
     }
 
-    # Get the byte array by given name.
-    #
-    # + name - The name of the byte array
-    # + return - Returns the byte array or an error if it fails.
-    public function getBytes(string name) returns byte[] | error {
-        return getBytes(self.jmsMessage, java:fromString(name));
-    }
+    // # Get the byte array by given name.
+    // #
+    // # + name - The name of the byte array
+    // # + return - Returns the byte array or an error if it fails.
+    // public function getBytes(string name) returns byte[] | error {
+    //     return getBytes(self.jmsMessage, java:fromString(name));
+    // }
 
 //    # Get the char value by given name.
 //    #
@@ -89,9 +89,9 @@ public type MapMessage client object {
     # Get all the names in the MapMessage object.
     #
     # + return - Returns the string[] or an error if it fails.
-    public function getMapNames() returns string[] | error {
-        return getMapNames(self.jmsMessage);
-    }
+    // public function getMapNames() returns string[] | error {
+    //     return getMapNames(self.jmsMessage);
+    // }
 
     # Get the short value by given name.
     #
@@ -295,9 +295,9 @@ public type MapMessage client object {
     # Get the message correlation ID as an array of bytes.
     #
     # + return - Returns the message correlation ID as an byte array or an error if it fails.
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error {
-        return getJMSCorrelationIDAsBytes(self.jmsMessage);
-    }
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error {
+    //     return getJMSCorrelationIDAsBytes(self.jmsMessage);
+    // }
 
     # Get the message delivery mode.
     #
@@ -400,9 +400,9 @@ public type MapMessage client object {
     # Get string array of property names.
     #
     # + return - Returns the string array of property names or an error if it fails.
-    public function getPropertyNames() returns string[] | error {
-        return getPropertyNames(self.jmsMessage);
-    }
+    // public function getPropertyNames() returns string[] | error {
+    //     return getPropertyNames(self.jmsMessage);
+    // }
 
     # Get the given short property.
     #
@@ -486,13 +486,13 @@ public type MapMessage client object {
         return setJMSCorrelationID(self.jmsMessage, java:fromString(correlationId));
     }
 
-    # Sets the correlation id an array of bytes for the message.
-    # 
-    # + correlationId - correlation id value as an array of bytes
-    # + return - Returns an error if it fails.
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
-        return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
-    }
+    // # Sets the correlation id an array of bytes for the message.
+    // # 
+    // # + correlationId - correlation id value as an array of bytes
+    // # + return - Returns an error if it fails.
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error? {
+    //     return setJMSCorrelationIDAsBytes(self.jmsMessage, correlationId);
+    // }
 
     # Set the reply destination to the message which a reply should send.
     #
@@ -544,66 +544,66 @@ public type MapMessage client object {
         return self.jmsMessage;
     }
 
-};
+}
 
 function getBoolean(handle message, handle name) returns boolean | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function getByte(handle message, handle name) returns byte | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
-function getBytes(handle message, handle name) returns byte[] | error = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMapMessageUtils"
-} external;
+// function getBytes(handle message, handle name) returns byte[] | error = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMapMessageUtils"
+// } external;
 
 //function getChar(handle message, handle name) returns int | error = @java:Method {
 //    class: "javax.jms.MapMessage"
 //} external;
 
 function getDouble(handle message, handle name) returns float | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function getFloat(handle message, handle name) returns float | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function getInt(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function getLong(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
-function getMapNames(handle message) returns string[] | error {
-    return getJmsMapNames(message);
-}
+// function getMapNames(handle message) returns string[] | error {
+//     return getJmsMapNames(message);
+// }
 
-function getJmsMapNames(handle message) returns string[] = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMapMessageUtils"
-} external;
+// function getJmsMapNames(handle message) returns string[] = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMapMessageUtils"
+// } external;
 
 function getShort(handle message, handle name) returns int | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function getString(handle message, handle name) returns handle | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function itemExists(handle message, handle name) returns boolean | error = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setBoolean(handle message, handle name, boolean value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setByte(handle message, handle name, byte value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 //function setBytes(handle message, handle name, byte[] value) returns error? = @java:Method {
@@ -621,25 +621,25 @@ function setByte(handle message, handle name, byte value) returns error? = @java
 //} external;
 
 function setDouble(handle message, handle name, float value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setFloat(handle message, handle name, float value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setInt(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setLong(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setShort(handle message, handle name, int value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;
 
 function setString(handle message, handle name, handle value) returns error? = @java:Method {
-    class: "javax.jms.MapMessage"
+    'class: "javax.jms.MapMessage"
 } external;

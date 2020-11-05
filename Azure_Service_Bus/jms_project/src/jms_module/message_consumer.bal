@@ -1,11 +1,11 @@
 import ballerina/log;
 import ballerina/java;
-import ballerina/'lang\.object as lang;
+import ballerina/lang.'object as lang;
 import ballerina/observe;
 
 observe:Gauge consumerGauge = new(ACTIVE_JMS_CONSUMERS);
 
-public type MessageConsumer client object {
+public client class MessageConsumer {
 
     *lang:Listener;
     private handle jmsConsumer = JAVA_NULL;
@@ -55,88 +55,88 @@ public type MessageConsumer client object {
         return self->close();
     }
 
-    public remote function receive(int timeoutMillis = 0) returns Message|()|error {
-        var response = receiveJmsMessage(self.jmsConsumer, timeoutMillis);
-        registerAndIncrementCounter(new observe:Counter(TOTAL_JMS_MESSAGES_RECEIVED));
-        if (response is handle) {
-            if (java:isNull(response)) {
-                return ();
-            } else {
-                return self.getBallerinaMessage(response);
-            }
-        } else {
-            return response;
-        }
-    }
+    // public remote function receive(int timeoutMillis = 0) returns Message|()|error {
+    //     var response = receiveJmsMessage(self.jmsConsumer, timeoutMillis);
+    //     registerAndIncrementCounter(new observe:Counter(TOTAL_JMS_MESSAGES_RECEIVED));
+    //     if (response is handle) {
+    //         if (java:isNull(response)) {
+    //             return ();
+    //         } else {
+    //             return self.getBallerinaMessage(response);
+    //         }
+    //     } else {
+    //         return response;
+    //     }
+    // }
 
-    public remote function receiveNoWait() returns Message|()|error {
-        handle|error response = receiveNoWaitJmsMessage(self.jmsConsumer);
-        if (response is handle) {
-            if (java:isNull(response)) {
-                return ();
-            } else {
-                return self.getBallerinaMessage(response);
-            }
-        } else {
-            return response;
-        }
-    }
+    // public remote function receiveNoWait() returns Message|()|error {
+    //     handle|error response = receiveNoWaitJmsMessage(self.jmsConsumer);
+    //     if (response is handle) {
+    //         if (java:isNull(response)) {
+    //             return ();
+    //         } else {
+    //             return self.getBallerinaMessage(response);
+    //         }
+    //     } else {
+    //         return response;
+    //     }
+    // }
 
     public remote function close() returns error? {
         return closeJmsConsumer(self.jmsConsumer);
     }
 
-    private function getBallerinaMessage(handle jmsMessage) returns Message|error {
-        if (isTextMessage(jmsMessage)) {
-            return new TextMessage(jmsMessage);
-        } else if (isMapMessage(jmsMessage)) {
-            return new MapMessage(jmsMessage);
-        } else if (isBytesMessage(jmsMessage)) {
-            return new BytesMessage(jmsMessage);
-        } else if (isStreamMessage(jmsMessage)) {
-            return new StreamMessage(jmsMessage);
-        } else {
-            return new Message(jmsMessage);
-        }
-    }
+    // private function getBallerinaMessage(handle jmsMessage) returns Message|error {
+    //     if (isTextMessage(jmsMessage)) {
+    //         return new TextMessage(jmsMessage);
+    //     } else if (isMapMessage(jmsMessage)) {
+    //         return new MapMessage(jmsMessage);
+    //     } else if (isBytesMessage(jmsMessage)) {
+    //         return new BytesMessage(jmsMessage);
+    //     } else if (isStreamMessage(jmsMessage)) {
+    //         return new StreamMessage(jmsMessage);
+    //     } else {
+    //         return new Message(jmsMessage);
+    //     }
+    // }
 
     function getJmsConsumer() returns handle {
         return self.jmsConsumer;
     }
-};
+}
 
 function receiveJmsMessage(handle jmsMessageConsumer, int timeout) returns handle|error = @java:Method {
     name: "receive",
     paramTypes: ["long"],
-    class: "javax.jms.MessageConsumer"
+    'class: "javax.jms.MessageConsumer"
 } external;
 
 function receiveNoWaitJmsMessage(handle jmsMessageConsumer) returns handle|error = @java:Method {
     name: "receiveNoWait",
-    class: "javax.jms.MessageConsumer"
+    'class: "javax.jms.MessageConsumer"
 } external;
 
-function isTextMessage(handle jmsMessage) returns boolean = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function isTextMessage(handle jmsMessage) returns boolean = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
-function isMapMessage(handle jmsMessage) returns boolean = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function isMapMessage(handle jmsMessage) returns boolean = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
-function isBytesMessage(handle jmsMessage) returns boolean = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function isBytesMessage(handle jmsMessage) returns boolean = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
-function isStreamMessage(handle jmsMessage) returns boolean = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageUtils"
-} external;
+// function isStreamMessage(handle jmsMessage) returns boolean = @java:Method {
+//     'class: "org.ballerinalang.java.jms.JmsMessageUtils"
+// } external;
 
 function closeJmsConsumer(handle jmsConsumer) returns error? = @java:Method {
     name: "close",
-    class: "javax.jms.MessageConsumer"
+    'class: "javax.jms.MessageConsumer"
 } external;
 
 function setMessageListener(handle jmsConsumer, service serviceObject) returns error? = @java:Method {
-    class: "org.ballerinalang.java.jms.JmsMessageListenerUtils"
+    'class: "org.ballerinalang.java.jms.JmsMessageListenerUtils"
 } external;

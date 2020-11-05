@@ -1,4 +1,4 @@
-public type AbstractMessage abstract client object {
+public type AbstractMessage client object {
 
     handle jmsMessage;
 
@@ -20,7 +20,7 @@ public type AbstractMessage abstract client object {
 
     public function getJMSCorrelationID() returns (string|error)?;
 
-    public function getJMSCorrelationIDAsBytes() returns byte[] | error;
+    // public function getJMSCorrelationIDAsBytes() returns byte[] | error;
 
     public function getJMSDeliveryMode() returns int | error;
 
@@ -44,7 +44,7 @@ public type AbstractMessage abstract client object {
 
     public function getLongProperty(string name) returns int | error;
 
-    public function getPropertyNames() returns string[] | error;
+    // public function getPropertyNames() returns string[] | error;
 
     public function getShortProperty(string name) returns int | error;
 
@@ -64,7 +64,7 @@ public type AbstractMessage abstract client object {
 
     public function setJMSCorrelationID(string correlationId) returns error?;
 
-    public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error?;
+    // public function setJMSCorrelationIDAsBytes(byte[] correlationId) returns error?;
 
     public function setJMSReplyTo(Destination replyTo) returns error?;
 
