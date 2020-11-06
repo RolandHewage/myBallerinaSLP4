@@ -6,3 +6,10 @@ version= "0.1.0"
 observability-included=true
 
 [dependencies]
+
+[platform]
+target = "java8"
+
+   [[platform.libraries]]
+   path = "../asb_project/target/azure-servicebus-1.2.19-SNAPSHOT.jar"
+   modules = ["jms_queue_module"]
