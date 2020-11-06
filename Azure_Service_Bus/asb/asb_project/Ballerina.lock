@@ -1,0 +1,9 @@
+org_name = "roland"
+version = "0.1.0"
+lockfile_version = "1.0.0"
+ballerina_version = "slp4"
+
+[[imports."roland/asb_module:0.1.0"]]
+org_name = "ballerina"
+name = "io"
+version = "0.5.0"
