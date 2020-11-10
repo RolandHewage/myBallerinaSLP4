@@ -10,6 +10,7 @@ function beforeSuiteFunc() {
 # Before test function
 function beforeFunc() {
     io:println("I'm the before function!");
+    TestClient we = new();
 }
 
 # Test function
