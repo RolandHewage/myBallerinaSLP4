@@ -18,15 +18,16 @@ public client class AzureServiceBusClient{
 
         self.httpClient = new(string `https://${self.serviceNamespace}.servicebus.windows.net/${self.queueOrTopicPath}`, {
             secureSocket: {
-                trustStore: {
-                    path: "/usr/lib/ballerina/distributions/ballerina-slp4/bre/security/ballerinaTruststore.p12",
-                    password: "ballerina"
-                }
+                // trustStore: {
+                //     path: "/usr/lib/ballerina/distributions/ballerina-slp4/bre/security/ballerinaTruststore.p12",
+                //     password: "ballerina"
+                // }
+                disable: true
             }
         });
 
         self.httpRequest = new;
-        self.httpRequest.setHeader("Authorization","SharedAccessSignature sr=https%3A%2F%2Froland1.servicebus.windows.net%2Froland1queue%2Fmessages&sig=CZr3FKSSMAgwWccOTAqKgu3f5OrYHej8zlgTA1wiR%2BY%3D&se=1604894207&skn=RootManageSharedAccessKey");
+        self.httpRequest.setHeader("Authorization","SharedAccessSignature sr=https%3A%2F%2Froland1.servicebus.windows.net%2Froland1queue%2Fmessages&sig=fg57Z532CjkN0R0axNsu3%2BTcyCSlzV5utPPu%2FL43frk%3D&se=1605605523&skn=RootManageSharedAccessKey");
 
     } 
 
@@ -54,7 +55,7 @@ public client class AzureServiceBusClient{
                 return err;
             }
         }else{
-
+            io:println(result);
             error err = error("no parameters are provided");
             return err;
         }
