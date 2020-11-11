@@ -51,15 +51,26 @@ public class TestClient{
         // var s4 = sendBatch(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content),maxMessageCount);
         // var r8 = receiveBatch(java:fromString(connectionString),java:fromString(queuePath),maxMessageCount);
 
-        // complete message from subscription
-        var s5 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
-        var r9 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath1));
-        var r10 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath2));
-        var r11 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath3));
+        // // complete all the messages from subscription
+        // var s5 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
+        // var r9 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath1));
+        // var r10 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath2));
+        // var r11 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath3));
 
-        // complete message from queue
-        var s6 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
-        var r12 = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
+        // // complete all the messages from queue
+        // var s6 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
+        // var r12 = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
+
+        // complete message from subscription
+        var s7 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
+        var r13 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath1));
+        var r14 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath2));
+        var r15 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath3));
+        var r16 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath1));
+        var r17 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath2));
+        var r18 = completeMessageFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath3));
+
+
 
 
     }
@@ -155,7 +166,7 @@ function completeMessageFromQueue(handle connectionString, handle entityPath) re
 } external;
 
 function completeMessageFromSubscription(handle connectionString, handle entityPath) returns error? = @java:Method {
-    name: "complete",
+    name: "completeMessage",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
