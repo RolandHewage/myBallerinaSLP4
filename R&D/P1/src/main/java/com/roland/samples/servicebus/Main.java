@@ -57,7 +57,7 @@ public class Main {
         ConUtils conUtils = new ConUtils();
         String inputString = "roland";
         byte[] byteArray = inputString.getBytes();
-        conUtils.send(connectionString,"roland1topic", byteArray);
+        conUtils.send(connectionString,"roland1topic");
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription1");
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription2");
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription3");

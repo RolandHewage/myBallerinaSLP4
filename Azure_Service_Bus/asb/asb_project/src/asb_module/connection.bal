@@ -14,7 +14,7 @@ function newConUtils() returns handle = @java:Constructor {
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-function send(handle connectionString, handle entityPath, handle body) returns error? = @java:Method {
+function send(handle connectionString, handle entityPath) returns error? = @java:Method {
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
@@ -51,8 +51,10 @@ public class TestClient{
         string s = "roland";
         byte[] bArray = s.toBytes();
         io:println(bArray);
-        var c = send(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1queue"),java:fromString("roland"));
+        var c = send(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1queue"));
         io:println(c);
+        var d = receive(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1queue"));
+        io:println(d);
     }
 }
 
