@@ -87,14 +87,58 @@ public class Main {
 //        conUtils.complete(connectionString,entityPath);
 //        System.exit(0);
 
-        // Basic complete messages & delete based on messageLockToken functionality to Azure service bus subscriptions
+//        // Basic complete messages & delete based on messageLockToken functionality to Azure service bus subscriptions
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        conUtils.send(connectionString,"roland1topic", inputString);
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription1");
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription2");
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription3");
+//        System.exit(0);
+
+//        // Basic complete single message & delete based on messageLockToken functionality to Azure service bus queue
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        conUtils.send(connectionString,entityPath, inputString);
+//        conUtils.completeMessage(connectionString,entityPath);
+//        conUtils.completeMessage(connectionString,entityPath);
+//        System.exit(0);
+
+        // Basic complete single messages & delete based on messageLockToken functionality to Azure service bus subscriptions
         ConUtils conUtils = new ConUtils();
         String inputString = "roland";
         conUtils.send(connectionString,"roland1topic", inputString);
-        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription1");
-        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription2");
-        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription3");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription1");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription2");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription3");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription1");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription2");
+        conUtils.completeMessage(connectionString,"roland1topic/subscriptions/roland1subscription3");
         System.exit(0);
+
+//        // Basic abandon messages & make available again for processing based on messageLockToken functionality to
+//        // Azure service bus queue
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        conUtils.send(connectionString,entityPath, inputString);
+//        conUtils.abandon(connectionString,entityPath);
+//        conUtils.complete(connectionString,entityPath);
+//        System.exit(0);
+
+//        // Basic abandon messages & abandon messages & make available again for processing  based on
+//        // messageLockToken functionality to Azure service bus subscriptions
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        conUtils.send(connectionString,"roland1topic", inputString);
+//        conUtils.abandon(connectionString,"roland1topic/subscriptions/roland1subscription1");
+//        conUtils.abandon(connectionString,"roland1topic/subscriptions/roland1subscription2");
+//        conUtils.abandon(connectionString,"roland1topic/subscriptions/roland1subscription3");
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription1");
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription2");
+//        conUtils.complete(connectionString,"roland1topic/subscriptions/roland1subscription3");
+//        System.exit(0);
+
+
 
 
 

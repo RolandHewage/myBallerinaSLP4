@@ -123,7 +123,7 @@ public class ConUtils {
         receiver.close();
     }
 
-    // Completes message from Queue or Subscription based on messageLockToken
+    // Completes messages from Queue or Subscription based on messageLockToken
     public static void complete(String connectionString, String entityPath) throws Exception {
         IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
 
@@ -146,6 +146,48 @@ public class ConUtils {
             receivedMessageId = receivedMessage.getMessageId();
         }
         System.out.printf("\tDone completing a message using its lock token from %s\n", receiver.getEntityPath());
+
+        receiver.close();
+    }
+
+    // Completes message from Queue or Subscription based on messageLockToken
+    public static void completeMessage(String connectionString, String entityPath) throws Exception {
+        IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
+
+        System.out.printf("\nWaiting up to default server wait time for messages from %s ...\n", receiver.getEntityPath());
+
+        IMessage receivedMessage = receiver.receive();
+
+        if (receivedMessage != null) {
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Completes a message with messageLockToken %s\n", receivedMessage.getLockToken());
+            receiver.complete(receivedMessage.getLockToken());
+
+            System.out.printf("\tDone completing a message using its lock token from %s\n", receiver.getEntityPath());
+        } else {
+            System.out.printf("\tNo message in the queue\n");
+        }
+
+        receiver.close();
+    }
+
+    // Abandon message & make available again for processing from Queue or Subscription based on messageLockToken
+    public static void abandon(String connectionString, String entityPath) throws Exception {
+        IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
+
+        System.out.printf("\n\tWaiting up to default server wait time for messages from %s ...\n", receiver.getEntityPath());
+        IMessage receivedMessage = receiver.receive();
+
+        if (receivedMessage != null) {
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Abandon a message with messageLockToken %s\n", receivedMessage.getLockToken());
+            receiver.abandon(receivedMessage.getLockToken());
+
+            System.out.printf("\tDone abandoning a message using its lock token from %s\n", receiver.getEntityPath());
+
+        } else {
+            System.out.printf("\t<= No message in the queue %\n");;
+        }
 
         receiver.close();
     }
