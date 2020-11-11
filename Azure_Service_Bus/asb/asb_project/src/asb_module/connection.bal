@@ -45,15 +45,19 @@ public class TestClient{
         // var b = getSharedAccessSignatureToken();  
         // io:println(b);
 
-        var cu = newConUtils();
-        io:println(cu);
+        // var cu = newConUtils();
+        // io:println(cu);
 
         string s = "roland";
         byte[] bArray = s.toBytes();
         io:println(bArray);
-        var c = send(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1queue"));
+        var c = send(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1topic"));
         io:println(c);
-        var d = receive(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1queue"));
+        var d = receive(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1topic/subscriptions/roland1subscription1"));
+        io:println(d);
+        var e = receive(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1topic/subscriptions/roland1subscription2"));
+        io:println(d);
+        var f = receive(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="),java:fromString("roland1topic/subscriptions/roland1subscription3"));
         io:println(d);
     }
 }
