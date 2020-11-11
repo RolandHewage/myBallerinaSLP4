@@ -22,7 +22,7 @@ public class ConUtils {
         this.connectionString = connectionString;
     }
 
-    public static void send(String connectionString, String entityPath) throws Exception {
+    public static void send(String connectionString, String entityPath, String content) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
         String messageId = UUID.randomUUID().toString();
@@ -31,7 +31,8 @@ public class ConUtils {
         IMessage message = new Message();
         message.setMessageId(messageId);
         message.setTimeToLive(Duration.ofMinutes(1));
-//        message.setBody(body);
+        byte[] byteArray = content.getBytes();
+        message.setBody(byteArray);
         sender.send(message);
         System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
 

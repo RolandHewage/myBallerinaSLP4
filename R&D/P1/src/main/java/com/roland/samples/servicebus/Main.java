@@ -56,8 +56,8 @@ public class Main {
         // Basic publish and subscribe functionality to Azure service bus topis and subscriptions
         ConUtils conUtils = new ConUtils();
         String inputString = "roland";
-        byte[] byteArray = inputString.getBytes();
-        conUtils.send(connectionString,"roland1topic");
+//        byte[] byteArray = inputString.getBytes();
+        conUtils.send(connectionString,"roland1topic", inputString);
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription1");
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription2");
         conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription3");
