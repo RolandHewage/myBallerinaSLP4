@@ -31,25 +31,35 @@ public class TestClient{
         int maxMessageCount = 3;
 
 
-        // publish and subscribe messages to topics and subscriptions
-        var s1 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
-        var r1 = receive(java:fromString(connectionString),java:fromString(subscriptionPath1));
-        var r2 = receive(java:fromString(connectionString),java:fromString(subscriptionPath2));
-        var r3 = receive(java:fromString(connectionString),java:fromString(subscriptionPath3));
+        // // publish and subscribe messages to topics and subscriptions
+        // var s1 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
+        // var r1 = receive(java:fromString(connectionString),java:fromString(subscriptionPath1));
+        // var r2 = receive(java:fromString(connectionString),java:fromString(subscriptionPath2));
+        // var r3 = receive(java:fromString(connectionString),java:fromString(subscriptionPath3));
 
-        // send and receive message to and from queue
-        var s2 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
-        var r4 = receive(java:fromString(connectionString),java:fromString(queuePath));
+        // // send and receive message to and from queue
+        // var s2 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
+        // var r4 = receive(java:fromString(connectionString),java:fromString(queuePath));
 
-        // publish and subscribe batch of messages to topics and subscriptions
-        var s3 = sendBatch(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content),maxMessageCount);
-        var r5 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath1),maxMessageCount);
-        var r6 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath2),maxMessageCount);
-        var r7 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath3),maxMessageCount);
+        // // publish and subscribe batch of messages to topics and subscriptions
+        // var s3 = sendBatch(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content),maxMessageCount);
+        // var r5 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath1),maxMessageCount);
+        // var r6 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath2),maxMessageCount);
+        // var r7 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath3),maxMessageCount);
 
-        // send and receive batch of messages to and from queue
-        var s4 = sendBatch(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content),maxMessageCount);
-        var r8 = receiveBatch(java:fromString(connectionString),java:fromString(queuePath),maxMessageCount);
+        // // send and receive batch of messages to and from queue
+        // var s4 = sendBatch(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content),maxMessageCount);
+        // var r8 = receiveBatch(java:fromString(connectionString),java:fromString(queuePath),maxMessageCount);
+
+        // complete message from subscription
+        var s5 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
+        var r9 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath1));
+        var r10 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath2));
+        var r11 = completeFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath3));
+
+        // complete message from queue
+        var s6 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
+        var r12 = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
 
 
     }
@@ -94,6 +104,16 @@ public class TestClient{
         var r = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath), maxMessageCount);
     }
 
+    // complete messages and delete from queue and display content
+    public function completeFromQueue(string connectionString, string queuePath) returns error? {
+        var r = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
+    }
+
+    // complete messages and delete from subscription and display content
+    public function completeFromSubscription(string connectionString, string queuePath) returns error? {
+        var r = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
+    }
+
 }
 
 
@@ -116,6 +136,16 @@ function sendBatch(handle connectionString, handle entityPath, handle content, i
 
 function receiveBatch(handle connectionString, handle entityPath, int maxMessageCount) returns error? = @java:Method {
     name: "receiveBatch",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+function completeFromQueue(handle connectionString, handle entityPath) returns error? = @java:Method {
+    name: "complete",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+function completeFromSubscription(handle connectionString, handle entityPath) returns error? = @java:Method {
+    name: "complete",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 

@@ -63,21 +63,28 @@ public class Main {
 //        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription3");
 //        System.exit(0);
 
-//        // Basic send and receive messages functionality to Azure service bus queue
+//        // Basic send and receive batch of messages functionality to Azure service bus queue
 //        ConUtils conUtils = new ConUtils();
 //        String inputString = "roland";
 //        conUtils.sendBatch(connectionString,entityPath, inputString, 4);
 //        conUtils.receiveBatch(connectionString,entityPath, 4);
 //        System.exit(0);
 
-        // Basic publish and subscribe messages functionality to Azure service bus topis and subscriptions
+//        // Basic publish and subscribe batch of messages functionality to Azure service bus topis and subscriptions
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        byte[] byteArray = inputString.getBytes();
+//        conUtils.sendBatch(connectionString,"roland1topic", inputString, 3);
+//        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription1", 3);
+//        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription2", 3);
+//        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription3", 3);
+//        System.exit(0);
+
+        // Basic complete message based on messageLockToken functionality to Azure service bus queue
         ConUtils conUtils = new ConUtils();
         String inputString = "roland";
-        byte[] byteArray = inputString.getBytes();
-        conUtils.sendBatch(connectionString,"roland1topic", inputString, 3);
-        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription1", 3);
-        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription2", 3);
-        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription3", 3);
+        conUtils.send(connectionString,entityPath, inputString);
+        conUtils.complete(connectionString,entityPath);
         System.exit(0);
 
 

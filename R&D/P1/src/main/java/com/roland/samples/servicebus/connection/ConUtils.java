@@ -123,4 +123,31 @@ public class ConUtils {
         receiver.close();
     }
 
+    // Completes message from Queue or Subscription based on messageLockToken
+    public static void complete(String connectionString, String entityPath) throws Exception {
+        IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
+
+        // receive messages from queue
+        String receivedMessageId = "";
+
+        System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
+        while (true) {
+            IMessage receivedMessage = receiver.receive(Duration.ofSeconds(5));
+
+            if (receivedMessage == null) {
+                break;
+            }
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Completes a message with messageLockToken %s\n", receivedMessage.getLockToken());
+            receiver.complete(receivedMessage.getLockToken());
+            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+                throw new Exception("Received a duplicate message!");
+            }
+            receivedMessageId = receivedMessage.getMessageId();
+        }
+        System.out.printf("\tDone completing a message using its lock token from %s\n", receiver.getEntityPath());
+
+        receiver.close();
+    }
+
 }
