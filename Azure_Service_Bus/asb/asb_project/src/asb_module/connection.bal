@@ -89,6 +89,12 @@ public class TestClient{
         var r27 = abandonFromQueue(java:fromString(connectionString),java:fromString(queuePath));
         var r28 = completeFromQueue(java:fromString(connectionString),java:fromString(queuePath));
 
+        // Auto Forward - Send msg directly to a queue and send a msg to a topic that has activated autoforward in 
+        // a subsription that forwards to the original queue
+        var s11 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
+        var s12 = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
+        var r29 = receive(java:fromString(connectionString),java:fromString(queuePath));
+
 
     }
 
