@@ -149,6 +149,16 @@ function completeFromSubscription(handle connectionString, handle entityPath) re
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
+function completeMessageFromQueue(handle connectionString, handle entityPath) returns error? = @java:Method {
+    name: "completeMessage",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+function completeMessageFromSubscription(handle connectionString, handle entityPath) returns error? = @java:Method {
+    name: "complete",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
 
 
 // Testing 
