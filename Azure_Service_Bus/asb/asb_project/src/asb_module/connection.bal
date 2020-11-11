@@ -1,13 +1,13 @@
 import ballerina/java;
-import ballerina/io;
+// import ballerina/io;
 
 public class TestClient{
     function init(){
-        var arrayDeque = newMessage();
-        io:println(arrayDeque);
+        // var arrayDeque = newMessage();
+        // io:println(arrayDeque);
 
-        var csb = newConnectionStringBuilder(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="));
-        io:println(arrayDeque);      
+        // var csb = newConnectionStringBuilder(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="));
+        // io:println(arrayDeque);      
 
         // var b = getSharedAccessSignatureToken();  
         // io:println(b);
@@ -28,6 +28,7 @@ public class TestClient{
         string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
         string subscriptionPath2 = "roland1topic/subscriptions/roland1subscription2";
         string subscriptionPath3 = "roland1topic/subscriptions/roland1subscription3";
+        int maxMessageCount = 3;
 
 
         // publish and subscribe messages to topics and subscriptions
@@ -40,23 +41,57 @@ public class TestClient{
         var s2 = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
         var r4 = receive(java:fromString(connectionString),java:fromString(queuePath));
 
+        // publish and subscribe batch of messages to topics and subscriptions
+        var s3 = sendBatch(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content),maxMessageCount);
+        var r5 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath1),maxMessageCount);
+        var r6 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath2),maxMessageCount);
+        var r7 = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath3),maxMessageCount);
+
+        // send and receive batch of messages to and from queue
+        var s4 = sendBatch(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content),maxMessageCount);
+        var r8 = receiveBatch(java:fromString(connectionString),java:fromString(queuePath),maxMessageCount);
+
 
     }
 
+    // send message to queue with a content
     public function sendToQueue(string connectionString, string queuePath, string content) returns error? {
         var s = send(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content));
     }
 
+    // receive message from queue and display content
     public function readFromQueue(string connectionString, string queuePath) returns error? {
         var r = receive(java:fromString(connectionString),java:fromString(queuePath));
     }
 
+    // publish message to topic with a content
     public function sendToTopic(string connectionString, string topicPath, string content) returns error? {
         var s = send(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content));
     }
 
+    // receive subscribe message to subscriptions and display content
     public function readFromSubscription(string connectionString, string subscriptionPath) returns error? {
         var r = receive(java:fromString(connectionString),java:fromString(subscriptionPath));
+    }
+
+    // send batch of messages to queue with a content
+    public function sendBatchToQueue(string connectionString, string queuePath, string content, int maxMessageCount) returns error? {
+        var s = sendBatch(java:fromString(connectionString),java:fromString(queuePath),java:fromString(content), maxMessageCount);
+    }
+
+    // receive batch of messages from queue and display content
+    public function readBatchFromQueue(string connectionString, string queuePath, int maxMessageCount) returns error? {
+        var r = receiveBatch(java:fromString(connectionString),java:fromString(queuePath), maxMessageCount);
+    }
+
+    // publish batch of messages to topic with a content
+    public function sendBatchToTopic(string connectionString, string topicPath, string content, int maxMessageCount) returns error? {
+        var s = sendBatch(java:fromString(connectionString),java:fromString(topicPath),java:fromString(content),maxMessageCount);
+    }
+
+    // receive batch of subscribe messages to subscriptions and display content
+    public function readBatchFromSubscription(string connectionString, string subscriptionPath, int maxMessageCount) returns error? {
+        var r = receiveBatch(java:fromString(connectionString),java:fromString(subscriptionPath), maxMessageCount);
     }
 
 }
@@ -71,8 +106,17 @@ function send(handle connectionString, handle entityPath, handle content) return
 } external;
 
 function receive(handle connectionString, handle entityPath) returns error? = @java:Method {
-    'class: "com.roland.samples.servicebus.connection.ConUtils",
-    name: "receive"
+    name: "receive",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+function sendBatch(handle connectionString, handle entityPath, handle content, int maxMessageCount) returns error? = @java:Method {
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+function receiveBatch(handle connectionString, handle entityPath, int maxMessageCount) returns error? = @java:Method {
+    name: "receiveBatch",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
 

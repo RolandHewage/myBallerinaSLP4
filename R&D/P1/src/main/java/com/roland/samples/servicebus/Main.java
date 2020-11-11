@@ -45,22 +45,39 @@ public class Main {
 
 
 
-//        // Basic send and receive functionality to Azure service bus queue
+//        // Basic send and receive message functionality to Azure service bus queue
 //        ConUtils conUtils = new ConUtils();
 //        String inputString = "roland";
 //        byte[] byteArray = inputString.getBytes();
-//        conUtils.send(connectionString,entityPath, byteArray);
+//        conUtils.send(connectionString,entityPath, inputString);
 //        conUtils.receive(connectionString,entityPath);
 //        System.exit(0);
 
-        // Basic publish and subscribe functionality to Azure service bus topis and subscriptions
+//        // Basic publish and subscribe message functionality to Azure service bus topis and subscriptions
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        byte[] byteArray = inputString.getBytes();
+//        conUtils.send(connectionString,"roland1topic", inputString);
+//        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription1");
+//        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription2");
+//        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription3");
+//        System.exit(0);
+
+//        // Basic send and receive messages functionality to Azure service bus queue
+//        ConUtils conUtils = new ConUtils();
+//        String inputString = "roland";
+//        conUtils.sendBatch(connectionString,entityPath, inputString, 4);
+//        conUtils.receiveBatch(connectionString,entityPath, 4);
+//        System.exit(0);
+
+        // Basic publish and subscribe messages functionality to Azure service bus topis and subscriptions
         ConUtils conUtils = new ConUtils();
         String inputString = "roland";
-//        byte[] byteArray = inputString.getBytes();
-        conUtils.send(connectionString,"roland1topic", inputString);
-        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription1");
-        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription2");
-        conUtils.receive(connectionString,"roland1topic/subscriptions/roland1subscription3");
+        byte[] byteArray = inputString.getBytes();
+        conUtils.sendBatch(connectionString,"roland1topic", inputString, 3);
+        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription1", 3);
+        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription2", 3);
+        conUtils.receiveBatch(connectionString,"roland1topic/subscriptions/roland1subscription3", 3);
         System.exit(0);
 
 

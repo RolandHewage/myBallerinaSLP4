@@ -4,6 +4,8 @@ import com.microsoft.azure.servicebus.*;
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -22,6 +24,7 @@ public class ConUtils {
         this.connectionString = connectionString;
     }
 
+    // Send message to Queue or Topic
     public static void send(String connectionString, String entityPath, String content) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
@@ -39,6 +42,7 @@ public class ConUtils {
         sender.close();
     }
 
+    // Receive message from Queue or Subscription
     public static void receive(String connectionString, String entityPath) throws Exception {
         IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
 
@@ -51,6 +55,60 @@ public class ConUtils {
 
             if (receivedMessage == null) {
                 break;
+            }
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
+            receiver.complete(receivedMessage.getLockToken());
+            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+                throw new Exception("Received a duplicate message!");
+            }
+            receivedMessageId = receivedMessage.getMessageId();
+        }
+        System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+
+        receiver.close();
+    }
+
+    // Send batch of messages to Queue or Topic
+    public static void sendBatch(String connectionString, String entityPath, String content, int maxMessageCount) throws Exception {
+        IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
+
+        List<IMessage> messages = new ArrayList<>();
+
+        for(int i=0; i<maxMessageCount; i++){
+            String messageId = UUID.randomUUID().toString();
+            IMessage message = new Message();
+            message.setMessageId(messageId);
+            message.setTimeToLive(Duration.ofMinutes(1));
+            String contentMod = content + Integer.toString(i);
+            byte[] byteArray = contentMod.getBytes();
+            message.setBody(byteArray);
+
+            messages.add(message);
+            System.out.printf("\t=> Sending a message with messageId %s\n", message.getMessageId());
+        }
+
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        sender.sendBatch(messages);
+        System.out.printf("\t=> Sent %s messages\n", messages.size());
+
+        sender.close();
+    }
+
+    // Receive batch of messages from Queue or Subscription
+    public static void receiveBatch(String connectionString, String entityPath, int maxMessageCount) throws Exception {
+        IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
+
+        // receive messages from queue
+        String receivedMessageId = "";
+
+        System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
+        for(int i=0; i<maxMessageCount; i++) {
+            IMessage receivedMessage = receiver.receive(Duration.ofSeconds(5));
+
+            if (receivedMessage == null) {
+                continue;
             }
             System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
             System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
