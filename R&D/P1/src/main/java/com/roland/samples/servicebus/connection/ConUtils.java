@@ -22,7 +22,7 @@ public class ConUtils {
         this.connectionString = connectionString;
     }
 
-    public void send(String connectionString, String entityPath, byte[] body) throws Exception {
+    public static void send(String connectionString, String entityPath, byte[] body) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
         String messageId = UUID.randomUUID().toString();
@@ -38,7 +38,7 @@ public class ConUtils {
         sender.close();
     }
 
-    public void receive(String connectionString, String entityPath) throws Exception {
+    public static void receive(String connectionString, String entityPath) throws Exception {
         IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
 
         // receive messages from queue

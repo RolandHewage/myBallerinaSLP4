@@ -4,4 +4,7 @@
 
 // public function main() {
 //     io:println("Hello World!");
+//     string hello = "Hello";
+//     byte[] bArray = hello.toBytes();
+//     io:println(bArray);
 // }

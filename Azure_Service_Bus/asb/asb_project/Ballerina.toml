@@ -13,3 +13,7 @@ target = "java8"
    [[platform.libraries]]
    path = "./javalibs/azure-servicebus-1.2.19-SNAPSHOT.jar"
    modules = ["asb_module"]
+
+   [[platform.libraries]]
+   path = "./javalibs/queueSend-1.0-SNAPSHOT-jar-with-dependencies.jar"
+   modules = ["asb_module"]
