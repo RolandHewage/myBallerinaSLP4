@@ -1,0 +1,12 @@
+[2020-11-14 00:42:00,345] SEVERE {b7a.log.crash} - DUMP_BIR 
+java.lang.NoSuchFieldError: DUMP_BIR
+	at org.ballerinalang.packerina.cmd.BuildCommand.execute(BuildCommand.java:392)
+	at java.util.Optional.ifPresent(Optional.java:159)
+	at org.ballerinalang.tool.Main.main(Main.java:57)
+ 
+[2020-11-14 00:42:24,368] SEVERE {b7a.log.crash} - DUMP_BIR 
+java.lang.NoSuchFieldError: DUMP_BIR
+	at org.ballerinalang.packerina.cmd.BuildCommand.execute(BuildCommand.java:392)
+	at java.util.Optional.ifPresent(Optional.java:159)
+	at org.ballerinalang.tool.Main.main(Main.java:57)
+ 
