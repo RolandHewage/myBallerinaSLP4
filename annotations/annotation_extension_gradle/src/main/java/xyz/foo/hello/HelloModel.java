@@ -1,3 +1,5 @@
+package xyz.foo.hello;
+
 class HelloModel {
 
     private static HelloModel instance = new HelloModel();

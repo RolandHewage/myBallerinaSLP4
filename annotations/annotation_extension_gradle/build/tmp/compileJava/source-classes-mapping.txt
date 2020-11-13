@@ -1,4 +1,4 @@
-HelloModel.java
- HelloModel
-HelloPlugin.java
- HelloPlugin
+xyz/foo/hello/HelloPlugin.java
+ xyz.foo.hello.HelloPlugin
+xyz/foo/hello/HelloModel.java
+ xyz.foo.hello.HelloModel

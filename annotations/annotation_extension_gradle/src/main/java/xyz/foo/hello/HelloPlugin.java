@@ -1,3 +1,5 @@
+package xyz.foo.hello;
+
 import org.ballerinalang.compiler.plugins.AbstractCompilerPlugin;
 import org.ballerinalang.compiler.plugins.SupportedAnnotationPackages;
 import org.ballerinalang.model.elements.PackageID;
