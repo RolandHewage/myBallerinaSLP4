@@ -1,4 +1,4 @@
-import foo/hello;
+import roland/hello;
 
 @hello:Greeting {
     salutation: "Guten Tag!"

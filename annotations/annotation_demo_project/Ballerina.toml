@@ -6,4 +6,4 @@ version= "0.1.0"
 observability-included=true
 
 [dependencies]
-"foo/hello" = { path = "/home/roland/.ballerina/balo_cache/ballerina/hello-2020r2-any-0.1.0.balo" }
+"roland/hello" = { path = "../annotation_project/target/balo/hello-2020r2-any-0.1.0.balo" }

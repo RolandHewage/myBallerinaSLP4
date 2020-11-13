@@ -4,6 +4,6 @@ lockfile_version = "1.0.0"
 ballerina_version = "slp4"
 
 [[imports."roland/greet:0.1.0"]]
-org_name = "foo"
+org_name = "roland"
 name = "hello"
 version = "0.1.0"
