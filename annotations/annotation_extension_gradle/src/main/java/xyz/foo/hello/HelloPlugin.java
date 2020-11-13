@@ -26,7 +26,7 @@ import java.util.List;
  */
 // This annotation specifies that this compiler extension should only be enabled when the mentioned module is used.
 @SupportedAnnotationPackages(
-        value = "foo/hello:0.1.0"
+        value = "roland/hello:0.1.0"
 )
 public class HelloPlugin extends AbstractCompilerPlugin {
 
