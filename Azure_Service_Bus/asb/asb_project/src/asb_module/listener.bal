@@ -5,6 +5,8 @@
 
 //     *lang:Listener;
 
+//fgggjl
+
 //     private Channel amqpChannel;
 
 //     public isolated function init(ConnectionConfiguration|Connection connectionOrConnectionConfig,
