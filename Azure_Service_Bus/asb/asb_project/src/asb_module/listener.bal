@@ -100,7 +100,7 @@ function createReceiverConnection(handle connectionString, handle entityPath) re
 } external;
 
 function closeReceiverConnection(handle imessageSender) returns error? = @java:Method {
-    name: "closeRecieverConnection",
+    name: "closeReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
