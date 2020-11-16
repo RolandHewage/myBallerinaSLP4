@@ -1,8 +1,22 @@
 import ballerina/lang.'object as lang;
-import ballerina/java;
+// import ballerina/java;
 
 public class Listener {
+
     *lang:Listener;
+
+
+    private Channel amqpChannel;
+
+    public isolated function init(ConnectionConfiguration|Connection connectionOrConnectionConfig,
+    int? prefetchCount = (), int? prefetchSize = ()) {
+        self.amqpChannel = new Channel(connectionOrConnectionConfig);
+        var result = self.setQosSettings(prefetchCount, prefetchSize);
+        externInit(self, self.amqpChannel.getChannel());
+        if (result is error) {
+            panic result;
+        }
+    }
 
     # Attaches the service to the `rabbitmq:Listener` endpoint.
     #
@@ -42,7 +56,24 @@ public class Listener {
     public isolated function __immediateStop() returns error? {
         return abortConnection(self);
     }
-}    
+}
+
+# Configurations required to create a subscription.
+#
+# + queueConfig - Configurations of the queue to be subscribed
+# + ackMode - Type of the acknowledgement mode
+# + prefetchCount - Maximum number of messages that the server will deliver and 0 if unlimited.
+#                   Unless explicitly given, this value is 10 by default.
+# + prefetchSize - Maximum amount of content (measured in octets) that the server will deliver and 0 if unlimited
+public type RabbitMQServiceConfig record {|
+    QueueConfiguration queueConfig;
+    AcknowledgementMode ackMode = AUTO_ACK;
+    int prefetchCount?;
+    int prefetchSize?;
+|};
+
+# The annotation, which is used to configure the subscription.
+public annotation RabbitMQServiceConfig ServiceConfig on service;
 
 isolated function externInit(Listener lis, handle amqpChannel) =
 @java:Method {
