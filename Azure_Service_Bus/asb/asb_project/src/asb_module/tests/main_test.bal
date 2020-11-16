@@ -125,6 +125,18 @@ function testAutoForward() {
     var r29 = testClient.completeFromQueue(connectionString,queuePath);
 }
 
+# receive message from queue via listener
+@test:Config{enable: true}
+function testReceiveListener() {
+
+    ConnectionConfiguration config = {
+        connectionString: connectionString,
+        entityPath: queuePath
+    };
+
+    Listener testListener = new(config);
+}
+
 # After Suite Function
 @test:AfterSuite {}
 function afterSuiteFunc() {
