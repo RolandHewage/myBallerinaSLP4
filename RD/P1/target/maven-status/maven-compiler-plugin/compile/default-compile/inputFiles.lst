@@ -11,5 +11,6 @@
 /home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/Main.java
 /home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/AutoForward.java
 /home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/connection/AsbConnectionUtils.java
+/home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/connection/MessageUtils.java
 /home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/TopicsSendMessage.java
 /home/roland/Documents/myBallerinaSLP4/RD/P1/src/main/java/com/roland/samples/servicebus/MessageBrowse.java
