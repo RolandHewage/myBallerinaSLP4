@@ -1,6 +1,7 @@
 com/roland/samples/servicebus/connection/ConnectionUtils$6.class
 com/roland/samples/servicebus/connection/Utils.class
 com/roland/samples/servicebus/connection/AsbConnectionUtils.class
+com/roland/samples/servicebus/connection/MessageUtils.class
 com/roland/samples/servicebus/connection/ConnectionUtils$8.class
 com/roland/samples/servicebus/connection/ConnectionUtils$7.class
 com/roland/samples/servicebus/connection/ConUtils.class
