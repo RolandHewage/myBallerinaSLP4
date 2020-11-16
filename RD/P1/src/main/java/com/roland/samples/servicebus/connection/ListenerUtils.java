@@ -6,8 +6,11 @@
 //import java.nio.channels.Channel;
 //
 //public class ListenerUtils {
+//
+//    private static Runtime runtime;
+//
 //    public static Object registerListener(BObject listenerBObject, BObject service) {
-//        runtime = Runtime.getCurrentRuntime();
+//        runtime = Runtime.getRuntime();
 //        Channel channel = (Channel) listenerBObject.getNativeData(RabbitMQConstants.CHANNEL_NATIVE_OBJECT);
 //        if (service == null) {
 //            return null;

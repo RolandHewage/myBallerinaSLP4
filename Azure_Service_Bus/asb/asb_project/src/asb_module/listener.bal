@@ -1,9 +1,10 @@
-// import ballerina/lang.'object as lang;
+import ballerina/lang.'object as lang;
 import ballerina/java;
 import ballerina/io;
 
 public class Listener {
-    // *lang:Listener;
+
+    *lang:Listener;
 
     // private Channel amqpChannel;
 
@@ -24,44 +25,46 @@ public class Listener {
 
     }
 
-    // # Attaches the service to the `rabbitmq:Listener` endpoint.
-    // #
-    // # + s - Type descriptor of the service
-    // # + name - Name of the service
-    // # + return - `()` or else a `rabbitmq:Error` upon failure to register the service
-    // public isolated function __attach(service s, string? name = ()) returns error? {
-    //     return registerListener(self, s);
-    // }
+    # Attaches the service to the `rabbitmq:Listener` endpoint.
+    #
+    # + s - Type descriptor of the service
+    # + name - Name of the service
+    # + return - `()` or else a `rabbitmq:Error` upon failure to register the service
+    public isolated function __attach(service s, string? name = ()) returns error? {
+        string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
+        string queuePath = "roland1queue";
+        handle|error? m = createReceiverConnection(java:fromString(connectionString),java:fromString(queuePath));
+    }
 
-    // # Starts consuming the messages on all the attached services.
-    // #
-    // # + return - `()` or else a `rabbitmq:Error` upon failure to start
-    // public isolated function __start() returns error? {
-    //     return 'start(self);
-    // }
+    # Starts consuming the messages on all the attached services.
+    #
+    # + return - `()` or else a `rabbitmq:Error` upon failure to start
+    public isolated function __start() returns error? {
+        
+    }
 
-    // # Stops consuming messages and detaches the service from the `rabbitmq:Listener` endpoint.
-    // #
-    // # + s - Type descriptor of the service
-    // # + return - `()` or else  a `rabbitmq:Error` upon failure to detach the service
-    // public isolated function __detach(service s) returns error? {
-    //     return detach(self, s);
-    // }
+    # Stops consuming messages and detaches the service from the `rabbitmq:Listener` endpoint.
+    #
+    # + s - Type descriptor of the service
+    # + return - `()` or else  a `rabbitmq:Error` upon failure to detach the service
+    public isolated function __detach(service s) returns error? {
+        
+    }
 
-    // # Stops consuming messages through all consumer services by terminating the connection and all its channels.
-    // #
-    // # + return - `()` or else  a `rabbitmq:Error` upon failure to close the `ChannelListener`
-    // public isolated function __gracefulStop() returns error? {
-    //     return stop(self);
-    // }
+    # Stops consuming messages through all consumer services by terminating the connection and all its channels.
+    #
+    # + return - `()` or else  a `rabbitmq:Error` upon failure to close the `ChannelListener`
+    public isolated function __gracefulStop() returns error? {
+        
+    }
 
-    // # Stops consuming messages through all the consumer services and terminates the connection
-    // # with the server.
-    // #
-    // # + return - `()` or else  a `rabbitmq:Error` upon failure to close ChannelListener.
-    // public isolated function __immediateStop() returns error? {
-    //     return abortConnection(self);
-    // }
+    # Stops consuming messages through all the consumer services and terminates the connection
+    # with the server.
+    #
+    # + return - `()` or else  a `rabbitmq:Error` upon failure to close ChannelListener.
+    public isolated function __immediateStop() returns error? {
+        
+    }
 }  
 
 public type ConnectionConfiguration record {|
@@ -94,17 +97,17 @@ public type ConnectionConfiguration record {|
 //     boolean verifyHostname = true;
 // |};
 
-function createReceiverConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
+isolated function createReceiverConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
     name: "createReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-function closeReceiverConnection(handle imessageSender) returns error? = @java:Method {
+isolated function closeReceiverConnection(handle imessageSender) returns error? = @java:Method {
     name: "closeReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-function receiveConnection (handle imessageSender, handle connectionString, handle entityPath) returns error? = @java:Method {
+isolated function receiveConnection (handle imessageSender, handle connectionString, handle entityPath) returns error? = @java:Method {
     name: "receiveConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
