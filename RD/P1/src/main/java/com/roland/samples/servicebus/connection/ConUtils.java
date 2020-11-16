@@ -24,6 +24,49 @@ public class ConUtils {
         this.connectionString = connectionString;
     }
 
+    // Create Receiver Connection
+    public static IMessageReceiver createReceiverConnection(String connectionString, String entityPath) throws Exception {
+        try{
+            IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
+            return receiver;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    // Close Receiver Connection
+    public static void closeReceiverConnection(IMessageReceiver receiver) throws Exception {
+        try{
+            receiver.close();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    // Receive Message from Receiver Connection
+    public static void receiveConnection(IMessageReceiver receiver, String connectionString, String entityPath) throws Exception {
+
+        // receive messages from queue or subscription
+        String receivedMessageId = "";
+
+        System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
+        while (true) {
+            IMessage receivedMessage = receiver.receive(Duration.ofSeconds(5));
+
+            if (receivedMessage == null) {
+                break;
+            }
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
+            receiver.complete(receivedMessage.getLockToken());
+            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+                throw new Exception("Received a duplicate message!");
+            }
+            receivedMessageId = receivedMessage.getMessageId();
+        }
+        System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+    }
+
     // Send message to Queue or Topic
     public static void send(String connectionString, String entityPath, String content) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
