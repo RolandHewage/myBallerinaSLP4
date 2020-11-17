@@ -18,7 +18,7 @@ public class Listener {
         // externInit(self, self.amqpChannel.getChannel());
         handle|error? m = createReceiverConnection(java:fromString(connectionOrConnectionConfig.connectionString),java:fromString(connectionOrConnectionConfig.entityPath));
         if(m is handle) {
-            var l = receiveConnection(m,java:fromString(connectionOrConnectionConfig.connectionString),java:fromString(connectionOrConnectionConfig.entityPath));
+            var l = receiveConnection(m);
             var n = closeReceiverConnection(m);
             io:println(n);
         }
@@ -107,7 +107,7 @@ isolated function closeReceiverConnection(handle imessageSender) returns error? 
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-isolated function receiveConnection (handle imessageSender, handle connectionString, handle entityPath) returns error? = @java:Method {
+isolated function receiveConnection (handle imessageSender) returns error? = @java:Method {
     name: "receiveConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
