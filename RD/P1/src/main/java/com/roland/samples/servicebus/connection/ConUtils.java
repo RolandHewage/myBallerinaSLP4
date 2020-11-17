@@ -44,7 +44,7 @@ public class ConUtils {
     }
 
     // Receive Message from Receiver Connection
-    public static void receiveConnection(IMessageReceiver receiver, String connectionString, String entityPath) throws Exception {
+    public static void receiveConnection(IMessageReceiver receiver) throws Exception {
 
         // receive messages from queue or subscription
         String receivedMessageId = "";
