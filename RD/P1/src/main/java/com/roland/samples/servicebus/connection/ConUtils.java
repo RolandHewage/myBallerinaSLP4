@@ -2,6 +2,7 @@ package com.roland.samples.servicebus.connection;
 
 import com.microsoft.azure.servicebus.*;
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
+import org.ballerinalang.jvm.api.values.BArray;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -101,7 +102,7 @@ public class ConUtils {
     }
 
     // Send batch of messages to Queue or Topic
-    public static void sendBatchMessages(String connectionString, String entityPath, String[] content, int maxMessageCount) throws Exception {
+    public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
         List<IMessage> messages = new ArrayList<>();
@@ -111,8 +112,9 @@ public class ConUtils {
             IMessage message = new Message();
             message.setMessageId(messageId);
             message.setTimeToLive(Duration.ofMinutes(1));
-            String contentMod = content[i] + Integer.toString(i);
-            byte[] byteArray = contentMod.getBytes();
+//            String contentMod = content + Integer.toString(i);
+//            byte[] byteArray = contentMod.getBytes();
+            byte[] byteArray = content.getBytes();
             message.setBody(byteArray);
 
             messages.add(message);
