@@ -168,6 +168,16 @@ public class TestClient{
         var r = abandonFromSubscription(java:fromString(connectionString),java:fromString(subscriptionPath));
     }
 
+    // send batch of messages to queue with a content
+    public function sendBatchMessagesToQueue(string connectionString, string queuePath, byte[] content, int maxMessageCount) returns error? {
+        var s = sendBatchMessages(java:fromString(connectionString),java:fromString(queuePath),content, maxMessageCount);
+    }
+
+    // receive batch of messages from queue and display content
+    public function readBatchMessagesFromQueue(string connectionString, string queuePath, int maxMessageCount) returns error? {
+        var r = receiveBatchMessages(java:fromString(connectionString),java:fromString(queuePath), maxMessageCount);
+    }
+
 }
 
 
@@ -223,10 +233,14 @@ function abandonFromSubscription(handle connectionString, handle entityPath) ret
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-function sendBatchMessages(handle connectionString, handle entityPath, string[] content, int maxMessageCount) returns error? = @java:Method {
+function sendBatchMessages(handle connectionString, handle entityPath, byte[] content, int maxMessageCount) returns error? = @java:Method {
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
+function receiveBatchMessages(handle connectionString, handle entityPath, int maxMessageCount) returns error? = @java:Method {
+    name: "receiveBatchMessages",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
 
 
 

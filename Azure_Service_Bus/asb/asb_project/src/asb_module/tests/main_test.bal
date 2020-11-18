@@ -4,6 +4,7 @@ import ballerina/test;
 // Connection Configuration
 string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
 string content = "This is My Message Body"; 
+byte[] byteContent = content.toBytes();
 string queuePath = "roland1queue";
 string topicPath = "roland1topic";
 string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
@@ -155,7 +156,7 @@ public function testConnection() {
 }
 
 # Test Sender Connection
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testSenderConnection() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -175,7 +176,7 @@ function testSenderConnection() {
 }
 
 # Test Reciever Connection
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testReceiveConnection() {
     io:println("Creating receiver connection");
     ReceiverConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -192,6 +193,14 @@ function testReceiveConnection() {
         io:println("Closing receiver connection");
         checkpanic conn.closeReceiverConnection();
     }
+}
+
+# Send and receive batch of messages to and from queue
+@test:Config{enable: true}
+function testSendAndReceiveBatchMessages() {
+    TestClient testClient = new();
+    var s4 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent, maxMessageCount);
+    var r8 = testClient.readBatchMessagesFromQueue(connectionString,queuePath, maxMessageCount);
 }
 
 # After Suite Function
