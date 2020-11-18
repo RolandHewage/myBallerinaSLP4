@@ -97,18 +97,18 @@ public class Listener {
 //     boolean verifyHostname = true;
 // |};
 
-isolated function createReceiverConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
+isolated function createReceiveConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
     name: "createReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-isolated function closeReceiverConnection(handle imessageSender) returns error? = @java:Method {
+isolated function closeReceiveConnection(handle imessageSender) returns error? = @java:Method {
     name: "closeReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
 isolated function receiveConnection (handle imessageSender) returns error? = @java:Method {
-    name: "receiveConnection",
+    name: "receiveViaReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 

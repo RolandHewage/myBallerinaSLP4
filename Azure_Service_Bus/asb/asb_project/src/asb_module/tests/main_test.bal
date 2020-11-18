@@ -11,7 +11,8 @@ string subscriptionPath2 = "roland1topic/subscriptions/roland1subscription2";
 string subscriptionPath3 = "roland1topic/subscriptions/roland1subscription3";
 int maxMessageCount = 3;
 
-Connection? connection = ();
+ReceiverConnection? connection = ();
+SenderConnection? senderConnection = ();
 
 # Before Suite Function
 @test:BeforeSuite
@@ -146,30 +147,50 @@ function testReceiveListener() {
 @test:Config {enable: false}
 public function testConnection() {
     boolean flag = false;
-    Connection? con = connection;
-    if (con is Connection) {
+    ReceiverConnection? con = connection;
+    if (con is ReceiverConnection) {
         flag = true;
     }
     test:assertTrue(flag, msg = "Asb Connection creation failed.");
 }
 
-# Send and receive message to and from queue
+# Test Sender Connection
 @test:Config{enable: true}
-function testSendAndReceiveConnection() {
-    io:println("Creating connection");
-    Connection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
-    connection = newConnection;
+function testSenderConnection() {
+    io:println("Creating sender connection");
+    SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    senderConnection = newConnection;
 
-    Connection? con = connection;
-    if (con is Connection) {
-        io:println("Recieving from connection");
-        checkpanic con.receiveFromConnection();
+    SenderConnection? con = senderConnection;
+    if (con is SenderConnection) {
+        io:println("Sending via connection");
+        checkpanic con.sendViaSenderConnection(content);
     }
 
-    Connection? conn = connection;
-    if (conn is Connection) {
-        io:println("Closing connection");
-        checkpanic conn.closeConnection();
+    SenderConnection? conn = senderConnection;
+    if (conn is SenderConnection) {
+        io:println("Closing sender connection");
+        checkpanic conn.closeSenderConnection();
+    }
+}
+
+# Test Reciever Connection
+@test:Config{enable: true}
+function testReceiveConnection() {
+    io:println("Creating receiver connection");
+    ReceiverConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    connection = newConnection;
+
+    ReceiverConnection? con = connection;
+    if (con is ReceiverConnection) {
+        io:println("Receiving from connection");
+        checkpanic con.receiveViaReceiverConnection();
+    }
+
+    ReceiverConnection? conn = connection;
+    if (conn is ReceiverConnection) {
+        io:println("Closing receiver connection");
+        checkpanic conn.closeReceiverConnection();
     }
 }
 
