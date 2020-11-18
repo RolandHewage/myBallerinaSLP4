@@ -101,7 +101,7 @@ public class ConUtils {
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
     }
 
-    // Send batch of messages to Queue or Topic
+    // Send batch of messages to Queue or Topic with Message Content input as Byte Array
     public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
@@ -127,7 +127,7 @@ public class ConUtils {
         sender.close();
     }
 
-    // Receive batch of messages from Queue or Subscription
+    // Receive batch of messages from Queue or Subscription with Message Content input as Byte Array
     public static void receiveBatchMessages(String connectionString, String entityPath, int maxMessageCount) throws Exception {
         IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);
 

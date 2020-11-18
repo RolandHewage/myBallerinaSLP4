@@ -246,7 +246,6 @@ function receiveBatchMessages(handle connectionString, handle entityPath, int ma
 
 
 
-
 // Testing 
 function newMessage() returns handle = @java:Constructor {
     'class: "com.microsoft.azure.servicebus.Message"

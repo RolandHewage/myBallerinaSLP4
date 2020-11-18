@@ -4,7 +4,10 @@ import ballerina/test;
 // Connection Configuration
 string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
 string content = "This is My Message Body"; 
-byte[] byteContent = content.toBytes();
+byte[] byteContent1 = content.toBytes();
+json jsonContent = {name: "apple", color: "red", price: 5.36};
+byte[] byteContent2 = jsonContent.toJsonString().toBytes();
+byte[][] byteContent = [byteContent1,byteContent2];
 string queuePath = "roland1queue";
 string topicPath = "roland1topic";
 string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
@@ -199,8 +202,8 @@ function testReceiveConnection() {
 @test:Config{enable: true}
 function testSendAndReceiveBatchMessages() {
     TestClient testClient = new();
-    var s4 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent, maxMessageCount);
-    var r8 = testClient.readBatchMessagesFromQueue(connectionString,queuePath, maxMessageCount);
+    var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent2, maxMessageCount);
+    var r30 = testClient.readBatchMessagesFromQueue(connectionString,queuePath, maxMessageCount);
 }
 
 # After Suite Function
