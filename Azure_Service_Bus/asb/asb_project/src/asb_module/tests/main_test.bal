@@ -11,14 +11,19 @@ string subscriptionPath2 = "roland1topic/subscriptions/roland1subscription2";
 string subscriptionPath3 = "roland1topic/subscriptions/roland1subscription3";
 int maxMessageCount = 3;
 
+Connection? connection = ();
+
 # Before Suite Function
 @test:BeforeSuite
 function beforeSuiteFunc() {
     io:println("I'm the before suite function!");
+    io:println("Creating connection");
+    Connection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    connection = newConnection;
 }
 
 # Publish and subscribe messages to topics and subscriptions
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testPublishAndSubscribe() {
     TestClient testClient = new();
     var s1 = testClient.sendToTopic(connectionString,topicPath,content);
@@ -126,7 +131,7 @@ function testAutoForward() {
 }
 
 # receive message from queue via listener
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testReceiveListener() {
 
     ConnectionConfiguration config = {
@@ -137,8 +142,24 @@ function testReceiveListener() {
     Listener testListener = new(config);
 }
 
+# create receiver connection
+@test:Config {enable: true}
+public function testConnection() {
+    boolean flag = false;
+    Connection? con = connection;
+    if (con is Connection) {
+        flag = true;
+    }
+    test:assertTrue(flag, msg = "Asb Connection creation failed.");
+}
+
 # After Suite Function
 @test:AfterSuite {}
 function afterSuiteFunc() {
     io:println("I'm the after suite function!");
+    Connection? con = connection;
+    if (con is Connection) {
+        io:println("Closing connection");
+        checkpanic con.closeConnection();
+    }
 }

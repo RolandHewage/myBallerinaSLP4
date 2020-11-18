@@ -8,7 +8,6 @@ public class Connection{
     private string entityPath;
 
     public isolated function init(ConnectionConfiguration connectionConfiguration) {
-        handle n;
         self.connectionString = connectionConfiguration.connectionString;
         self.entityPath = connectionConfiguration.entityPath;
         self.asbConnection = <handle> createConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
