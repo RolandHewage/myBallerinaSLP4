@@ -17,9 +17,9 @@ Connection? connection = ();
 @test:BeforeSuite
 function beforeSuiteFunc() {
     io:println("I'm the before suite function!");
-    io:println("Creating connection");
-    Connection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
-    connection = newConnection;
+    // io:println("Creating connection");
+    // Connection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    // connection = newConnection;
 }
 
 # Publish and subscribe messages to topics and subscriptions
@@ -143,7 +143,7 @@ function testReceiveListener() {
 }
 
 # create receiver connection
-@test:Config {enable: true}
+@test:Config {enable: false}
 public function testConnection() {
     boolean flag = false;
     Connection? con = connection;
@@ -153,13 +153,33 @@ public function testConnection() {
     test:assertTrue(flag, msg = "Asb Connection creation failed.");
 }
 
+# Send and receive message to and from queue
+@test:Config{enable: true}
+function testSendAndReceiveConnection() {
+    io:println("Creating connection");
+    Connection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    connection = newConnection;
+
+    Connection? con = connection;
+    if (con is Connection) {
+        io:println("Recieving from connection");
+        checkpanic con.receiveFromConnection();
+    }
+
+    Connection? conn = connection;
+    if (conn is Connection) {
+        io:println("Closing connection");
+        checkpanic conn.closeConnection();
+    }
+}
+
 # After Suite Function
 @test:AfterSuite {}
 function afterSuiteFunc() {
     io:println("I'm the after suite function!");
-    Connection? con = connection;
-    if (con is Connection) {
-        io:println("Closing connection");
-        checkpanic con.closeConnection();
-    }
+    // Connection? con = connection;
+    // if (con is Connection) {
+    //     io:println("Closing connection");
+    //     checkpanic con.closeConnection();
+    // }
 }
