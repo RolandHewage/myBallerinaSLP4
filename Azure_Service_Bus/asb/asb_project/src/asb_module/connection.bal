@@ -1,0 +1,31 @@
+import ballerina/java;
+
+public class Connection{
+
+    handle asbConnection;
+
+    private string connectionString;
+    private string entityPath;
+
+    public isolated function init(ConnectionConfiguration connectionConfiguration) {
+        handle n;
+        self.connectionString = connectionConfiguration.connectionString;
+        self.entityPath = connectionConfiguration.entityPath;
+        self.asbConnection = <handle> createConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
+    }
+
+    public isolated function closeConnection() returns error? {
+        return closeConnection(self.asbConnection);
+    }
+
+}
+
+isolated function createConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
+    name: "createReceiverConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function closeConnection(handle imessageSender) returns error? = @java:Method {
+    name: "closeReceiverConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;

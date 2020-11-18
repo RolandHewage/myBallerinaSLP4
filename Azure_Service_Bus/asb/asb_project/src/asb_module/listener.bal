@@ -67,10 +67,10 @@ public class Listener {
     }
 }  
 
-public type ConnectionConfiguration record {|
-    string connectionString;
-    string entityPath;
-|};
+// public type ConnectionConfiguration record {|
+//     string connectionString;
+//     string entityPath;
+// |};
 
 // public type ConnectionConfiguration record {|
 //     string host;
