@@ -3,10 +3,12 @@ package com.roland.samples.servicebus.connection;
 import com.microsoft.azure.servicebus.*;
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 import org.ballerinalang.jvm.api.values.BArray;
+import org.ballerinalang.jvm.api.values.BMap;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -117,6 +119,60 @@ public class ConUtils {
 
     // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
     public static void receiveBytesMessageViaReceiverConnection(IMessageReceiver receiver) throws Exception {
+
+        // receive messages from queue or subscription
+        String receivedMessageId = "";
+
+        System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
+        while (true) {
+            IMessage receivedMessage = receiver.receive(Duration.ofSeconds(5));
+
+            if (receivedMessage == null) {
+                break;
+            }
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
+            receiver.complete(receivedMessage.getLockToken());
+            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+                throw new Exception("Received a duplicate message!");
+            }
+            receivedMessageId = receivedMessage.getMessageId();
+        }
+        System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+    }
+
+    // Send Message when Sender Connection is given as a parameter and message content as a byte array
+    public static void sendBytesMessageViaSenderConnectionWithConfigurableParameters(IMessageSender sender, BArray content, BMap<String, Object> parameters) throws Exception {
+        String a = "";
+        Integer b = 0;
+        if (parameters.containsKey("a")) {
+            if(parameters.get("a") instanceof Integer) {
+                throw new IllegalArgumentException("...");
+            }
+            a = (String)parameters.get("a");
+            System.out.printf(a);
+        } else if (parameters.containsKey("b")) {
+            if(parameters.get("b") instanceof String) {
+                throw new IllegalArgumentException("...");
+            }
+            b = (Integer)parameters.get("b");
+            System.out.printf(Integer.toString(b));
+        }
+
+        String messageId = UUID.randomUUID().toString();
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        IMessage message = new Message();
+        message.setMessageId(messageId);
+        message.setTimeToLive(Duration.ofMinutes(1));
+        byte[] byteArray = content.getBytes();
+        message.setBody(byteArray);
+        sender.send(message);
+        System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
+    }
+
+    // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
+    public static void receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(IMessageReceiver receiver) throws Exception {
 
         // receive messages from queue or subscription
         String receivedMessageId = "";

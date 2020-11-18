@@ -211,6 +211,7 @@ function testSenderConnectionWithByteArrayMessage() {
         io:println("Sending via connection");
         checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
         checkpanic con.sendBytesMessageViaSenderConnection(byteContent2);
+        checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
     }
 
     SenderConnection? conn = senderConnection;
