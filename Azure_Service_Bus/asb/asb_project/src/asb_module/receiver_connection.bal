@@ -13,7 +13,9 @@ public class ReceiverConnection{
         self.asbReceiverConnection = <handle> createReceiverConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
     }
 
-    public isolated function createReceiverConnection() returns handle|error? {
+    public isolated function createReceiverConnection(ConnectionConfiguration connectionConfiguration) returns handle|error? {
+        self.connectionString = connectionConfiguration.connectionString;
+        self.entityPath = connectionConfiguration.entityPath;
         self.asbReceiverConnection = <handle> createReceiverConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
     }
 

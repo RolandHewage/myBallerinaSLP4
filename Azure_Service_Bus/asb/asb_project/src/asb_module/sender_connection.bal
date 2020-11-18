@@ -13,7 +13,9 @@ public class SenderConnection{
         self.asbSenderConnection = <handle> createSenderConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
     }
 
-    public isolated function createSenderConnection() returns handle|error? {
+    public isolated function createSenderConnection(ConnectionConfiguration connectionConfiguration) returns handle|error? {
+        self.connectionString = connectionConfiguration.connectionString;
+        self.entityPath = connectionConfiguration.entityPath;
         self.asbSenderConnection = <handle> createSenderConnection(java:fromString(self.connectionString),java:fromString(self.entityPath));
     }
 
