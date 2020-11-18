@@ -10,6 +10,7 @@ com/roland/samples/servicebus/connection/Utils$1.class
 com/roland/samples/servicebus/Main.class
 com/roland/samples/servicebus/connection/ConnectionUtils$2.class
 com/roland/samples/servicebus/connection/ConnectionUtils$4.class
+com/roland/samples/servicebus/connection/RabbitMQConstants.class
 com/roland/samples/servicebus/AsbConnector.class
 com/roland/samples/servicebus/connection/ConnectionUtils$1.class
 com/roland/samples/servicebus/connection/ConnectionUtils.class
