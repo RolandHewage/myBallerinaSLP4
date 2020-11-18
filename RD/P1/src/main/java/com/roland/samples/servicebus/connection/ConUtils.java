@@ -100,6 +100,33 @@ public class ConUtils {
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
     }
 
+    // Send batch of messages to Queue or Topic
+    public static void sendBatchMessages(String connectionString, String entityPath, String[] content, int maxMessageCount) throws Exception {
+        IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
+
+        List<IMessage> messages = new ArrayList<>();
+
+        for(int i=0; i<maxMessageCount; i++){
+            String messageId = UUID.randomUUID().toString();
+            IMessage message = new Message();
+            message.setMessageId(messageId);
+            message.setTimeToLive(Duration.ofMinutes(1));
+            String contentMod = content[i] + Integer.toString(i);
+            byte[] byteArray = contentMod.getBytes();
+            message.setBody(byteArray);
+
+            messages.add(message);
+            System.out.printf("\t=> Sending a message with messageId %s\n", message.getMessageId());
+        }
+
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        sender.sendBatch(messages);
+        System.out.printf("\t=> Sent %s messages\n", messages.size());
+
+        sender.close();
+    }
+
     // Send message to Queue or Topic
     public static void send(String connectionString, String entityPath, String content) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
