@@ -17,6 +17,10 @@ public class Connection{
         return closeConnection(self.asbConnection);
     }
 
+    public isolated function receiveFromConnection() returns error? {
+        return receiveFromConnection(self.asbConnection);
+    }
+
 }
 
 isolated function createConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
@@ -26,5 +30,10 @@ isolated function createConnection(handle connectionString, handle entityPath) r
 
 isolated function closeConnection(handle imessageSender) returns error? = @java:Method {
     name: "closeReceiverConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function receiveFromConnection(handle imessageSender) returns error? = @java:Method {
+    name: "receiveConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;

@@ -24,6 +24,25 @@ public class ConUtils {
         this.connectionString = connectionString;
     }
 
+    // Create Sender Connection
+    public static IMessageSender createSenderConnection(String connectionString, String entityPath) throws Exception {
+        try{
+            IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
+            return sender;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    // Close Receiver Connection
+    public static void closeSenderConnection(IMessageSender sender) throws Exception {
+        try{
+            sender.close();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
     // Create Receiver Connection
     public static IMessageReceiver createReceiverConnection(String connectionString, String entityPath) throws Exception {
         try{
@@ -43,8 +62,22 @@ public class ConUtils {
         }
     }
 
-    // Receive Message from Receiver Connection
-    public static void receiveConnection(IMessageReceiver receiver) throws Exception {
+    // Send Message when Sender Connection is given as a parameter
+    public static void sendViaSenderConnection(IMessageSender sender, String content) throws Exception {
+        String messageId = UUID.randomUUID().toString();
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        IMessage message = new Message();
+        message.setMessageId(messageId);
+        message.setTimeToLive(Duration.ofMinutes(1));
+        byte[] byteArray = content.getBytes();
+        message.setBody(byteArray);
+        sender.send(message);
+        System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
+    }
+
+    // Receive Message when Receiver Connection is given as a parameter
+    public static void receiveViaReceiverConnection(IMessageReceiver receiver) throws Exception {
 
         // receive messages from queue or subscription
         String receivedMessageId = "";
