@@ -27,6 +27,10 @@ public class ReceiverConnection{
         return receiveViaReceiverConnection(self.asbReceiverConnection);
     }
 
+    public isolated function receiveBytesMessageViaReceiverConnection() returns error? {
+        return receiveBytesMessageViaReceiverConnection(self.asbReceiverConnection);
+    }
+
 }
 
 isolated function createReceiverConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
@@ -41,5 +45,10 @@ isolated function closeReceiverConnection(handle imessageSender) returns error? 
 
 isolated function receiveViaReceiverConnection(handle imessageSender) returns error? = @java:Method {
     name: "receiveViaReceiverConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function receiveBytesMessageViaReceiverConnection(handle imessageSender) returns error? = @java:Method {
+    name: "receiveBytesMessageViaReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;

@@ -101,6 +101,44 @@ public class ConUtils {
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
     }
 
+    // Send Message when Sender Connection is given as a parameter and message content as a byte array
+    public static void sendBytesMessageViaSenderConnection(IMessageSender sender, BArray content) throws Exception {
+        String messageId = UUID.randomUUID().toString();
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        IMessage message = new Message();
+        message.setMessageId(messageId);
+        message.setTimeToLive(Duration.ofMinutes(1));
+        byte[] byteArray = content.getBytes();
+        message.setBody(byteArray);
+        sender.send(message);
+        System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
+    }
+
+    // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
+    public static void receiveBytesMessageViaReceiverConnection(IMessageReceiver receiver) throws Exception {
+
+        // receive messages from queue or subscription
+        String receivedMessageId = "";
+
+        System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
+        while (true) {
+            IMessage receivedMessage = receiver.receive(Duration.ofSeconds(5));
+
+            if (receivedMessage == null) {
+                break;
+            }
+            System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
+            System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
+            receiver.complete(receivedMessage.getLockToken());
+            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+                throw new Exception("Received a duplicate message!");
+            }
+            receivedMessageId = receivedMessage.getMessageId();
+        }
+        System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+    }
+
     // Send batch of messages to Queue or Topic with Message Content input as Byte Array
     public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
@@ -153,6 +191,8 @@ public class ConUtils {
 
         receiver.close();
     }
+
+    // --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     // Send message to Queue or Topic

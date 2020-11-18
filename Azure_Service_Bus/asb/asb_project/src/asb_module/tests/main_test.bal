@@ -169,6 +169,7 @@ function testSenderConnection() {
     if (con is SenderConnection) {
         io:println("Sending via connection");
         checkpanic con.sendViaSenderConnection(content);
+        checkpanic con.sendViaSenderConnection(content);
     }
 
     SenderConnection? conn = senderConnection;
@@ -198,8 +199,49 @@ function testReceiveConnection() {
     }
 }
 
-# Send and receive batch of messages to and from queue
+# Test Sender Connection With ByteArray Message
 @test:Config{enable: true}
+function testSenderConnectionWithByteArrayMessage() {
+    io:println("Creating sender connection");
+    SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    senderConnection = newConnection;
+
+    SenderConnection? con = senderConnection;
+    if (con is SenderConnection) {
+        io:println("Sending via connection");
+        checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
+        checkpanic con.sendBytesMessageViaSenderConnection(byteContent2);
+    }
+
+    SenderConnection? conn = senderConnection;
+    if (conn is SenderConnection) {
+        io:println("Closing sender connection");
+        checkpanic conn.closeSenderConnection();
+    }
+}
+
+# Test Reciever Connection With ByteArray Message
+@test:Config{enable: true}
+function testReceiveConnectionWithByteArrayMessage() {
+    io:println("Creating receiver connection");
+    ReceiverConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
+    connection = newConnection;
+
+    ReceiverConnection? con = connection;
+    if (con is ReceiverConnection) {
+        io:println("Receiving from connection");
+        checkpanic con.receiveBytesMessageViaReceiverConnection();
+    }
+
+    ReceiverConnection? conn = connection;
+    if (conn is ReceiverConnection) {
+        io:println("Closing receiver connection");
+        checkpanic conn.closeReceiverConnection();
+    }
+}
+
+# Send and receive batch of messages to and from queue
+@test:Config{enable: false}
 function testSendAndReceiveBatchMessages() {
     TestClient testClient = new();
     var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent2, maxMessageCount);

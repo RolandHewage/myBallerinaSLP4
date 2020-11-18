@@ -27,6 +27,10 @@ public class SenderConnection{
         return sendViaSenderConnection(self.asbSenderConnection, java:fromString(content));
     }
 
+    public isolated function sendBytesMessageViaSenderConnection(byte[] content) returns error? {
+        return sendBytesMessageViaSenderConnection(self.asbSenderConnection, content);
+    }
+
 }
 
 isolated function createSenderConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
@@ -41,5 +45,10 @@ isolated function closeSenderConnection(handle imessageSender) returns error? = 
 
 isolated function sendViaSenderConnection(handle imessageSender, handle content) returns error? = @java:Method {
     name: "sendViaSenderConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function sendBytesMessageViaSenderConnection(handle imessageSender, byte[] content) returns error? = @java:Method {
+    name: "sendBytesMessageViaSenderConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
