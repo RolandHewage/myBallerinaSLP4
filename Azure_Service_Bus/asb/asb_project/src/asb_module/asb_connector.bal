@@ -223,6 +223,12 @@ function abandonFromSubscription(handle connectionString, handle entityPath) ret
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
+function sendBatchMessages(handle connectionString, handle entityPath, string[] content, int maxMessageCount) returns error? = @java:Method {
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+
+
 
 
 
