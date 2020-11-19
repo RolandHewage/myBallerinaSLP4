@@ -8,6 +8,8 @@ byte[] byteContent1 = content.toBytes();
 json jsonContent = {name: "apple", color: "red", price: 5.36};
 byte[] byteContent2 = jsonContent.toJsonString().toBytes();
 byte[][] byteContent = [byteContent1,byteContent2];
+MsgList con = {messages:[1,2,3,4,5,6,7,8,9]};
+string[] s = ["my","name","is","roland"];
 string queuePath = "roland1queue";
 string topicPath = "roland1topic";
 string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
@@ -213,7 +215,7 @@ function testSenderConnectionWithByteArrayMessage() {
         // checkpanic con.sendBytesMessageViaSenderConnection(byteContent2);
         // checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
         int i=0;
-        while(i<1000){
+        while(i<1){
             checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
             i=i+1;
             io:println(i);
@@ -263,7 +265,7 @@ function testReceiveConnectionWithByteArrayMessage() {
 @test:Config{enable: false}
 function testSendAndReceiveBatchMessages() {
     TestClient testClient = new();
-    var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent2, maxMessageCount);
+    var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent2, maxMessageCount,s);
     var r30 = testClient.readBatchMessagesFromQueue(connectionString,queuePath, maxMessageCount);
 }
 

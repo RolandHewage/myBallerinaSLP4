@@ -4,6 +4,8 @@ import com.microsoft.azure.servicebus.*;
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 import org.ballerinalang.jvm.api.values.BArray;
 import org.ballerinalang.jvm.api.values.BMap;
+import org.ballerinalang.jvm.api.values.BObject;
+import org.ballerinalang.jvm.types.BIntegerType;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -210,7 +212,7 @@ public class ConUtils {
     }
 
     // Send batch of messages to Queue or Topic with Message Content input as Byte Array
-    public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount) throws Exception {
+    public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount, String[] con) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
         List<IMessage> messages = new ArrayList<>();
@@ -222,6 +224,7 @@ public class ConUtils {
             message.setTimeToLive(Duration.ofMinutes(1));
             byte[] byteArray = content.getBytes();
             message.setBody(byteArray);
+            System.out.println(con[i]);
 
             messages.add(message);
             System.out.printf("\t=> Sending a message with messageId %s\n", message.getMessageId());

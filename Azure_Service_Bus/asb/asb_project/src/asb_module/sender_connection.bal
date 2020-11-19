@@ -44,7 +44,7 @@ public type Message record {
 
 
 public type MsgList record {
-    byte[] messages = [];
+    int[] messages = [];
 };
 
 isolated function createSenderConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
