@@ -38,6 +38,15 @@ public class SenderConnection{
 
 }
 
+public type Message record {
+    string messageId = "";
+};
+
+
+public type MsgList record {
+    byte[] messages = [];
+};
+
 isolated function createSenderConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
     name: "createSenderConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"

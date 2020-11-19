@@ -31,6 +31,14 @@ public class ReceiverConnection{
         return receiveBytesMessageViaReceiverConnection(self.asbReceiverConnection);
     }
 
+    public isolated function receiveBytesMessageViaReceiverConnectionWithConfigurableParameters() returns handle|error? {
+        return receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(self.asbReceiverConnection);
+    }
+
+    public isolated function checkMessage(handle imessages) returns error? {
+        checkpanic checkMessage(imessages);
+    }
+
 }
 
 isolated function createReceiverConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
@@ -50,5 +58,15 @@ isolated function receiveViaReceiverConnection(handle imessageSender) returns er
 
 isolated function receiveBytesMessageViaReceiverConnection(handle imessageSender) returns error? = @java:Method {
     name: "receiveBytesMessageViaReceiverConnection",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(handle imessageSender) returns handle|error? = @java:Method {
+    name: "receiveBytesMessageViaReceiverConnectionWithConfigurableParameters",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function checkMessage(handle imessage) returns error? = @java:Method {
+    name: "checkMessage",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;

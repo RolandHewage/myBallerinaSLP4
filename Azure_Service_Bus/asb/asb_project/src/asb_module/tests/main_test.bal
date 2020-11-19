@@ -209,9 +209,15 @@ function testSenderConnectionWithByteArrayMessage() {
     SenderConnection? con = senderConnection;
     if (con is SenderConnection) {
         io:println("Sending via connection");
-        checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
-        checkpanic con.sendBytesMessageViaSenderConnection(byteContent2);
-        checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
+        // checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
+        // checkpanic con.sendBytesMessageViaSenderConnection(byteContent2);
+        // checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
+        int i=0;
+        while(i<1000){
+            checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
+            i=i+1;
+            io:println(i);
+        }
     }
 
     SenderConnection? conn = senderConnection;
@@ -231,7 +237,19 @@ function testReceiveConnectionWithByteArrayMessage() {
     ReceiverConnection? con = connection;
     if (con is ReceiverConnection) {
         io:println("Receiving from connection");
-        checkpanic con.receiveBytesMessageViaReceiverConnection();
+        var x = con.receiveBytesMessageViaReceiverConnectionWithConfigurableParameters();
+        if(x is handle) {
+            checkpanic con.checkMessage(x);
+        } else {
+            io:println("Failed Viewing");
+        }
+        io:println("Receiving from connection");
+        var y = con.receiveBytesMessageViaReceiverConnectionWithConfigurableParameters();
+        if(y is handle) {
+            checkpanic con.checkMessage(y);
+        } else {
+            io:println("Failed Viewing");
+        }
     }
 
     ReceiverConnection? conn = connection;

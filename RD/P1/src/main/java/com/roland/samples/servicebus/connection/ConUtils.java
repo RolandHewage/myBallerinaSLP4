@@ -172,10 +172,12 @@ public class ConUtils {
     }
 
     // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
-    public static void receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(IMessageReceiver receiver) throws Exception {
+    public static ArrayList<IMessage> receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(IMessageReceiver receiver) throws Exception {
 
         // receive messages from queue or subscription
         String receivedMessageId = "";
+
+        ArrayList<IMessage> messages = new ArrayList<>();
 
         System.out.printf("\n\tWaiting up to 5 seconds for messages from %s ...\n", receiver.getEntityPath());
         while (true) {
@@ -187,12 +189,24 @@ public class ConUtils {
             System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
             System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
             receiver.complete(receivedMessage.getLockToken());
+            messages.add(receivedMessage);
             if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
                 throw new Exception("Received a duplicate message!");
             }
             receivedMessageId = receivedMessage.getMessageId();
         }
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+        return messages;
+    }
+
+    // check message
+    public static void checkMessage(ArrayList<IMessage> messages) throws Exception {
+        for (IMessage msg:messages
+             ) {
+            System.out.printf("\t<= Received a message with messageId %s\n", msg.getMessageId());
+            System.out.printf("\t<= Received a message with messageBody %s\n", new String(msg.getBody(), UTF_8));
+        }
+        System.out.printf("\tDone viewing messages\n");
     }
 
     // Send batch of messages to Queue or Topic with Message Content input as Byte Array
