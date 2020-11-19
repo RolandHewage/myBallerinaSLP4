@@ -1,6 +1,6 @@
 import ballerina/java;
 // import ballerina/io;
-import ballerina/java.arrays as jarrays;
+// import ballerina/java.arrays as jarrays;
 
 public class TestClient{
     function init(){
@@ -170,8 +170,9 @@ public class TestClient{
     }
 
     // send batch of messages to queue with a content
-    public function sendBatchMessagesToQueue(string connectionString, string queuePath, byte[] content, int maxMessageCount, string[] conn) returns error? {
-        var s = sendBatchMessages(java:fromString(connectionString),java:fromString(queuePath),content, maxMessageCount, <handle>jarrays:toHandle(conn,"char"));
+    public function sendBatchMessagesToQueue(string connectionString, string queuePath, string[] content, int maxMessageCount) returns error? {
+        var s = sendBatchMessages(java:fromString(connectionString),java:fromString(queuePath),content, maxMessageCount);
+        // <handle>jarrays:toHandle(conn,"char")
     }
 
     // receive batch of messages from queue and display content
@@ -234,7 +235,7 @@ function abandonFromSubscription(handle connectionString, handle entityPath) ret
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-function sendBatchMessages(handle connectionString, handle entityPath, byte[] content, int maxMessageCount, handle conn) returns error? = @java:Method {
+function sendBatchMessages(handle connectionString, handle entityPath, string[] content, int maxMessageCount) returns error? = @java:Method {
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 

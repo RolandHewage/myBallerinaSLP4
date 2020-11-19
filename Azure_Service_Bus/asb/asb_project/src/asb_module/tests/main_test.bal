@@ -9,7 +9,10 @@ json jsonContent = {name: "apple", color: "red", price: 5.36};
 byte[] byteContent2 = jsonContent.toJsonString().toBytes();
 byte[][] byteContent = [byteContent1,byteContent2];
 MsgList con = {messages:[1,2,3,4,5,6,7,8,9]};
-string[] s = ["my","name","is","roland"];
+int[] a = [4, 5, 6];
+json[] j1 = [{name: "apple", color: "red", price: 5.36}, {first: "John", last: "Pala"}];
+json[] j2 = <json[]>j1;
+string[] stringArray = ["my","name","is","roland"];
 string queuePath = "roland1queue";
 string topicPath = "roland1topic";
 string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
@@ -202,7 +205,7 @@ function testReceiveConnection() {
 }
 
 # Test Sender Connection With ByteArray Message
-@test:Config{enable: false}
+@test:Config{enable: true}
 function testSenderConnectionWithByteArrayMessage() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -216,7 +219,7 @@ function testSenderConnectionWithByteArrayMessage() {
         // checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
         int i=0;
         while(i<1){
-            checkpanic con.sendBytesMessageViaSenderConnection(byteContent1);
+            checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
             i=i+1;
             io:println(i);
         }
@@ -230,7 +233,7 @@ function testSenderConnectionWithByteArrayMessage() {
 }
 
 # Test Reciever Connection With ByteArray Message
-@test:Config{enable: false}
+@test:Config{enable: true}
 function testReceiveConnectionWithByteArrayMessage() {
     io:println("Creating receiver connection");
     ReceiverConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -262,10 +265,10 @@ function testReceiveConnectionWithByteArrayMessage() {
 }
 
 # Send and receive batch of messages to and from queue
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testSendAndReceiveBatchMessages() {
     TestClient testClient = new();
-    var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath,byteContent2, maxMessageCount,s);
+    var s12 = testClient.sendBatchMessagesToQueue(connectionString,queuePath, stringArray, maxMessageCount);
     var r30 = testClient.readBatchMessagesFromQueue(connectionString,queuePath, maxMessageCount);
 }
 
