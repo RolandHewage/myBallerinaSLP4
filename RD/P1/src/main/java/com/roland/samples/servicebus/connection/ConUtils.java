@@ -199,7 +199,15 @@ public class ConUtils {
 
         System.out.println(a);
         System.out.println(b);
-        System.out.println(parameters);
+
+        System.out.println(parameters.getKeys());
+        System.out.println(parameters.values());
+
+        Map<String, String> map = new HashMap<>();
+        map.put("c","rol");
+        map.put("d","rol");
+        System.out.println(map);
+        System.out.println(map.get("c"));
 
 
         String messageId = UUID.randomUUID().toString();
@@ -246,7 +254,7 @@ public class ConUtils {
     public static void checkMessage(ArrayList<IMessage> messages) throws Exception {
         for (IMessage msg:messages
              ) {
-            System.out.printf("\t<= Received a message with messageId %s\n", msg.getMessageId());
+            System.out.printf("\t<= Received a message with messageparameters.getKeys()Id %s\n", msg.getMessageId());
             System.out.printf("\t<= Received a message with messageBody %s\n", new String(msg.getBody(), UTF_8));
         }
         System.out.printf("\tDone viewing messages\n");
