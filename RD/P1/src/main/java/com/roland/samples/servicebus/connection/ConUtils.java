@@ -199,6 +199,7 @@ public class ConUtils {
 
         System.out.println(a);
         System.out.println(b);
+        System.out.println(parameters);
 
 
         String messageId = UUID.randomUUID().toString();
