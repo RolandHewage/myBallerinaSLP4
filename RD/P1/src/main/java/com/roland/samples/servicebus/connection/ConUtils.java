@@ -9,10 +9,8 @@ import org.ballerinalang.jvm.api.values.BString;
 import org.ballerinalang.jvm.types.BIntegerType;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.time.Instant;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -142,6 +140,34 @@ public class ConUtils {
             receivedMessageId = receivedMessage.getMessageId();
         }
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
+    }
+
+    // Send Message when Sender Connection is given as a parameter and message content as a byte array
+    public static void sendBytesMessageWithConfigurableParameters(IMessageSender sender, BArray content, String contentType, String messageId, String to,
+                                                                                    String replyTo, String label,
+                                                                                    String sessionId, String correlationId,
+                                                                                    BMap<String, String> properties, int timeToLive) throws Exception {
+//        String messageId = UUID.randomUUID().toString();
+        // Send messages to queue
+        System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
+        IMessage message = new Message();
+        message.setMessageId(messageId);
+        message.setTimeToLive(Duration.ofMinutes(timeToLive));
+        byte[] byteArray = content.getBytes();
+        message.setBody(byteArray);
+        message.setContentType(contentType);
+        message.setMessageId(messageId);
+        message.setTo(to);
+        message.setReplyTo(replyTo);
+        message.setLabel(label);
+        message.setSessionId(sessionId);
+        message.setCorrelationId(correlationId);
+//        Map<String, String> m = new HashMap<>();
+        System.out.println(properties);
+//        message.setProperties(properties);
+
+        sender.send(message);
+        System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
     }
 
     // Send Message when Sender Connection is given as a parameter and message content as a byte array

@@ -36,6 +36,11 @@ public class SenderConnection{
         return sendBytesMessageViaSenderConnectionWithConfigurableParameters(self.asbSenderConnection, content,m);
     }
 
+    public isolated function sendBytesMessageWithConfigurableParameters(byte[] content) returns error? {
+        map<string> m = {a: "rol", b: "12"};
+        return sendBytesMessageWithConfigurableParameters(self.asbSenderConnection, content, java:fromString("content"), java:fromString("content"), java:fromString("content"), java:fromString("content"), java:fromString("content"), java:fromString("content"), java:fromString("content"),m, 1);
+    }
+
 }
 
 public type Message record {
@@ -69,5 +74,10 @@ isolated function sendBytesMessageViaSenderConnection(handle imessageSender, byt
 
 isolated function sendBytesMessageViaSenderConnectionWithConfigurableParameters(handle imessageSender, byte[] content, map<string> a) returns error? = @java:Method {
     name: "sendBytesMessageViaSenderConnectionWithConfigurableParameters",
+    'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function sendBytesMessageWithConfigurableParameters(handle imessageSender, byte[] content,handle contentType, handle messageId, handle to, handle replyTo, handle label, handle sessionId, handle correlationId, map<string> properties, int timeToLive) returns error? = @java:Method {
+    name: "sendBytesMessageWithConfigurableParameters",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
