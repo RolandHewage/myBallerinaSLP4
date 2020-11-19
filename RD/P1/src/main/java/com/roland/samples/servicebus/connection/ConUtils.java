@@ -5,6 +5,7 @@ import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 import org.ballerinalang.jvm.api.values.BArray;
 import org.ballerinalang.jvm.api.values.BMap;
 import org.ballerinalang.jvm.api.values.BObject;
+import org.ballerinalang.jvm.api.values.BString;
 import org.ballerinalang.jvm.types.BIntegerType;
 
 import java.time.Duration;

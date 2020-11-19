@@ -171,7 +171,7 @@ public class TestClient{
 
     // send batch of messages to queue with a content
     public function sendBatchMessagesToQueue(string connectionString, string queuePath, byte[] content, int maxMessageCount, string[] conn) returns error? {
-        var s = sendBatchMessages(java:fromString(connectionString),java:fromString(queuePath),content, maxMessageCount, <handle>jarrays:toHandle(conn,"string"));
+        var s = sendBatchMessages(java:fromString(connectionString),java:fromString(queuePath),content, maxMessageCount, <handle>jarrays:toHandle(conn,"char"));
     }
 
     // receive batch of messages from queue and display content

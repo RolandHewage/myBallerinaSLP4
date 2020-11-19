@@ -5,10 +5,10 @@ ballerina_version = "slp4"
 
 [[imports."roland/asb_module:0.1.0"]]
 org_name = "ballerina"
-name = "java.arrays"
-version = "0.9.0"
+name = "io"
+version = "0.5.0"
 
 [[imports."roland/asb_module:0.1.0"]]
 org_name = "ballerina"
-name = "io"
-version = "0.5.0"
+name = "java.arrays"
+version = "0.9.0"
