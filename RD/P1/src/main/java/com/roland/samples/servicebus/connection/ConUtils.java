@@ -171,22 +171,35 @@ public class ConUtils {
     }
 
     // Send Message when Sender Connection is given as a parameter and message content as a byte array
-    public static void sendBytesMessageViaSenderConnectionWithConfigurableParameters(IMessageSender sender, BArray content, BMap<String, Object> parameters) throws Exception {
+    public static void sendBytesMessageViaSenderConnectionWithConfigurableParameters(IMessageSender sender, BArray content, BMap<String, String> parameters) throws Exception {
+//        String a = "";
+//        Integer b = 0;
+//        if (parameters.containsKey("a")) {
+//            if(parameters.get("a") instanceof Integer) {
+//                throw new IllegalArgumentException("...");
+//            }
+//            a = (String)parameters.get("a");
+//            System.out.printf(a);
+//        } else if (parameters.containsKey("b")) {
+//            if(parameters.get("b") instanceof String) {
+//                throw new IllegalArgumentException("...");
+//            }
+//            b = (Integer)parameters.get("b");
+//            System.out.printf(Integer.toString(b));
+//        }
+
         String a = "";
-        Integer b = 0;
+        String b = "";
         if (parameters.containsKey("a")) {
-            if(parameters.get("a") instanceof Integer) {
-                throw new IllegalArgumentException("...");
-            }
             a = (String)parameters.get("a");
             System.out.printf(a);
         } else if (parameters.containsKey("b")) {
-            if(parameters.get("b") instanceof String) {
-                throw new IllegalArgumentException("...");
-            }
-            b = (Integer)parameters.get("b");
-            System.out.printf(Integer.toString(b));
+            b = (String) parameters.get("b");
         }
+
+        System.out.println(a);
+        System.out.println(b);
+
 
         String messageId = UUID.randomUUID().toString();
         // Send messages to queue

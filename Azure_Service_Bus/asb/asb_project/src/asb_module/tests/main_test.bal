@@ -219,7 +219,7 @@ function testSenderConnectionWithByteArrayMessage() {
         // checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
         int i=0;
         while(i<1){
-            checkpanic con.sendBytesMessageWithConfigurableParameters(byteContent1);
+            checkpanic con.sendBytesMessageViaSenderConnectionWithConfigurableParameters(byteContent1);
             i=i+1;
             io:println(i);
         }
