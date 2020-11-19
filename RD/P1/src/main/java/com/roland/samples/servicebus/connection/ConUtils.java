@@ -213,7 +213,7 @@ public class ConUtils {
     }
 
     // Send batch of messages to Queue or Topic with Message Content input as Byte Array
-    public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount, String[] con) throws Exception {
+    public static void sendBatchMessages(String connectionString, String entityPath, BArray content, int maxMessageCount) throws Exception {
         IMessageSender sender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath));
 
         List<IMessage> messages = new ArrayList<>();
@@ -223,9 +223,8 @@ public class ConUtils {
             IMessage message = new Message();
             message.setMessageId(messageId);
             message.setTimeToLive(Duration.ofMinutes(1));
-            byte[] byteArray = content.getBytes();
+            byte[] byteArray = content.get(i).toString().getBytes();
             message.setBody(byteArray);
-            System.out.println(con[i]);
 
             messages.add(message);
             System.out.printf("\t=> Sending a message with messageId %s\n", message.getMessageId());
@@ -237,6 +236,20 @@ public class ConUtils {
         System.out.printf("\t=> Sent %s messages\n", messages.size());
 
         sender.close();
+    }
+
+//    public static List<Integer> createArrayList() {
+//        return List.of(1, 2, 3);
+//    }
+    public static void foo(List arrayList) {
+        arrayList.forEach(System.out::println);
+    }
+    public static void bar(BArray bArray) {
+        ArrayList arrayList = new ArrayList(bArray.size());
+        for (int i = 0; i < bArray.size(); i++) {
+            arrayList.add(bArray.get(i));
+        }
+        foo(arrayList);
     }
 
     // Receive batch of messages from Queue or Subscription with Message Content input as Byte Array
