@@ -32,8 +32,9 @@ public class SenderConnection{
     }
 
     public isolated function sendBytesMessageViaSenderConnectionWithConfigurableParameters(byte[] content) returns error? {
-        map<string> m = {a: "rol", b: "12"};
-        return sendBytesMessageViaSenderConnectionWithConfigurableParameters(self.asbSenderConnection, content,m);
+        map<string> parameters = {contentType: "json", messageId: "rol", to: "roly", replyTo: "sola", label: "a1", sessionId: "b1", correlationId: "c1", timeToLive: "2"};
+        map<string> properties = {a: "rol", b: "12"};
+        return sendBytesMessageViaSenderConnectionWithConfigurableParameters(self.asbSenderConnection, content, parameters, properties);
     }
 
     public isolated function sendBytesMessageWithConfigurableParameters(byte[] content) returns error? {
@@ -72,7 +73,7 @@ isolated function sendBytesMessageViaSenderConnection(handle imessageSender, byt
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;
 
-isolated function sendBytesMessageViaSenderConnectionWithConfigurableParameters(handle imessageSender, byte[] content, map<string> a) returns error? = @java:Method {
+isolated function sendBytesMessageViaSenderConnectionWithConfigurableParameters(handle imessageSender, byte[] content, map<string> parameters, map<string> properties) returns error? = @java:Method {
     name: "sendBytesMessageViaSenderConnectionWithConfigurableParameters",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
 } external;

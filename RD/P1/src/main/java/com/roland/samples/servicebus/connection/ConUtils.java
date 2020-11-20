@@ -142,12 +142,11 @@ public class ConUtils {
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
     }
 
-    // Send Message when Sender Connection is given as a parameter and message content as a byte array
+    // Send Message with configurable parameters when Sender Connection is given as a parameter and message content as a byte array
     public static void sendBytesMessageWithConfigurableParameters(IMessageSender sender, BArray content, String contentType, String messageId, String to,
                                                                                     String replyTo, String label,
                                                                                     String sessionId, String correlationId,
                                                                                     BMap<String, String> properties, int timeToLive) throws Exception {
-//        String messageId = UUID.randomUUID().toString();
         // Send messages to queue
         System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
         IMessage message = new Message();
@@ -162,18 +161,27 @@ public class ConUtils {
         message.setLabel(label);
         message.setSessionId(sessionId);
         message.setCorrelationId(correlationId);
-//        Map<String, String> m = new HashMap<>();
-        Map<String,String> map1 = toStringMap(properties);
-        message.setProperties(map1);
-        System.out.println(map1);
-//        message.setProperties(properties);
+        Map<String,String> map = toStringMap(properties);
+        message.setProperties(map);
+        System.out.println(map);
 
         sender.send(message);
         System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
     }
 
-    // Send Message when Sender Connection is given as a parameter and message content as a byte array
-    public static void sendBytesMessageViaSenderConnectionWithConfigurableParameters(IMessageSender sender, BArray content, BMap<String, String> parameters) throws Exception {
+    // Convert BMap to Map
+    public static Map<String, String> toStringMap(BMap map) {
+        Map<String, String> returnMap = new HashMap<>();
+        if (map != null) {
+            for (Object aKey : map.getKeys()) {
+                returnMap.put(aKey.toString(), map.get(aKey).toString());
+            }
+        }
+        return returnMap;
+    }
+
+    // Send Message with configurable parameters as Map when Sender Connection is given as a parameter and message content as a byte array
+    public static void sendBytesMessageViaSenderConnectionWithConfigurableParameters(IMessageSender sender, BArray content, BMap<String, String> parameters, BMap<String, String> properties) throws Exception {
 //        String a = "";
 //        Integer b = 0;
 //        if (parameters.containsKey("a")) {
@@ -190,52 +198,80 @@ public class ConUtils {
 //            System.out.printf(Integer.toString(b));
 //        }
 
-        Map<String,String> map1 = toStringMap(parameters);
+//        Map<String, String> map1 = new HashMap<>();
+//        map1.put("c","rol");
+//        map1.put("d","rol");
+//        System.out.println(map1);
+//        System.out.println(map1.get("c"));
 
-        String a = "";
-        String b = "";
-        if (map1.containsKey("a")) {
-            a = (String)map1.get("a");
-            System.out.println(a);
+        Map<String,String> map = toStringMap(parameters);
+
+        String contentType = "";
+        String messageId = UUID.randomUUID().toString();;
+        String to = "";
+        String replyTo = "";
+        String label = "";
+        String sessionId = "";
+        String correlationId = "";
+        int timeToLive = 1;
+        if (map.containsKey("contentType")) {
+            contentType = (String)map.get("contentType");
+            System.out.println(contentType);
         }
-        if (map1.containsKey("b")) {
-            b = (String) map1.get("b");
-            System.out.println(b);
+        if (map.containsKey("messageId")) {
+            messageId = (String) map.get("messageId");
+            System.out.println(messageId);
+        }
+        if (map.containsKey("to")) {
+            to = (String) map.get("to");
+            System.out.println(to);
+        }
+        if (map.containsKey("replyTo")) {
+            replyTo = (String) map.get("replyTo");
+            System.out.println(replyTo);
+        }
+        if (map.containsKey("label")) {
+            label = (String) map.get("label");
+            System.out.println(label);
+        }
+        if (map.containsKey("sessionId")) {
+            sessionId = (String) map.get("sessionId");
+            System.out.println(sessionId);
+        }
+        if (map.containsKey("correlationId")) {
+            correlationId = (String) map.get("correlationId");
+            System.out.println(correlationId);
+        }
+        if (map.containsKey("timeToLive")) {
+            timeToLive = Integer.parseInt(map.get("timeToLive"));
+            System.out.println(timeToLive);
         }
 
-        System.out.println(map1);
+        System.out.println(map);
         System.out.println(parameters.values());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("c","rol");
-        map.put("d","rol");
-        System.out.println(map);
-        System.out.println(map.get("c"));
-
-
-        String messageId = UUID.randomUUID().toString();
         // Send messages to queue
         System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
         IMessage message = new Message();
         message.setMessageId(messageId);
-        message.setTimeToLive(Duration.ofMinutes(1));
+        message.setTimeToLive(Duration.ofMinutes(timeToLive));
         byte[] byteArray = content.getBytes();
         message.setBody(byteArray);
+        message.setContentType(contentType);
+        message.setMessageId(messageId);
+        message.setTo(to);
+        message.setReplyTo(replyTo);
+        message.setLabel(label);
+        message.setSessionId(sessionId);
+        message.setCorrelationId(correlationId);
+        Map<String,String> propertiesMap = toStringMap(properties);
+        message.setProperties(propertiesMap);
+
         sender.send(message);
         System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
     }
 
-    public static Map<String, String> toStringMap(BMap map) {
-        Map<String, String> returnMap = new HashMap<>();
-        if (map != null) {
-            for (Object aKey : map.getKeys()) {
-                returnMap.put(aKey.toString(), map.get(aKey).toString());
-            }
-        }
-        return returnMap;
-    }
-
-    // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
+    // Receive Message with configurable parameters as Map when Receiver Connection is given as a parameter and message content as a byte array and return message list
     public static ArrayList<IMessage> receiveBytesMessageViaReceiverConnectionWithConfigurableParameters(IMessageReceiver receiver) throws Exception {
 
         // receive messages from queue or subscription
@@ -302,16 +338,16 @@ public class ConUtils {
 //    public static List<Integer> createArrayList() {
 //        return List.of(1, 2, 3);
 //    }
-    public static void foo(List arrayList) {
-        arrayList.forEach(System.out::println);
-    }
-    public static void bar(BArray bArray) {
-        ArrayList arrayList = new ArrayList(bArray.size());
-        for (int i = 0; i < bArray.size(); i++) {
-            arrayList.add(bArray.get(i));
-        }
-        foo(arrayList);
-    }
+//    public static void foo(List arrayList) {
+//        arrayList.forEach(System.out::println);
+//    }
+//    public static void bar(BArray bArray) {
+//        ArrayList arrayList = new ArrayList(bArray.size());
+//        for (int i = 0; i < bArray.size(); i++) {
+//            arrayList.add(bArray.get(i));
+//        }
+//        foo(arrayList);
+//    }
 
     // Receive batch of messages from Queue or Subscription with Message Content input as Byte Array
     public static void receiveBatchMessages(String connectionString, String entityPath, int maxMessageCount) throws Exception {
