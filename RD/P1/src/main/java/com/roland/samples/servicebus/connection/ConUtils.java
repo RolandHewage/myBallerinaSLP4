@@ -188,19 +188,18 @@ public class ConUtils {
 //            System.out.printf(Integer.toString(b));
 //        }
 
+        Map<String,String> map1 = toStringMap(parameters);
+
         String a = "";
         String b = "";
-        if (parameters.containsKey("a")) {
-            a = (String)parameters.get("a");
-            System.out.printf(a);
-        } else if (parameters.containsKey("b")) {
-            b = (String) parameters.get("b");
+        if (map1.containsKey("a")) {
+            a = (String)map1.get("a");
+            System.out.println(a);
         }
-
-        System.out.println(a);
-        System.out.println(b);
-
-        Map<String,String> map1 = toStringMap(parameters);
+        if (map1.containsKey("b")) {
+            b = (String) map1.get("b");
+            System.out.println(b);
+        }
 
         System.out.println(map1);
         System.out.println(parameters.values());
