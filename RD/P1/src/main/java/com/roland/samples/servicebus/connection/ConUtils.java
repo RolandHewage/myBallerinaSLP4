@@ -200,7 +200,9 @@ public class ConUtils {
         System.out.println(a);
         System.out.println(b);
 
-        System.out.println(parameters.getKeys());
+        Map<String,String> map1 = toStringMap(parameters);
+
+        System.out.println(map1);
         System.out.println(parameters.values());
 
         Map<String, String> map = new HashMap<>();
@@ -220,6 +222,16 @@ public class ConUtils {
         message.setBody(byteArray);
         sender.send(message);
         System.out.printf("\t=> Sent a message with messageId %s\n", message.getMessageId());
+    }
+
+    public static Map<String, String> toStringMap(BMap map) {
+        Map<String, String> returnMap = new HashMap<>();
+        if (map != null) {
+            for (Object aKey : map.getKeys()) {
+                returnMap.put(aKey.toString(), map.get(aKey).toString());
+            }
+        }
+        return returnMap;
     }
 
     // Receive Message when Receiver Connection is given as a parameter and message content as a byte array
