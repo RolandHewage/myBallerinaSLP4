@@ -163,7 +163,9 @@ public class ConUtils {
         message.setSessionId(sessionId);
         message.setCorrelationId(correlationId);
 //        Map<String, String> m = new HashMap<>();
-        System.out.println(properties);
+        Map<String,String> map1 = toStringMap(properties);
+        message.setProperties(map1);
+        System.out.println(map1);
 //        message.setProperties(properties);
 
         sender.send(message);
