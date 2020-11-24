@@ -141,7 +141,7 @@ function testAutoForward() {
 }
 
 # receive message from queue via listener
-@test:Config{enable: false}
+@test:Config{enable: true}
 function testReceiveListener() {
 
     ConnectionConfiguration config = {
@@ -205,7 +205,7 @@ function testReceiveConnection() {
 }
 
 # Test Sender Connection With ByteArray Message
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testSenderConnectionWithByteArrayMessage() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -233,7 +233,7 @@ function testSenderConnectionWithByteArrayMessage() {
 }
 
 # Test Reciever Connection With ByteArray Message
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testReceiveConnectionWithByteArrayMessage() {
     io:println("Creating receiver connection");
     ReceiverConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
