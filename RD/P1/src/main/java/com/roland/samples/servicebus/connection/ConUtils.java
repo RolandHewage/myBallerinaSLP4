@@ -290,10 +290,10 @@ public class ConUtils {
             System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
             receiver.complete(receivedMessage.getLockToken());
             messages.add(receivedMessage);
-            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
-                throw new Exception("Received a duplicate message!");
-            }
-            receivedMessageId = receivedMessage.getMessageId();
+//            if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
+//                throw new Exception("Received a duplicate message!");
+//            }
+//            receivedMessageId = receivedMessage.getMessageId();
         }
         System.out.printf("\tDone receiving messages from %s\n", receiver.getEntityPath());
         return messages;
