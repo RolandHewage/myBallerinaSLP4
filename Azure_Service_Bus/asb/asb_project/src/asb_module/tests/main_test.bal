@@ -1,5 +1,7 @@
 import ballerina/io;
 import ballerina/test;
+import ballerina/runtime;
+import ballerina/log;
 
 // Connection Configuration
 string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
@@ -8,7 +10,7 @@ byte[] byteContent1 = content.toBytes();
 json jsonContent = {name: "apple", color: "red", price: 5.36};
 byte[] byteContent2 = jsonContent.toJsonString().toBytes();
 byte[][] byteContent = [byteContent1,byteContent2];
-MsgList con = {messages:[1,2,3,4,5,6,7,8,9]};
+// MsgList con = {messages:[1,2,3,4,5,6,7,8,9]};
 int[] a = [4, 5, 6];
 json[] j1 = [{name: "apple", color: "red", price: 5.36}, {first: "John", last: "Pala"}];
 json[] j2 = <json[]>j1;
@@ -19,6 +21,8 @@ string subscriptionPath1 = "roland1topic/subscriptions/roland1subscription1";
 string subscriptionPath2 = "roland1topic/subscriptions/roland1subscription2";
 string subscriptionPath3 = "roland1topic/subscriptions/roland1subscription3";
 int maxMessageCount = 3;
+string asyncConsumerMessage = "";
+string message = "Testing Async Consumer";
 
 ReceiverConnection? connection = ();
 SenderConnection? senderConnection = ();
@@ -141,7 +145,7 @@ function testAutoForward() {
 }
 
 # receive message from queue via listener
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testReceiveListener() {
 
     ConnectionConfiguration config = {
@@ -151,6 +155,36 @@ function testReceiveListener() {
 
     Listener testListener = new(config);
 }
+
+@test:Config {dependsOn: ["testSenderConnection"], enable: true}
+public function testAsyncConsumer() {
+
+    ConnectionConfiguration config = {
+        connectionString: connectionString,
+        entityPath: queuePath
+    };
+
+    string message = "Testing Async Consumer";
+    Listener? channelListener = new(config);
+    if (channelListener is Listener) {
+        checkpanic channelListener.__attach(asyncTestService);
+        checkpanic channelListener.__start();
+        runtime:sleep(2000);
+        test:assertEquals(asyncConsumerMessage, message, msg = "Message received does not match.");
+    }
+}
+
+service asyncTestService = service {
+    resource function onMessage(Message message) {
+        var messageContent = message.getTextContent();
+        if (messageContent is string) {
+            asyncConsumerMessage = <@untainted> messageContent;
+            log:printInfo("The message received: " + messageContent);
+        } else {
+            log:printError("Error occurred while retrieving the message content.");
+        }
+    }
+};
 
 # create receiver connection
 @test:Config {enable: false}
@@ -164,7 +198,7 @@ public function testConnection() {
 }
 
 # Test Sender Connection
-@test:Config{enable: false}
+@test:Config{enable: true}
 function testSenderConnection() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -173,8 +207,8 @@ function testSenderConnection() {
     SenderConnection? con = senderConnection;
     if (con is SenderConnection) {
         io:println("Sending via connection");
-        checkpanic con.sendViaSenderConnection(content);
-        checkpanic con.sendViaSenderConnection(content);
+        // checkpanic con.sendViaSenderConnection(content);
+        checkpanic con.sendViaSenderConnection(message);
     }
 
     SenderConnection? conn = senderConnection;

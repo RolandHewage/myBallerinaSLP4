@@ -44,6 +44,7 @@ public class MessageDispatcher {
         this.queueName = "roland1queue";
         this.consumerTag = service.getType().getName();
         this.runtime = runtime;
+        System.out.println("Roland1");
     }
 
     public void receiveMessages(BObject listener) {
@@ -90,7 +91,9 @@ public class MessageDispatcher {
     }
 
     private void handleDispatch(byte[] message) {
+        System.out.println("panda1");
         AttachedFunction[] attachedFunctions = service.getType().getAttachedFunctions();
+        System.out.println(attachedFunctions[0].getName());
         AttachedFunction onMessageFunction;
         if (FUNC_ON_MESSAGE.equals(attachedFunctions[0].getName())) {
             onMessageFunction = attachedFunctions[0];
@@ -101,6 +104,7 @@ public class MessageDispatcher {
         }
         BType[] paramTypes = onMessageFunction.getParameterType();
         int paramSize = paramTypes.length;
+        System.out.println("panda2"+paramSize);
         if (paramSize > 1) {
             dispatchMessageWithDataBinding(message, onMessageFunction);
         } else {
@@ -111,16 +115,20 @@ public class MessageDispatcher {
     private void dispatchMessage(byte[] message) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
+            System.out.println("panda3");
             AsyncFunctionCallback callback = new RabbitMQResourceCallback(countDownLatch, queueName,
                     message.length);
+            System.out.println("panda3");
             BObject messageBObject = getMessageBObject(message);
-            executeResourceOnMessage(callback, messageBObject, true);
+            System.out.println("panda3");
+            executeResourceOnMessage(callback, messageBObject);
             countDownLatch.await();
         } catch (InterruptedException e) {
 
         } catch (BError exception) {
 
         }
+        System.out.println("Kasun");
     }
 
     private void dispatchMessageWithDataBinding(byte[] message, AttachedFunction onMessage) {
@@ -141,10 +149,19 @@ public class MessageDispatcher {
         }
     }
 
-    private BObject getMessageBObject(byte[] message) {
+    private BObject getMessageBObject(byte[] message)  {
+        try{
+            String s = new String(message, StandardCharsets.UTF_8.name());
+            System.out.println(s);
+        } catch (UnsupportedEncodingException e) {
+
+        }
+
+
         BObject messageBObject = BValueCreator.createObjectValue(RabbitMQConstants.PACKAGE_ID_RABBITMQ,
                 RabbitMQConstants.MESSAGE_OBJECT);
         messageBObject.set(RabbitMQConstants.MESSAGE_CONTENT, BValueCreator.createArrayValue(message));
+        System.out.println("panna2");
 
         return messageBObject;
     }
@@ -183,6 +200,7 @@ public class MessageDispatcher {
 
     private void executeResource(String function, AsyncFunctionCallback callback, StrandMetadata metaData,
                                  Object... args) {
+        System.out.println("Mama1");
         runtime.invokeMethodAsync(service, function, null, metaData, callback, args);
     }
 

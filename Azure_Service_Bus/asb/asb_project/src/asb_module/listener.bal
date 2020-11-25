@@ -1,6 +1,6 @@
 import ballerina/lang.'object as lang;
 import ballerina/java;
-import ballerina/io;
+// import ballerina/io;
 
 public class Listener {
 
@@ -16,13 +16,13 @@ public class Listener {
     public function init(ConnectionConfiguration connectionOrConnectionConfig) {
         // self.amqpChannel = new Channel(connectionOrConnectionConfig);
         // externInit(self, self.amqpChannel.getChannel());
-        handle|error? m = createReceiverConnection(java:fromString(connectionOrConnectionConfig.connectionString),java:fromString(connectionOrConnectionConfig.entityPath));
-        if(m is handle) {
-            var l = receiveConnection(m);
-            var n = closeReceiverConnection(m);
-            io:println(n);
-        }
-
+        // handle|error? m = createReceiverConnection(java:fromString(connectionOrConnectionConfig.connectionString),java:fromString(connectionOrConnectionConfig.entityPath));
+        // if(m is handle) {
+        //     var l = receiveConnection(m);
+        //     var n = closeReceiverConnection(m);
+        //     io:println(n);
+        // }
+        externInit(self);
     }
 
     # Attaches the service to the `rabbitmq:Listener` endpoint.
@@ -31,16 +31,17 @@ public class Listener {
     # + name - Name of the service
     # + return - `()` or else a `rabbitmq:Error` upon failure to register the service
     public isolated function __attach(service s, string? name = ()) returns error? {
-        string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
-        string queuePath = "roland1queue";
-        handle|error? m = createReceiverConnection(java:fromString(connectionString),java:fromString(queuePath));
+        // string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
+        // string queuePath = "roland1queue";
+        // handle|error? m = createReceiverConnection(java:fromString(connectionString),java:fromString(queuePath));
+        return registerListener(self, s);
     }
 
     # Starts consuming the messages on all the attached services.
     #
     # + return - `()` or else a `rabbitmq:Error` upon failure to start
     public isolated function __start() returns error? {
-        
+        return 'start(self);
     }
 
     # Stops consuming messages and detaches the service from the `rabbitmq:Listener` endpoint.
@@ -110,6 +111,22 @@ isolated function closeReceiveConnection(handle imessageSender) returns error? =
 isolated function receiveConnection (handle imessageSender) returns error? = @java:Method {
     name: "receiveViaReceiverConnection",
     'class: "com.roland.samples.servicebus.connection.ConUtils"
+} external;
+
+isolated function externInit(Listener lis) =
+@java:Method {
+    name: "init",
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
+} external;
+
+isolated function registerListener(Listener lis, service serviceType) returns Error? =
+@java:Method {
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
+} external;
+
+isolated function 'start(Listener lis) returns Error? =
+@java:Method {
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
 } external;
 
 // isolated function externInit(Listener lis, handle amqpChannel) =

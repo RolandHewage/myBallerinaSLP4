@@ -1,7 +1,12 @@
 package com.roland.samples.servicebus.connection;
 
 import org.ballerinalang.jvm.api.BRuntime;
+import org.ballerinalang.jvm.api.BStringUtils;
+import org.ballerinalang.jvm.api.values.BError;
+import org.ballerinalang.jvm.api.values.BMap;
 import org.ballerinalang.jvm.api.values.BObject;
+import org.ballerinalang.jvm.api.values.BString;
+import org.ballerinalang.jvm.types.AnnotatableType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,11 +30,11 @@ public class ListenerUtils {
             return null;
         }
         if (isStarted()) {
-            services =
-                    (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.CONSUMER_SERVICES);
+            services = (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.CONSUMER_SERVICES);
             startReceivingMessages(service,  listenerBObject);
         }
         services.add(service);
+        System.out.println(service.getType().getName());
         return null;
     }
 
@@ -42,6 +47,38 @@ public class ListenerUtils {
                 new MessageDispatcher(service, runtime);
         messageDispatcher.receiveMessages(listener);
 
+    }
+
+    public static Object start(BObject listenerBObject) {
+        System.out.println("Roly1");
+        runtime = BRuntime.getCurrentRuntime();
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        ArrayList<BObject> services =
+                (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.CONSUMER_SERVICES);
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        ArrayList<BObject> startedServices =
+                (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.STARTED_SERVICES);
+        if (services == null || services.isEmpty()) {
+            System.out.println("Roly1");
+            return null;
+        }
+        for (BObject service : services) {
+            if (startedServices == null || !startedServices.contains(service)) {
+//                BMap serviceConfig = (BMap) ((AnnotatableType) service.getType())
+//                        .getAnnotation(BStringUtils.fromString(RabbitMQConstants.PACKAGE_RABBITMQ_FQN + ":"
+//                                + RabbitMQConstants.SERVICE_CONFIG));
+//                @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+//                BMap<BString, Object> queueConfig =
+//                        (BMap<BString, Object>) serviceConfig.getMapValue(RabbitMQConstants.ALIAS_QUEUE_CONFIG);
+                MessageDispatcher messageDispatcher =
+                        new MessageDispatcher(service, runtime);
+                messageDispatcher.receiveMessages(listenerBObject);
+                System.out.println("Ross1");
+            }
+        }
+        started = true;
+        System.out.println("Roland1");
+        return null;
     }
 
 //    public static Object registerListener(BObject listenerBObject, BObject service) {

@@ -18,6 +18,7 @@ public class RabbitMQResourceCallback extends AsyncFunctionCallback {
 
     @Override
     public void notifySuccess() {
+        System.out.println("Lalith1");
         countDownLatch.countDown();
     }
 

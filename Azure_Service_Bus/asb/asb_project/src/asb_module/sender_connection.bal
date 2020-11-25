@@ -44,14 +44,14 @@ public class SenderConnection{
 
 }
 
-public type Message record {
-    string messageId = "";
-};
+// public type Message record {
+//     string messageId = "";
+// };
 
 
-public type MsgList record {
-    int[] messages = [];
-};
+// public type MsgList record {
+//     int[] messages = [];
+// };
 
 isolated function createSenderConnection(handle connectionString, handle entityPath) returns handle|error? = @java:Method {
     name: "createSenderConnection",
