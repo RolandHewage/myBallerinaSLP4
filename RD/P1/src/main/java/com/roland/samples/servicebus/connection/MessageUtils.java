@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 public class MessageUtils {
 
-    public static Object getTextContent(ArrayValue messageContent, byte[] data) {
+    public static Object getTextContent(ArrayValue messageContent) {
         byte[] messageCont = messageContent.getBytes();
         try {
             return new String(messageCont, StandardCharsets.UTF_8.name());
