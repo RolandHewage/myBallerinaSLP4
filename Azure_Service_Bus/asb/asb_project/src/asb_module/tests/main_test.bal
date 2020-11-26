@@ -170,6 +170,7 @@ public function testAsyncConsumer() {
         checkpanic channelListener.__attach(asyncTestService);
         checkpanic channelListener.__start();
         runtime:sleep(2000);
+        checkpanic channelListener.__detach(asyncTestService);
         test:assertEquals(asyncConsumerMessage, message, msg = "Message received does not match.");
     }
 }

@@ -49,7 +49,7 @@ public class Listener {
     # + s - Type descriptor of the service
     # + return - `()` or else  a `rabbitmq:Error` upon failure to detach the service
     public isolated function __detach(service s) returns error? {
-        
+        return detach(self, s);
     }
 
     # Stops consuming messages through all consumer services by terminating the connection and all its channels.
@@ -125,6 +125,11 @@ isolated function registerListener(Listener lis, service serviceType) returns Er
 } external;
 
 isolated function 'start(Listener lis) returns Error? =
+@java:Method {
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
+} external;
+
+isolated function detach(Listener lis, service serviceType) returns Error? =
 @java:Method {
     'class: "com.roland.samples.servicebus.connection.ListenerUtils"
 } external;

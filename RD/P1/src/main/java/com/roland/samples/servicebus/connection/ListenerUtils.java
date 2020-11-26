@@ -83,6 +83,40 @@ public class ListenerUtils {
         return null;
     }
 
+    public static Object detach(BObject listenerBObject, BObject service) {
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        ArrayList<BObject> startedServices =
+                (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.STARTED_SERVICES);
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        ArrayList<BObject> services =
+                (ArrayList<BObject>) listenerBObject.getNativeData(RabbitMQConstants.CONSUMER_SERVICES);
+        String serviceName = service.getType().getName();
+        String queueName = (String) service.getNativeData(RabbitMQConstants.QUEUE_NAME.getValue());
+
+        System.out.println("[ballerina/rabbitmq] Consumer service unsubscribed from the queue " + queueName);
+
+        listenerBObject.addNativeData(RabbitMQConstants.CONSUMER_SERVICES,
+                removeFromList(services, service));
+        listenerBObject.addNativeData(RabbitMQConstants.STARTED_SERVICES,
+                removeFromList(startedServices, service));
+        return null;
+    }
+
+    /**
+     * Removes a given element from the provided array list and returns the resulting list.
+     *
+     * @param arrayList   The original list
+     * @param objectValue Element to be removed
+     * @return Resulting list after removing the element
+     */
+    public static ArrayList<BObject> removeFromList(ArrayList<BObject> arrayList, BObject objectValue) {
+        if (arrayList != null) {
+            arrayList.remove(objectValue);
+        }
+        return arrayList;
+    }
+
+
 //    public static Object registerListener(BObject listenerBObject, BObject service) {
 //        runtime = Runtime.getRuntime();
 //        Channel channel = (Channel) listenerBObject.getNativeData(RabbitMQConstants.CHANNEL_NATIVE_OBJECT);
