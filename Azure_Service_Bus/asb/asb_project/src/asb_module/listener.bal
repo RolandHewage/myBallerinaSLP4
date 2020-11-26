@@ -129,6 +129,20 @@ isolated function 'start(Listener lis) returns Error? =
     'class: "com.roland.samples.servicebus.connection.ListenerUtils"
 } external;
 
+public type QueueConfiguration record {|
+    string connectionString;
+    string queueName;
+|};
+
+
+public type RabbitMQServiceConfig record {|
+    QueueConfiguration queueConfig;
+|};
+
+# The annotation, which is used to configure the subscription.
+public annotation RabbitMQServiceConfig ServiceConfig on service;
+
+
 // isolated function externInit(Listener lis, handle amqpChannel) =
 // @java:Method {
 //     name: "init",
