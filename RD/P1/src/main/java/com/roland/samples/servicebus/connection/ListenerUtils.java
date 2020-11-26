@@ -102,6 +102,15 @@ public class ListenerUtils {
         return null;
     }
 
+    public static Object stop(BObject listenerBObject) {
+        return null;
+    }
+
+    public static Object abortConnection(BObject listenerBObject) {
+        return null;
+    }
+
+
     /**
      * Removes a given element from the provided array list and returns the resulting list.
      *

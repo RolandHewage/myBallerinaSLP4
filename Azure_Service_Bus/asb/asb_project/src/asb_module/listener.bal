@@ -56,7 +56,7 @@ public class Listener {
     #
     # + return - `()` or else  a `rabbitmq:Error` upon failure to close the `ChannelListener`
     public isolated function __gracefulStop() returns error? {
-        
+        return stop(self);
     }
 
     # Stops consuming messages through all the consumer services and terminates the connection
@@ -64,7 +64,7 @@ public class Listener {
     #
     # + return - `()` or else  a `rabbitmq:Error` upon failure to close ChannelListener.
     public isolated function __immediateStop() returns error? {
-        
+        return abortConnection(self);
     }
 }  
 
@@ -130,6 +130,16 @@ isolated function 'start(Listener lis) returns Error? =
 } external;
 
 isolated function detach(Listener lis, service serviceType) returns Error? =
+@java:Method {
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
+} external;
+
+isolated function stop(Listener lis) returns Error? =
+@java:Method {
+    'class: "com.roland.samples.servicebus.connection.ListenerUtils"
+} external;
+
+isolated function abortConnection(Listener lis) returns Error? =
 @java:Method {
     'class: "com.roland.samples.servicebus.connection.ListenerUtils"
 } external;
