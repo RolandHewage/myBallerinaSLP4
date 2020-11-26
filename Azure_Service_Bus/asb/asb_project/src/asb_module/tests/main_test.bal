@@ -156,7 +156,7 @@ function testReceiveListener() {
     Listener testListener = new(config);
 }
 
-@test:Config { enable: true}
+@test:Config {dependsOn: ["testSenderConnection"], enable: true}
 public function testAsyncConsumer() {
 
     ConnectionConfiguration config = {
@@ -170,7 +170,7 @@ public function testAsyncConsumer() {
         checkpanic channelListener.__attach(asyncTestService);
         checkpanic channelListener.__start();
         log:printInfo("start");
-        runtime:sleep(2000);
+        runtime:sleep(15000);
         log:printInfo("end");
         checkpanic channelListener.__detach(asyncTestService);
         test:assertEquals(asyncConsumerMessage, message, msg = "Message received does not match.");
@@ -217,7 +217,7 @@ public function testConnection() {
 }
 
 # Test Sender Connection
-@test:Config{enable: false}
+@test:Config{enable: true}
 function testSenderConnection() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
@@ -227,7 +227,7 @@ function testSenderConnection() {
     if (con is SenderConnection) {
         io:println("Sending via connection");
         // checkpanic con.sendViaSenderConnection(content);
-        // checkpanic con.sendViaSenderConnection(message);
+        checkpanic con.sendViaSenderConnection(message);
         checkpanic con.sendViaSenderConnection(message);
     }
 
