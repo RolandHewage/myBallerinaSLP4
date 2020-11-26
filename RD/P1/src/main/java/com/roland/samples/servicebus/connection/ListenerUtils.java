@@ -35,7 +35,7 @@ public class ListenerUtils {
         }
         services.add(service);
 //        System.out.println(service.getType().getName());
-        System.out.println(service);
+        System.out.println(service.getType().getQualifiedName());
         System.out.println(services);
         return null;
     }

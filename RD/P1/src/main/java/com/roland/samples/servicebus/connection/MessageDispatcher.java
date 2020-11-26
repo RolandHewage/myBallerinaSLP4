@@ -97,19 +97,19 @@ public class MessageDispatcher {
         AttachedFunction onMessageFunction;
         if (FUNC_ON_MESSAGE.equals(attachedFunctions[0].getName())) {
             onMessageFunction = attachedFunctions[0];
-        } else if (FUNC_ON_MESSAGE.equals(attachedFunctions[1].getName())) {
-            onMessageFunction = attachedFunctions[1];
+//        } else if (FUNC_ON_MESSAGE.equals(attachedFunctions[1].getName())) {
+//            onMessageFunction = attachedFunctions[1];
         } else {
             return;
         }
         BType[] paramTypes = onMessageFunction.getParameterType();
         int paramSize = paramTypes.length;
         System.out.println("panda2"+paramSize);
-        if (paramSize > 1) {
-            dispatchMessageWithDataBinding(message, onMessageFunction);
-        } else {
+//        if (paramSize > 1) {
+//            dispatchMessageWithDataBinding(message, onMessageFunction);
+//        } else {
             dispatchMessage(message);
-        }
+//        }
     }
 
     private void dispatchMessage(byte[] message) {
@@ -118,6 +118,7 @@ public class MessageDispatcher {
             System.out.println("panda3");
             AsyncFunctionCallback callback = new RabbitMQResourceCallback(countDownLatch, queueName,
                     message.length);
+//            ResponseCallback callback = new ResponseCallback();
             System.out.println("panda3");
             BObject messageBObject = getMessageBObject(message);
             System.out.println("panda3");
@@ -131,23 +132,23 @@ public class MessageDispatcher {
         System.out.println("Kasun");
     }
 
-    private void dispatchMessageWithDataBinding(byte[] message, AttachedFunction onMessage) {
-        BType[] paramTypes = onMessage.getParameterType();
-        try {
-            Object forContent = getMessageContentForType(message, paramTypes[1]);
-            BObject messageBObject = getMessageBObject(message);
-            CountDownLatch countDownLatch = new CountDownLatch(1);
-            AsyncFunctionCallback callback = new RabbitMQResourceCallback(countDownLatch, queueName,
-                    message.length);
-            executeResourceOnMessage(callback, messageBObject,
-                    true, forContent, true);
-            countDownLatch.await();
-        } catch (BError | UnsupportedEncodingException exception) {
-
-        } catch (InterruptedException e) {
-
-        }
-    }
+//    private void dispatchMessageWithDataBinding(byte[] message, AttachedFunction onMessage) {
+//        BType[] paramTypes = onMessage.getParameterType();
+//        try {
+//            Object forContent = getMessageContentForType(message, paramTypes[1]);
+//            BObject messageBObject = getMessageBObject(message);
+//            CountDownLatch countDownLatch = new CountDownLatch(1);
+//            AsyncFunctionCallback callback = new RabbitMQResourceCallback(countDownLatch, queueName,
+//                    message.length);
+//            executeResourceOnMessage(callback, messageBObject,
+//                    true, forContent, true);
+//            countDownLatch.await();
+//        } catch (BError | UnsupportedEncodingException exception) {
+//
+//        } catch (InterruptedException e) {
+//
+//        }
+//    }
 
     private BObject getMessageBObject(byte[] message)  {
 
@@ -201,5 +202,18 @@ public class MessageDispatcher {
         System.out.println("Mama1");
         runtime.invokeMethodAsync(service, function, null, metaData, callback, args);
     }
+
+//    private static class ResponseCallback extends AsyncFunctionCallback {
+//
+//        @Override
+//        public void notifySuccess() {
+//            // do nothing
+//        }
+//
+//        @Override
+//        public void notifyFailure(BError error) {
+//            // do nothing
+//        }
+//    }
 
 }
