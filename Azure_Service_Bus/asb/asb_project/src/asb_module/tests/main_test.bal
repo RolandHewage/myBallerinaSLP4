@@ -176,6 +176,7 @@ public function testAsyncConsumer() {
 
 service asyncTestService = service {
     resource function onMessage(Message message) {
+        log:printInfo("Why?");
         var messageContent = message.getTextContent();
         if (messageContent is string) {
             asyncConsumerMessage = <@untainted> messageContent;

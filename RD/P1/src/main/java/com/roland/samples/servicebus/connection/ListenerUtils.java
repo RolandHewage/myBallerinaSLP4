@@ -34,7 +34,9 @@ public class ListenerUtils {
             startReceivingMessages(service,  listenerBObject);
         }
         services.add(service);
-        System.out.println(service.getType().getName());
+//        System.out.println(service.getType().getName());
+        System.out.println(service);
+        System.out.println(services);
         return null;
     }
 

@@ -64,7 +64,7 @@ public class MessageDispatcher {
                 }
                 System.out.printf("\t<= Received a message with messageId %s\n", receivedMessage.getMessageId());
                 System.out.printf("\t<= Received a message with messageBody %s\n", new String(receivedMessage.getBody(), UTF_8));
-                handleDispatch(receivedMessage.getMessageId().getBytes());
+                handleDispatch(receivedMessage.getBody());
                 receiver.complete(receivedMessage.getLockToken());
                 if (receivedMessageId.contentEquals(receivedMessage.getMessageId())) {
                     throw new Exception("Received a duplicate message!");
@@ -150,12 +150,10 @@ public class MessageDispatcher {
     }
 
     private BObject getMessageBObject(byte[] message)  {
-        try{
-            String s = new String(message, StandardCharsets.UTF_8.name());
-            System.out.println(s);
-        } catch (UnsupportedEncodingException e) {
 
-        }
+//            String s = new String(message, UTF_8);
+//            System.out.println(s);
+        System.out.printf("\t<= Received a message with messageBody %s\n", new String(message, UTF_8));
 
 
         BObject messageBObject = BValueCreator.createObjectValue(RabbitMQConstants.PACKAGE_ID_RABBITMQ,

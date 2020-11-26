@@ -250,3 +250,216 @@ java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
+[2020-11-25 22:04:16,507] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:04:23,773] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:15:19,257] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:15:26,479] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:20:10,347] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:20:17,536] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:22:08,151] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:22:15,370] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:39:00,541] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:39:00,872] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at org.ballerinalang.jvm.scheduling.Scheduler.start(Scheduler.java:231)
+	at org.ballerinalang.test.runtime.entity.TesterinaFunction.runOnSchedule(TesterinaFunction.java:118)
+	at org.ballerinalang.test.runtime.entity.TesterinaFunction.invoke(TesterinaFunction.java:56)
+	at org.ballerinalang.test.runtime.BTestRunner.invokeTestFunction(BTestRunner.java:601)
+	at org.ballerinalang.test.runtime.BTestRunner.executeFunction(BTestRunner.java:436)
+	at org.ballerinalang.test.runtime.BTestRunner.lambda$executeTests$2(BTestRunner.java:332)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.ballerinalang.test.runtime.BTestRunner.executeTests(BTestRunner.java:320)
+	at org.ballerinalang.test.runtime.BTestRunner.execute(BTestRunner.java:291)
+	at org.ballerinalang.test.runtime.BTestRunner.runTest(BTestRunner.java:106)
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:74)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:39:08,169] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:39:54,209] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:40:01,401] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:43:29,396] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:43:36,626] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:46:42,104] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:46:49,367] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-25 22:48:39,975] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-25 22:48:47,186] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 08:57:06,267] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 08:57:13,660] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 09:00:06,090] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 09:10:29,300] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 09:13:24,018] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 09:14:51,496] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 09:14:58,778] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
