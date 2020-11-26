@@ -156,7 +156,7 @@ function testReceiveListener() {
     Listener testListener = new(config);
 }
 
-@test:Config {dependsOn: ["testSenderConnection"], enable: false}
+@test:Config { enable: true}
 public function testAsyncConsumer() {
 
     ConnectionConfiguration config = {
@@ -217,7 +217,7 @@ public function testConnection() {
 }
 
 # Test Sender Connection
-@test:Config{enable: true}
+@test:Config{enable: false}
 function testSenderConnection() {
     io:println("Creating sender connection");
     SenderConnection newConnection = new ({connectionString: connectionString, entityPath: queuePath});
