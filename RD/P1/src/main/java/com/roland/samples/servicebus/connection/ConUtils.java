@@ -73,7 +73,7 @@ public class ConUtils {
         System.out.printf("\tSending messages to %s ...\n", sender.getEntityPath());
         IMessage message = new Message();
         message.setMessageId(messageId);
-        message.setTimeToLive(Duration.ofMinutes(1));
+        message.setTimeToLive(Duration.ofMinutes(5));
         byte[] byteArray = content.getBytes();
         message.setBody(byteArray);
         sender.send(message);
