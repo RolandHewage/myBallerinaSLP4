@@ -12,6 +12,7 @@ import org.ballerinalang.jvm.api.BValueCreator;
 import org.ballerinalang.jvm.api.values.BArray;
 import org.ballerinalang.jvm.api.values.BError;
 import org.ballerinalang.jvm.api.values.BObject;
+import org.ballerinalang.jvm.api.values.BString;
 import org.ballerinalang.jvm.scheduling.StrandMetadata;
 import org.ballerinalang.jvm.types.BType;
 import org.ballerinalang.jvm.types.TypeTags;
@@ -122,7 +123,7 @@ public class MessageDispatcher {
             System.out.println("panda3");
             BObject messageBObject = getMessageBObject(message);
             System.out.println("panda3");
-            executeResourceOnMessage(callback, messageBObject);
+            executeResourceOnMessage(callback, messageBObject, true);
             countDownLatch.await();
         } catch (InterruptedException e) {
 
@@ -200,7 +201,8 @@ public class MessageDispatcher {
     private void executeResource(String function, AsyncFunctionCallback callback, StrandMetadata metaData,
                                  Object... args) {
         System.out.println("Mama1");
-        runtime.invokeMethodAsync(service, function, null, metaData, callback, args);
+        BString b = BStringUtils.fromString("magene");
+        runtime.invokeMethodAsync(service, function, null, metaData, callback,args);
     }
 
 //    private static class ResponseCallback extends AsyncFunctionCallback {

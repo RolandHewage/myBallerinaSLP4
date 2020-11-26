@@ -670,3 +670,129 @@ java.lang.RuntimeException: there are test failures
 	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
 	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
  
+[2020-11-26 11:25:55,676] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 11:26:02,909] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 11:28:09,655] SEVERE {b7a.log.crash} - 0 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 11:28:16,850] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 11:29:37,398] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 11:37:14,467] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 11:37:53,896] SEVERE {b7a.log.crash} - java.lang.String cannot be cast to org.ballerinalang.jvm.api.values.BString 
+java.lang.ClassCastException: java.lang.String cannot be cast to org.ballerinalang.jvm.api.values.BString
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 11:38:01,117] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 11:39:59,736] SEVERE {b7a.log.crash} - 1 
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at roland.asb_module.0_1_0.$value$$anonService$0$$service$1.call(tests/main_test.bal)
+	at org.ballerinalang.jvm.api.BRuntime.lambda$invokeMethodAsync$0(BRuntime.java:70)
+	at org.ballerinalang.jvm.scheduling.SchedulerItem.execute(Scheduler.java:500)
+	at org.ballerinalang.jvm.scheduling.Scheduler.run(Scheduler.java:276)
+	at org.ballerinalang.jvm.scheduling.Scheduler.runSafely(Scheduler.java:244)
+	at java.lang.Thread.run(Thread.java:748)
+ 
+[2020-11-26 11:40:07,001] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:02:17,198] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:03:24,967] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:06:02,538] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:06:31,773] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:08:52,572] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:11:00,833] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:13:50,142] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:21:44,204] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 
+[2020-11-26 12:22:28,203] SEVERE {b7a.log.crash} - there are test failures 
+java.lang.RuntimeException: there are test failures
+	at org.ballerinalang.test.runtime.util.TesterinaUtils.executeTests(TesterinaUtils.java:77)
+	at org.ballerinalang.test.runtime.Main.startTestSuit(Main.java:60)
+	at org.ballerinalang.test.runtime.Main.main(Main.java:52)
+ 

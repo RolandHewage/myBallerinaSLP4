@@ -177,6 +177,13 @@ public function testAsyncConsumer() {
 service asyncTestService = service {
     resource function onMessage(Message message) {
         log:printInfo("Why?");
+        // var messageContent = message.getLady2();
+        // if (messageContent is byte[]) {
+        //     log:printInfo(messageContent);
+        // } else {
+        //     log:printError("Error occurred while retrieving the message content.");
+        // }
+        // log:printInfo(message);
         var messageContent = message.getTextContent();
         if (messageContent is string) {
             asyncConsumerMessage = <@untainted> messageContent;
@@ -184,6 +191,7 @@ service asyncTestService = service {
         } else {
             log:printError("Error occurred while retrieving the message content.");
         }
+        log:printInfo("Baba");
     }
 };
 
@@ -209,6 +217,7 @@ function testSenderConnection() {
     if (con is SenderConnection) {
         io:println("Sending via connection");
         // checkpanic con.sendViaSenderConnection(content);
+        checkpanic con.sendViaSenderConnection(message);
         checkpanic con.sendViaSenderConnection(message);
     }
 
