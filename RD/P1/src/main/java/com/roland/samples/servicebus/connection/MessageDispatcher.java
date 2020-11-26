@@ -9,11 +9,9 @@ import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 import org.ballerinalang.jvm.XMLFactory;
 import org.ballerinalang.jvm.api.BStringUtils;
 import org.ballerinalang.jvm.api.BValueCreator;
-import org.ballerinalang.jvm.api.values.BArray;
-import org.ballerinalang.jvm.api.values.BError;
-import org.ballerinalang.jvm.api.values.BObject;
-import org.ballerinalang.jvm.api.values.BString;
+import org.ballerinalang.jvm.api.values.*;
 import org.ballerinalang.jvm.scheduling.StrandMetadata;
+import org.ballerinalang.jvm.types.AnnotatableType;
 import org.ballerinalang.jvm.types.BType;
 import org.ballerinalang.jvm.types.TypeTags;
 import org.ballerinalang.model.types.Type;
@@ -36,21 +34,44 @@ public class MessageDispatcher {
     private String consumerTag;
     private BObject service;
     private String queueName;
+    private String connectionKey;
     private BRuntime runtime;
     private static final StrandMetadata ON_MESSAGE_METADATA = new StrandMetadata(ORG_NAME, RABBITMQ,
             RABBITMQ_VERSION, FUNC_ON_MESSAGE);
 
     public MessageDispatcher(BObject service, BRuntime runtime) {
         this.service = service;
-        this.queueName = "roland1queue";
+//        this.queueName = "roland1queue";
+        this.queueName = getQueueNameFromConfig(service);
+        this.connectionKey = getConnectionStringFromConfig(service);
         this.consumerTag = service.getType().getName();
         this.runtime = runtime;
         System.out.println("Roland1");
     }
 
+    private String getQueueNameFromConfig(BObject service) {
+        BMap serviceConfig = (BMap) ((AnnotatableType) service.getType())
+                .getAnnotation(BStringUtils.fromString(RabbitMQConstants.PACKAGE_RABBITMQ_FQN + ":"
+                        + RabbitMQConstants.SERVICE_CONFIG));
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        BMap<BString, Object> queueConfig =
+                (BMap) serviceConfig.getMapValue(RabbitMQConstants.ALIAS_QUEUE_CONFIG);
+        return queueConfig.getStringValue(RabbitMQConstants.QUEUE_NAME).getValue();
+    }
+
+    private String getConnectionStringFromConfig(BObject service) {
+        BMap serviceConfig = (BMap) ((AnnotatableType) service.getType())
+                .getAnnotation(BStringUtils.fromString(RabbitMQConstants.PACKAGE_RABBITMQ_FQN + ":"
+                        + RabbitMQConstants.SERVICE_CONFIG));
+        @SuppressWarnings(RabbitMQConstants.UNCHECKED)
+        BMap<BString, Object> queueConfig =
+                (BMap) serviceConfig.getMapValue(RabbitMQConstants.ALIAS_QUEUE_CONFIG);
+        return queueConfig.getStringValue(CONNECTION_STRING).getValue();
+    }
+
     public void receiveMessages(BObject listener) {
-        String connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
-        String entityPath = "roland1queue";
+        String connectionString = connectionKey;
+        String entityPath = queueName;
         System.out.println("[ballerina/rabbitmq] Consumer service started for queue " + queueName);
         try{
             IMessageReceiver receiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, entityPath), ReceiveMode.PEEKLOCK);

@@ -174,7 +174,14 @@ public function testAsyncConsumer() {
     }
 }
 
-service asyncTestService = service {
+service asyncTestService = 
+@ServiceConfig {
+    queueConfig: {
+        connectionString: connectionString,
+        queueName: queuePath
+    }
+}
+service {
     resource function onMessage(Message message) {
         log:printInfo("Why?");
         // var messageContent = message.getLady2();

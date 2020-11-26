@@ -27,6 +27,7 @@ public class RabbitMQConstants {
     public static final BString MESSAGE_CONTENT = BStringUtils.fromString("messageContent");
 
     public static final BString QUEUE_NAME = BStringUtils.fromString("queueName");
+    public static final BString CONNECTION_STRING = BStringUtils.fromString("connectionString");
 
     public static final String UNCHECKED = "unchecked";
 
