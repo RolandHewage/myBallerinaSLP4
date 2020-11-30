@@ -6,10 +6,10 @@ import ballerina/log;
 
 
 oauth2:OutboundOAuth2Provider oauth2ProviderDirect = new ({
-    accessToken: "EAAFSZBogCGUIBAP5x6oEAUZCOSW5rdnrZATBjxTf9HH9kzR6tSTmHBXOT5nTz7sMxPmdGeeFJ5F4yxljojoC58EXMojCmShQYzY7legibKDRWyv9S9lvUnk0TpVcGFQSKX6puvGpmaLziEvM8vANNJGOZBQFWfbaU6wdTJ5mWwZDZD",
+    accessToken: "<access_token>",
     refreshConfig: {
-        clientId: "372710953851202",
-        clientSecret:"302f53d6d0c5a2f483fc61a3476bbfd1",
+        clientId: "<client_id>",
+        clientSecret:"<client_secret>",
         refreshToken: "",
         refreshUrl: "",
         clientConfig: {
