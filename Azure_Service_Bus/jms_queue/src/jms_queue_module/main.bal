@@ -7,8 +7,8 @@ public function main() {
     jms:Connection connection = check jms:createConnection({
                       initialContextFactory: "org.apache.qpid.jms.jndi.JmsInitialContextFactory",
                       providerUrl: "amqps://roland1.servicebus.windows.net?amqp.idleTimeout=120000&amqp.traceFrames=true",
-                      username: "RootManageSharedAccessKey",
-                      password: "OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="
+                      username: "<username>",
+                      password: "<password>"
                     });
     jms:Session session = check connection->createSession({acknowledgementMode: "AUTO_ACKNOWLEDGE"});
     jms:Destination queue = check session->createQueue("roland1queue");
