@@ -4,7 +4,7 @@ import ballerina/runtime;
 import ballerina/log;
 
 // Connection Configuration
-string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
+string connectionString = "<SAS>";
 string content = "This is My Message Body"; 
 byte[] byteContent1 = content.toBytes();
 json jsonContent = {name: "apple", color: "red", price: 5.36};
