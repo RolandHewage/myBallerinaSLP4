@@ -45,10 +45,10 @@ endpoint http:Client oauth2Client {
     url: "https://www.example.org/api/v1",
     auth: {
         scheme: http:OAUTH2,
-        accessToken: "yf29.PlrfBb0gtDFXsbnE_LcDCG-Dz3djEp05zM9y-IPR8CsZz90XwOEyrhqeXPPYxubY9RHMIFzoV2",
-        clientId: "50332352747-270vchcnbhbl4gfn1v91hl0fru.apps.example.org",
-        clientSecret: "PrfEadE4s2SDG4hJ",
-        refreshToken: "5/lk-u0Ywefgh52-v0_OLOkDhlsA9xIadf4qqD3TMQvc",
+        accessToken: "<access_token>",
+        clientId: "<client_id>",
+        clientSecret: "<client_secret>",
+        refreshToken: "<refresh_token>",
         refreshUrl: "https://www.example.com/oauth2/v3/token"
     }
 };
@@ -76,16 +76,7 @@ public function testJWTAuth() {
 }
 
 function setJwtTokenToAuthContext () {
-    string token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYWxsZXJ" +
-        "pbmEiLCJpc3MiOiJiYWxsZXJpbmEiLCJleHAiOjI4MTg0MTUwMTksImlhdCI6MTUyND" +
-        "U3NTAxOSwianRpIjoiZjVhZGVkNTA1ODVjNDZmMmI4Y2EyMzNkMGMyYTNjOWQiLCJhdW" +
-        "QiOlsiYmFsbGVyaW5hIiwiYmFsbGVyaW5hLm9yZyIsImJhbGxlcmluYS5pbyJdLCJzY" +
-        "29wZSI6ImhlbGxvIn0.bNoqz9_DzgeKSK6ru3DnKL7NiNbY32ksXPYrh6Jp0_O3ST7W" +
-        "fXMs9WVkx6Q2TiYukMAGrnMUFrJnrJvZwC3glAmRBrl4BYCbQ0c5mCbgM9qhhCjC1tB" +
-        "A50rjtLAtRW-JTRpCKS0B9_EmlVKfvXPKDLIpM5hnfhOin1R3lJCPspJ2ey_Ho6fDhs" +
-        "KE3DZgssvgPgI9PBItnkipQ3CqqXWhV-RFBkVBEGPDYXTUVGbXhdNOBSwKw5ZoVJrCU" +
-        "iNG5XD0K4sgN9udVTi3EMKNMnVQaq399k6RYPAy3vIhByS6QZtRjOG8X93WJw-9GLiH" +
-        "vcabuid80lnrs2-mAEcstgiHVw";
+    string token = "<jwt_token>";
     runtime:getInvocationContext().authContext.scheme = "jwt";
     runtime:getInvocationContext().authContext.authToken = token;
 }
