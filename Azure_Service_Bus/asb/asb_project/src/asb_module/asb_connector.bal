@@ -7,7 +7,7 @@ public class TestClient{
         // var arrayDeque = newMessage();
         // io:println(arrayDeque);
 
-        // var csb = newConnectionStringBuilder(java:fromString("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk="));
+        // var csb = newConnectionStringBuilder(java:fromString("SAS"));
         // io:println(arrayDeque);      
 
         // var b = getSharedAccessSignatureToken();  
@@ -22,7 +22,7 @@ public class TestClient{
 
 
         // // Connection Configuration
-        // string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
+        // string connectionString = "<SAS>";
         // string content = "This is My Message Body"; 
         // string queuePath = "roland1queue";
         // string topicPath = "roland1topic";
