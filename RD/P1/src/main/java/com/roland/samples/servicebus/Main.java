@@ -14,8 +14,8 @@ import java.util.concurrent.Executors;
 
 public class Main {
 
-    private static final String connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
-    private static final String entityPath = "roland1queue";
+    private static final String connectionString = "<SAS>";
+    private static final String entityPath = "<Queue_NAME>";
 
     public static void main(String[] args) throws Exception {
 
