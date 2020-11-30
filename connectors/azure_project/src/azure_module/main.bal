@@ -27,7 +27,7 @@ public client class AzureServiceBusClient{
         });
 
         self.httpRequest = new;
-        self.httpRequest.setHeader("Authorization","SharedAccessSignature sr=https%3A%2F%2Froland1.servicebus.windows.net%2Froland1queue%2Fmessages&sig=fg57Z532CjkN0R0axNsu3%2BTcyCSlzV5utPPu%2FL43frk%3D&se=1605605523&skn=RootManageSharedAccessKey");
+        self.httpRequest.setHeader("Authorization","SharedAccessSignature <SAS>");
 
     } 
 
