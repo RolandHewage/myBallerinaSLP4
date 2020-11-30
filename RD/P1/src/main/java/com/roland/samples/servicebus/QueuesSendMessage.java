@@ -131,7 +131,7 @@
 //
 //        QueuesSendMessage app = new QueuesSendMessage();
 //        try {
-//            app.run("Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=");
+//            app.run("<SAS>");
 //            System.exit(0);
 //        } catch (Exception e) {
 //            System.out.printf("%s", e.toString());
