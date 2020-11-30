@@ -4,11 +4,11 @@ import ballerina/log;
 import ballerina/oauth2;
 
 oauth2:OutboundOAuth2Provider oauth2Provider3 = new ({
-    accessToken: "eyJraWQiOiJScUlmZ2xuQVNHZkNMSVhTTEdOV0t6Q0R5WHMtZ0RNNWVmdDc4eV9uU21nIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULm9JdkFoNE5rMjdwNG1WcTh2ZGRGTUVKeGdPQXRsTEpQQ204Q2h0bk9ybWciLCJpc3MiOiJodHRwczovL2Rldi04NTU4ODIyLm9rdGEuY29tL29hdXRoMi9kZWZhdWx0IiwiYXVkIjoiYXBpOi8vZGVmYXVsdCIsImlhdCI6MTYwMzc3MzAxNSwiZXhwIjoxNjAzNzc2NjE1LCJjaWQiOiIwb2FmZm1oajZPR0RGeFhtZTVkNSIsInVpZCI6IjAwdWZnb2xldTA1bHJ6dlVFNWQ1Iiwic2NwIjpbIm9wZW5pZCJdLCJzdWIiOiJyb2xhbmQuaGV3YWdlQGdtYWlsLmNvbSJ9.YTqNMM8kDg7JsQurck73HrMZ9MpeCp7exjesnmGHIEHSggLz-DniC6RuCr8bi1XUwbR5WitHaCsPL1BRaP4bBAqtKbezGp_L0YBeZByrxis9RBPZUVwlQggoA1L57KP6xP5QbDvekUtlVpBLxlFFflq2CrxonpRvGSgIRp05tzV5_Lv-flEyF-PEY3b2oYzik_3eJvcDp3U7X6zRDMqf4gVpvBIY4L72reGyto7RBaG4SKpVEfxziUe1bhOKc2lr4y15wL4Gr010SOXPPQXsbyu_UNl8E2y1sZffz4Y-tNIBxWMbLdwSdVuJQmzQOmlBlOGnp7P0jE3YbcwMCmB5gw",
+    accessToken: "<access_token>",
     refreshConfig: {
-        clientId: "0oaffmhj6OGDFxXme5d5",
+        clientId: "<client_id>",
         clientSecret:
-                "OJtQTk90BgSwIx9uIAazPg-8-TOWngi1u0b2UQ2m",
+                "<client_secret>",
         refreshToken: "<Refresh token for the refresh token server>",
         refreshUrl: "<Refresh token URL for the refresh token server>",
         clientConfig: {
