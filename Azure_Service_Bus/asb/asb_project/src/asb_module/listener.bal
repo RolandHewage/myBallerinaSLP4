@@ -31,7 +31,7 @@ public class Listener {
     # + name - Name of the service
     # + return - `()` or else a `rabbitmq:Error` upon failure to register the service
     public isolated function __attach(service s, string? name = ()) returns error? {
-        // string connectionString = "Endpoint=sb://roland1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=OckfvtMMw6GHIftqU0Jj0A0jy0uIUjufhV5dCToiGJk=";
+        // string connectionString = "<SAS>";
         // string queuePath = "roland1queue";
         // handle|error? m = createReceiverConnection(java:fromString(connectionString),java:fromString(queuePath));
         return registerListener(self, s);
